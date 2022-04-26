@@ -1,0 +1,17 @@
+{
+  "name": "romanolab.org",
+  "version": "0.1.0-alpha",
+  "description": "Romano Lab Website",
+  "main": "www/index.html",
+  "scripts": {
+    "build": "npx @11ty/eleventy --config=.eleventy.js",
+    "build-production": "ELEVENTY_PRODUCTION=true @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --config=.eleventy.js --serve --watch"
+  },
+  "author": "Joseph D. Romano",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.1",
+    "clean-css": "^5.3.0"
+  }
+}
