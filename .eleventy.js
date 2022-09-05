@@ -6,6 +6,14 @@ module.exports = function(eleventyConfig) {
     })
 
     eleventyConfig.addPassthroughCopy('src/assets')
+
+    // enable CORS
+    eleventyConfig.setBrowserSyncConfig({
+        middleware: function (req, res, next) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            next();
+        }
+    });
     
     return {
         templateFormats: ["html", "njk", "md", "js"],

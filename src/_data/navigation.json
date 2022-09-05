@@ -1,0 +1,12 @@
+{
+    "primary": [{
+        "label": "Home",
+        "url": "/index.html"
+    },{
+        "label": "People",
+        "url": "/personnel.html"
+    },{
+        "label": "Positions",
+        "url": "/positions.html"
+    }]
+}
