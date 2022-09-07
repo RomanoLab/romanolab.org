@@ -10,13 +10,7 @@
         <title>Romano Lab</title>
 
         <style>
-        body {
-    max-width: 800px;
-    padding-top: 36px;
-    padding-left: 48px;
-}
-
-@font-face {
+        @font-face {
     font-family: "Computer Modern";
     src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
 }
@@ -37,28 +31,128 @@
     font-style: italic, oblique;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    /* font-family: "Computer Modern", sans-serif; */
-    font-family: sans-serif;
+    max-width: 800px;
+    padding-top: 36px;
+    padding-left: 48px;
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    margin-bottom: 80px;
 }
 
 h4 {
     margin-bottom: 8pt;
+}
+
+.headshot {
+    height: 200px;
+    width: 200px;
+    float: left;
+}
+
+.headshot-img {
+    width: 100%;
+}
+
+.bio {
+    margin-left: 216px;
+}
+
+.titles p {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
+#bottom-footer {
+    position: absolute;
+    /* padding-left: 48px; */
+    bottom: 0;
+    height: 80px;
+
+}
+
+
+/* Collapsible info displays */
+.wrap-collapsible {
+    margin-left: 12px;
+}
+input[type='checkbox'] {
+    display: none;
+}
+.collapsible-toggle {
+    display: block;
+
+    font-weight: bold;
+    
+    /* color: #A77B0E;
+    background: #FAE042; */
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+    transition: all 0.25s ease-out;
+}
+.collapsible-toggle:hover {
+    color: #7C5A0B;
+}
+.collapsible-toggle::before {
+    content: ' ';
+    display: inline-block;
+
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+
+    vertical-align: middle;
+    margin-right: .7rem;
+    transform: translateY(-2px);
+
+    transition: transform .2s ease-out;
+}
+.collapsible-content .content-inner {
+    background: rgba(250, 224, 66, .2);
+    border-bottom: 1px solid rgba(250, 224, 66, .45);
+
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: .5rem 1rem;
+}
+.collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+
+    transition: max-height .25s ease-in-out;
+}
+.toggle:checked + .collapsible-toggle + .collapsible-content {
+    max-height: 100vh;
+}
+.toggle:checked + .collapsible-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+}
+.toggle:checked + .collapsible-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
         </style>
     </head>
     <body>
         <main>
             
+    <h1>Romano Lab @ <span style="color: #011F5B;">Penn</span></h1>
     
-    <h1>Romano Lab</h1>
     <h2>Knowledge-driven biomedical data science</h2>
     <canvas></canvas>
     <p>
-        The Romano Lab is a new biomedical research team launching in 2023 at the <a href="https://www.upenn.edu">University of Pennsylvania's</a> <a href="https://www.med.upenn.edu">Perelman School of Medicine</a>. 
+        We are a new biomedical research team launching in early 2023 at the <a href="https://www.upenn.edu">University of Pennsylvania's</a> <a href="https://www.med.upenn.edu">Perelman School of Medicine</a>. 
     </p>
     <p>
-        We focus on using <i>structured biomedical knowledge</i> to answer interesting questions in biomedicine. We're particularly interested in applications to environmental toxicology. Some of our favorite methods are multimodal graph machine learning and applied ontology inference.
+        We use <b>structured biomedical knowledge</b> and <b>artificial intelligence</b> to answer important questions in biomedicine. We're particularly interested in applications to environmental toxicology. Some of our favorite methods include multimodal graph machine learning and applied ontology inference.
     </p>
     <p>
         Peripheral areas of interest include:
@@ -108,6 +202,30 @@ const colors = [
     '#c341d8'
 ]; 
 
+/**
+ * Retrieve a random sample of an array by performing the Fisher-Yates shuffle
+ * and then taking a slice of the desired size.
+ * 
+ * See: https://stackoverflow.com/a/11935263/1730417
+ * 
+ * @param {Array} arr An array from which to draw samples
+ * @param {Integer} n Number of samples to draw from `arr`
+ */
+function getRandomSample(arr, n) {
+    let shuffled = arr.slice(0);
+    let i = arr.length;
+    let temp, idx;
+
+    while (i--) {
+        idx = Math.floor((i+1) * Math.random());
+        temp = shuffled[idx];
+        shuffled[idx] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    
+    return shuffled.slice(0, n);
+}
+
 
 // Data structures
 
@@ -139,9 +257,6 @@ class Node {
 
 class Edge {
     constructor(startNode, endNode) {
-        console.log(startNode);
-        console.log(endNode);
-        
         this.startNode = startNode;
         this.endNode = endNode;
 
@@ -153,13 +268,74 @@ class Edge {
     }
 
     drawEdge() {
-        console.log("DRAWING EDGE: ", this);
+        ctx.globalAlpha = 1.0;
         ctx.strokeStyle = globals.edgeColor;
         ctx.edgeWidth = globals.edgeWidth;
         ctx.beginPath();
         ctx.moveTo(this.x1, this.y1);
-        ctx.moveTo(this.x2, this.y2);
+        ctx.lineTo(this.x2, this.y2);
         ctx.stroke();
+    }
+}
+
+class Graph {
+    /**
+     * 
+     * @param {canvas} cnv <canvas> object where the graph will be drawn
+     */
+    constructor(cnv) {
+        this.nodes = Array();
+        this.edges = Array();
+
+        this.canvas = cnv
+        this.canvas_height = cnv.height;
+        this.canvas_width = cnv.width;
+        
+    }
+
+    /**
+     * 
+     * @param {Integer} canvas_x x-coordinate within the associated canvas
+     * @param {Integer} canvas_y y-coordinate within the associated canvas
+     */
+    addNode(canvas_x, canvas_y) {
+        this.nodes.push(new Node(canvas_x, canvas_y))
+    }
+
+    addRandomNodes(n_nodes) {
+        let random_node_coords = Array();
+        
+        for(var i=0; i < n_nodes; i++) {
+            random_node_coords.push([
+                Math.random() * this.canvas_width,
+                Math.random() * this.canvas_height
+            ]);
+        }
+
+        random_node_coords.forEach(nc => {
+            this.addNode(nc[0], nc[1])
+        });
+    }
+
+    addEdge(startNodeIndex, endNodeIndex) {
+        const startNode = this.nodes[startNodeIndex];
+        const endNode = this.nodes[endNodeIndex];
+        
+        this.edges.push(new Edge(startNode, endNode));
+    }
+
+    addRandomEdges(n_edges) {
+        let edges = Array();
+        
+        for(var i=0; i < n_edges; i++) {
+            getRandomSample(this.nodes, 2);
+        }
+    }
+
+    drawGraph() {
+        // We draw the edges first, so their tips sit 'behind' the nodes
+        this.edges.forEach(e => e.drawEdge());
+        this.nodes.forEach(n => n.drawNode());
     }
 }
 
@@ -175,8 +351,6 @@ function drawEdges(nodes, adjacency_list) {
     adjacency_list.forEach(al => {
         edges.push(new Edge(nodes[al[0]], nodes[al[1]]))
     });
-
-    console.log(edges);
 
     edges.forEach(e => e.drawEdge());
 }
@@ -211,11 +385,22 @@ let adjacencies = [
     [0, 1]
 ];
 
+let G = new Graph(canvas);
+
 function start() {
-    drawGraph(node_coords, adjacencies);
+    // drawGraph(node_coords, adjacencies);
+    G.addRandomNodes(5);
+    G.addRandomEdges(2);
+
+    G.drawGraph();
 }
 
-window.setTimeout(start, 1000);
+window.setTimeout(start, 100);
         </script>
     </body>
+    <footer>
+        <div id="bottom-footer">
+            <p><i>Copyright &copy; 2022 by Joseph D. Romano and the Romano Lab</i></p>
+        </div>
+    </footer>
 </html>
