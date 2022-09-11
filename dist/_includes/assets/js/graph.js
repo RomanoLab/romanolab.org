@@ -12,11 +12,15 @@ const globals = {
     'nodeRadius': 4,
     'nodeSpacing': 25,
     'edgeWidth': 2,
-    'edgeColor': '#808080'
+    'edgeColor': '#808080',
+    'breathingRoom': 8
 };
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+
+canvas.width = 800;
+canvas.height = 250;
 
 const colors = [
     '#e91e63',
@@ -64,8 +68,8 @@ class Node {
         this.right  = this.x + globals.nodeSpacing / 2 - globals.nodeRadius;
         this.bottom = this.y + globals.nodeSpacing / 2 - globals.nodeRadius;
 
-        this.abs_x = this.left + (this.right - this.left) * Math.random();
-        this.abs_y = this.top + (this.bottom - this.top) * Math.random();
+        this.abs_x = this.left + globals.breathingRoom + (this.right - this.left) * Math.random();
+        this.abs_y = this.top + globals.breathingRoom + (this.bottom - this.top) * Math.random();
 
         this.color = colors[Math.floor(Math.random() * colors.length)];
     }
@@ -101,6 +105,12 @@ class Edge {
         ctx.lineTo(this.x2, this.y2);
         ctx.stroke();
     }
+
+    getLength() {
+        return Math.sqrt(
+            Math.pow((this.x1 - this.x2), 2) + Math.pow((this.y1 - this.y2), 2)
+        );
+    }
 }
 
 class Graph {
@@ -115,7 +125,11 @@ class Graph {
         this.canvas = cnv
         this.canvas_height = cnv.height;
         this.canvas_width = cnv.width;
+
+        this.usable_height = this.canvas_height - (globals.breathingRoom * 2);
+        this.usable_width = this.canvas_width - (globals.breathingRoom * 2)
         
+        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
     }
 
     /**
@@ -132,8 +146,8 @@ class Graph {
         
         for(var i=0; i < n_nodes; i++) {
             random_node_coords.push([
-                Math.random() * this.canvas_width,
-                Math.random() * this.canvas_height
+                Math.random() * this.usable_width,
+                Math.random() * this.usable_height
             ]);
         }
 
@@ -150,14 +164,49 @@ class Graph {
     }
 
     addRandomEdges(n_edges) {
-        let edges = Array();
-        
+        let randomSample;
+        let acceptProb;
+
+        // in its most basic version, we simply randomly select pairs of nodes
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     this.edges.push(new Edge(randomSample[0], randomSample[1]));
+        // }
+
+        // here, we accept random samples with probability inversely 
+        // proportional to the length of the resulting edge
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+        //     acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+        //     if (Math.random() <= acceptProb) {
+        //         this.edges.push(candidateEdge);
+        //     } else {
+        //         console.log("REJECT with probability ", acceptProb);
+        //         --i;
+        //     }
+        // }
+
+        // Same as above, but this time we adjust probability based on logistic
+        // curve to more strongly encourage short edges
         for(var i=0; i < n_edges; i++) {
-            getRandomSample(this.nodes, 2);
+            randomSample = getRandomSample(this.nodes, 2);
+            let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+            // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+            acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            if (Math.random() <= acceptProb) {
+                this.edges.push(candidateEdge);
+            } else {
+                console.log("REJECT with probability ", acceptProb);
+                --i;
+            }
         }
     }
 
     drawGraph() {
+        // Remove any orphan nodes
+        
+        
         // We draw the edges first, so their tips sit 'behind' the nodes
         this.edges.forEach(e => e.drawEdge());
         this.nodes.forEach(n => n.drawNode());
@@ -165,57 +214,13 @@ class Graph {
 }
 
 
-// Drawing subroutines
-function drawNodes(nodes) {
-    nodes.forEach(n => n.drawNode());
-}
-
-function drawEdges(nodes, adjacency_list) {
-    let edges = [];
-    
-    adjacency_list.forEach(al => {
-        edges.push(new Edge(nodes[al[0]], nodes[al[1]]))
-    });
-
-    edges.forEach(e => e.drawEdge());
-}
-
-function drawGraph(coords, adjacencies) {
-    // Draw nodes
-    if (coords) {
-        let nodes = Array();
-
-        coords.forEach(n => {
-            nodes.push(new Node(n[0], n[1]));
-        });
-        
-        drawNodes(nodes);
-        drawEdges(nodes, adjacencies);
-                
-    } else {
-        // draw random nodes
-        console.log("Shouldn't be printing this yet!!");
-    }
-}
-
-
 // Draw a random graph
-let node_coords = [
-    [30, 85],
-    [150, 60],
-    [210, 100]
-];
-let adjacencies = [
-    [0, 2],
-    [0, 1]
-];
-
 let G = new Graph(canvas);
 
 function start() {
     // drawGraph(node_coords, adjacencies);
-    G.addRandomNodes(5);
-    G.addRandomEdges(2);
+    G.addRandomNodes(30);
+    G.addRandomEdges(20);
 
     G.drawGraph();
 }

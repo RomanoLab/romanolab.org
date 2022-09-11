@@ -1,22 +1,20 @@
 @font-face {
-    font-family: "Computer Modern";
-    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+    font-family: 'cmu_serifroman';
+    src: url('_includes/assets/fonts/cmunrm-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-    font-family: "Computer Modern";
-    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsx.otf');
-    font-weight: bold;
+    font-family: 'cmu_sans_serifbold';
+    src: url('_includes/assets/fonts/cmunsx-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-    font-family: "Computer Modern";
-    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsi.otf');
-    font-style: italic, oblique;
-}
-@font-face {
-    font-family: "Computer Modern";
-    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunbxo.otf');
-    font-weight: bold;
-    font-style: italic, oblique;
+    font-family: 'cmu_typewriter_textregular';
+    src: url('_includes/assets/fonts/cmuntt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html {
@@ -29,7 +27,12 @@ body {
     padding-top: 36px;
     padding-left: 48px;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    /* font-family: 'cmu_serifroman', serif; */
     margin-bottom: 80px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'cmu_sans_serifbold', sans-serif;
 }
 
 h4 {
@@ -126,4 +129,18 @@ input[type='checkbox'] {
 .toggle:checked + .collapsible-toggle {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+#graph-banner {
+    height: 250px;
+    width: 800px;
+}
+
+#pennlink {
+    color: #011F5B;
+    text-decoration: none;
+}
+
+#jdrlink {
+    text-decoration: none;
 }
