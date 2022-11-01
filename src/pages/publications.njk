@@ -1,0 +1,47 @@
+---
+title: Lab Publications
+subtitle: Lab Publications
+permalink: /publications.html
+---
+
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+<p>Return to <a href="index.html">home</a></p>
+<hr/>
+<h2>Lab Publications (newest first)</h2>
+<p>
+    The following publications were either written by members of the lab, or were contributed to significantly by a lab member as a coauthor.
+</p>
+
+{%- for pub in publications -%}
+{% if pub.title %}
+<div class="pub-entry">
+<p class="pub-title"><b>{{ pub.title }}</b></p>
+{% if pub.authors %}
+<p class="pub-authors">{{ pub.authors }}.</p>
+{% endif %}
+{% if pub.journal %}
+<p class="pub-journal"><i>{{ pub.journal }}</i>. {% if pub.doi %}(DOI: <a href="https://doi.org/{{ pub.doi }}" target="_blank">{{ pub.doi }}</a>){% endif %}</p>
+{% endif %}
+<div class="pub-buttons">
+    {% if pub.journal_link %}
+    <button class="pub-button-journal" onclick="window.location.href = '{{ pub.journal_link }}';" target="_blank">Journal link</button>
+    {% endif %}
+    {% if pub.pmid %}
+    <button class="pub-button-journal" onclick="window.location.href = 'https://www.ncbi.nlm.nih.gov/pubmed/{{ pub.pmid }}';" target="_blank">PubMed</button>
+    {% endif %}
+    {% if pub.pmcid %}
+    <button class="pub-button-journal" onclick="window.location.href = 'https://www.ncbi.nlm.nih.gov/pmc/articles/{{ pub.pmcid }}';" target="_blank">PubMed Central</button>
+    {% endif %}
+    {% if pub.google_scholar_link %}
+    <button class="pub-button-journal" onclick="window.location.href = '{{ pub.google_scholar_link }}';" target="_blank">Google Scholar</button>
+    {% endif %}
+    {% if pub.bib_entry %}
+    <button class="pub-button-journal" onclick="window.location.href = '{{ pub.bib_entry }}';" target="_blank">.bib entry</button>
+    {% endif %}
+</div>
+</div>
+{% endif %}
+{%- endfor -%}
+{% endblock %}

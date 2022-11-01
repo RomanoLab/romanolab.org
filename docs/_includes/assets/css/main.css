@@ -31,7 +31,7 @@ body {
     margin-bottom: 80px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, label {
     font-family: 'cmu_sans_serifbold', sans-serif;
 }
 
@@ -53,10 +53,30 @@ h4 {
     margin-left: 216px;
 }
 
-.titles p {
+.person p {
     font-size: 0.9em;
     margin-block-start: 0;
     margin-block-end: 2px;
+}
+
+.links {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
+.location {
+    padding-top: 8px;
+}
+
+.location p {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
+.links {
+    padding-top: 8px;
 }
 
 #bottom-footer {
@@ -107,8 +127,8 @@ input[type='checkbox'] {
     transition: transform .2s ease-out;
 }
 .collapsible-content .content-inner {
-    background: rgba(250, 224, 66, .2);
-    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    background: #f1f5f8;
+    border-bottom: 1px solid #f1f5f8;
 
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
@@ -119,6 +139,12 @@ input[type='checkbox'] {
     overflow: hidden;
 
     transition: max-height .25s ease-in-out;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+.collapsible-content p {
+    margin-top: 6px;
+    margin-bottom: 8px;
 }
 .toggle:checked + .collapsible-toggle + .collapsible-content {
     max-height: 100vh;
@@ -143,4 +169,51 @@ input[type='checkbox'] {
 
 #jdrlink {
     text-decoration: none;
+}
+
+.person {
+    /* min-height: 200px; */
+    height: auto;
+}
+
+.person h4 {
+    margin-bottom: 4px;
+}
+
+.pub-entry {
+    margin-top: 24px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    border-left: solid #6D8E87 5px;
+}
+.pub-entry p {
+    margin-top: 6px;
+}
+
+.pub-title {
+    margin-bottom: 0px;
+    font-family: 'cmu_sans_serifbold', Sans-Serif;
+}
+  
+.pub-authors{
+    margin-bottom: 0px;
+}
+  
+.pub-journal {
+    margin-bottom: 6px;
+}
+  
+.pub-button-journal {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 4px;
+    font-family: 'cmu_sans_serifbold', Sans-Serif;
+    padding-top: 4px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.pub-button-journal:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
 }

@@ -43,7 +43,7 @@ body {
     margin-bottom: 80px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, label {
     font-family: 'cmu_sans_serifbold', sans-serif;
 }
 
@@ -65,10 +65,30 @@ h4 {
     margin-left: 216px;
 }
 
-.titles p {
+.person p {
     font-size: 0.9em;
     margin-block-start: 0;
     margin-block-end: 2px;
+}
+
+.links {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
+.location {
+    padding-top: 8px;
+}
+
+.location p {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
+.links {
+    padding-top: 8px;
 }
 
 #bottom-footer {
@@ -119,8 +139,8 @@ input[type='checkbox'] {
     transition: transform .2s ease-out;
 }
 .collapsible-content .content-inner {
-    background: rgba(250, 224, 66, .2);
-    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    background: #f1f5f8;
+    border-bottom: 1px solid #f1f5f8;
 
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
@@ -131,6 +151,12 @@ input[type='checkbox'] {
     overflow: hidden;
 
     transition: max-height .25s ease-in-out;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+.collapsible-content p {
+    margin-top: 6px;
+    margin-bottom: 8px;
 }
 .toggle:checked + .collapsible-toggle + .collapsible-content {
     max-height: 100vh;
@@ -156,6 +182,54 @@ input[type='checkbox'] {
 #jdrlink {
     text-decoration: none;
 }
+
+.person {
+    /* min-height: 200px; */
+    height: auto;
+}
+
+.person h4 {
+    margin-bottom: 4px;
+}
+
+.pub-entry {
+    margin-top: 24px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    border-left: solid #6D8E87 5px;
+}
+.pub-entry p {
+    margin-top: 6px;
+}
+
+.pub-title {
+    margin-bottom: 0px;
+    font-family: 'cmu_sans_serifbold', Sans-Serif;
+}
+  
+.pub-authors{
+    margin-bottom: 0px;
+}
+  
+.pub-journal {
+    margin-bottom: 6px;
+}
+  
+.pub-button-journal {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 4px;
+    font-family: 'cmu_sans_serifbold', Sans-Serif;
+    padding-top: 4px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.pub-button-journal:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
         </style>
     </head>
     <body>
@@ -180,14 +254,61 @@ input[type='checkbox'] {
             <p>Institute for Biomedical Informatics</p>
             <p>Center of Excellence in Environmental Toxicology</p>
             <p>Department of Biostatistics, Epidemiology, &amp; Informatics</p>
+            <p>University of Pennsylvania</p>
         </div>
-        <p>
-            <a href="http://jdr.bio">Personal website</a> | <a href="https://twitter.com/JDRomano2">Twitter</a> | <a href="https://www.linkedin.com/in/jdromano2/">LinkedIn</a>
-        </p>
+        <div class="location">
+            <p>403 Blockley Hall</p>
+            <p>423 Guardian Drive</p>
+            <p>Philadelphia, PA 19104</p>
+        </div>
+        <div class="links">
+            <p>
+                <a href="http://jdr.bio">Personal website</a> | <a href="https://twitter.com/JDRomano2">Twitter</a> | <a href="https://www.linkedin.com/in/jdromano2/">LinkedIn</a>
+            </p>
+        </div>
         
     </div>
 
 </div>
+
+<hr/>
+<h3>Postdoctoral researchers</h3>
+<p>
+    <i>We're hiring postdocs! If you're interested in working with us, see our <a href="positions.html">listing of open positions</a>.</i>
+</p>
+
+<hr/>
+<h3>Lab staff</h3>
+<p>
+    <i>For open lab staff roles, see our <a href="positions.html">listing of open positions</a>.</i>
+</p>
+
+<hr/>
+<h3>Students</h3>
+<p>
+    <i>Prospective students can contact Dr. Romano at <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>. For more information, see our <a href="positions.html">listing of open positions</a>.</i>
+</p>
+
+<hr/>
+<h3>Friends of the Lab</h3>
+
+<div class="person">
+    <h4>Sokratis Apostolidis, MD</h4>
+    <div class="titles">
+        <p>Instructor of Medicine</p>
+        <p>NRSA Postdoctoral Fellow of Medicine</p>
+        <p>University of Pennsylvania</p>
+    </div>
+</div>
+<div class="person">
+    <h4>Yun Hao, MA</h4>
+    <div class="titles">
+        <p>PhD Student in Genomics and Computational Biology</p>
+        <p>University of Pennsylvania</p>
+    </div>
+</div>
+
+<br>
 
 
         </main>
@@ -315,6 +436,7 @@ class Graph {
     constructor(cnv) {
         this.nodes = Array();
         this.edges = Array();
+        this.orphanNodes = Array();
 
         this.canvas = cnv
         this.canvas_height = cnv.height;
@@ -323,7 +445,8 @@ class Graph {
         this.usable_height = this.canvas_height - (globals.breathingRoom * 2);
         this.usable_width = this.canvas_width - (globals.breathingRoom * 2)
         
-        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
+        //this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
+        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2)) / 5.;
     }
 
     /**
@@ -332,7 +455,9 @@ class Graph {
      * @param {Integer} canvas_y y-coordinate within the associated canvas
      */
     addNode(canvas_x, canvas_y) {
-        this.nodes.push(new Node(canvas_x, canvas_y))
+        let thisNode = new Node(canvas_x, canvas_y)
+        this.nodes.push(thisNode)
+        this.orphanNodes.push(thisNode);
     }
 
     addRandomNodes(n_nodes) {
@@ -355,6 +480,12 @@ class Graph {
         const endNode = this.nodes[endNodeIndex];
         
         this.edges.push(new Edge(startNode, endNode));
+        if (this.orphanNodes.includes(startNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(startNode), 1);
+        }
+        if (this.orphanNodes.includes(endNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(endNode), 1);
+        }
     }
 
     addRandomEdges(n_edges) {
@@ -383,23 +514,38 @@ class Graph {
 
         // Same as above, but this time we adjust probability based on logistic
         // curve to more strongly encourage short edges
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+        //     // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+        //     acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+        //     if (Math.random() <= acceptProb) {
+        //         this.edges.push(candidateEdge);
+        //     } else {
+        //         console.log("REJECT with probability ", acceptProb);
+        //         --i;
+        //     }
+        // }
+
+        // Still not quite strong enough.
         for(var i=0; i < n_edges; i++) {
             randomSample = getRandomSample(this.nodes, 2);
             let candidateEdge = new Edge(randomSample[0], randomSample[1]);
-            // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
-            acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            //acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            acceptProb = 1-(Math.tanh(candidateEdge.getLength() / this.max_path_len))
             if (Math.random() <= acceptProb) {
                 this.edges.push(candidateEdge);
             } else {
-                console.log("REJECT with probability ", acceptProb);
                 --i;
             }
         }
     }
 
     drawGraph() {
-        // Remove any orphan nodes
-        
+        // // Remove any orphan nodes
+        // this.nodes = this.nodes.filter(node => {
+        //     node.
+        // })
         
         // We draw the edges first, so their tips sit 'behind' the nodes
         this.edges.forEach(e => e.drawEdge());
@@ -413,8 +559,13 @@ let G = new Graph(canvas);
 
 function start() {
     // drawGraph(node_coords, adjacencies);
-    G.addRandomNodes(30);
-    G.addRandomEdges(20);
+    G.addRandomNodes(120);
+    G.addRandomEdges(200);
+
+    // get rid of the orphan nodes
+    // G.orphanNodes.forEach((o_n, i) => {
+    //     G.nodes.splice(G.nodes.indexOf(o_n), 1);
+    // })
 
     G.drawGraph();
 }
