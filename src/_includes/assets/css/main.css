@@ -31,6 +31,30 @@ body {
     margin-bottom: 80px;
 }
 
+nav {
+    flex: 0 1 auto;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    float: right;
+}
+
+.navbar-nav {
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-item {
+    display: list-item;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
 h1, h2, h3, h4, label {
     font-family: 'cmu_sans_serifbold', sans-serif;
 }
@@ -216,4 +240,16 @@ input[type='checkbox'] {
     color: #fff;
     background-color: #138496;
     border-color: #117a8b;
+}
+
+.mono-font {
+    font-size: 12pt;
+}
+
+#email-display {
+    margin-left: 2rem;
+}
+
+#address-display {
+    margin-left: 2rem;
 }

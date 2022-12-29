@@ -9,6 +9,27 @@
         {# Note: The dash in the following line is an em-dash (U+2014) #}
         <title>{{ subtitle + ' — ' if subtitle }}Romano Lab @ Penn</title>
 
+        <!--Icons-->
+        <script src="https://use.fontawesome.com/04f6e4e6fe.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="_includes/assets/icons/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="_includes/assets/icons/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="_includes/assets/icons/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="_includes/assets/icons/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="_includes/assets/icons/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="_includes/assets/icons/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="_includes/assets/icons/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="_includes/assets/icons/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="_includes/assets/icons/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="_includes/assets/icons/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="_includes/assets/icons/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="_includes/assets/icons/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="_includes/assets/icons/favicons/favicon-16x16.png">
+        <link rel="manifest" href="_includes/assets/icons/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+
         {%- set css %}
         {% include 'assets/css/main.css' %}
         {% endset %}
@@ -16,6 +37,27 @@
         <style>{{ css | safe }}</style>
     </head>
     <body>
+        <header>
+            <nav class="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./index.html" | url }}" {% if page.url == "/" %}aria-current="page"{% endif %}>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./personnel.html" | url }}" {% if page.url == "/personnel.html" %}aria-current="page"{% endif %}>Personnel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./publications.html" | url }}" {% if page.url == "/publications.html" %}aria-current="page"{% endif %}>Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./learn.html" | url }}" {% if page.url == "/learn.html" %}aria-current="page"{% endif %}>Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./contact.html" | url }}" {% if page.url == "/contact.html" %}aria-current="page"{% endif %}>Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <main>
             {% block main %}{% endblock %}
         </main>

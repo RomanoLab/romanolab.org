@@ -9,6 +9,26 @@
         
         <title>Open positions — Romano Lab @ Penn</title>
 
+        <!--Icons-->
+        <script src="https://use.fontawesome.com/04f6e4e6fe.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="_includes/assets/icons/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="_includes/assets/icons/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="_includes/assets/icons/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="_includes/assets/icons/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="_includes/assets/icons/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="_includes/assets/icons/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="_includes/assets/icons/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="_includes/assets/icons/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="_includes/assets/icons/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="_includes/assets/icons/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="_includes/assets/icons/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="_includes/assets/icons/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="_includes/assets/icons/favicons/favicon-16x16.png">
+        <link rel="manifest" href="_includes/assets/icons/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
         <style>
         @font-face {
     font-family: 'cmu_serifroman';
@@ -41,6 +61,30 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
     /* font-family: 'cmu_serifroman', serif; */
     margin-bottom: 80px;
+}
+
+nav {
+    flex: 0 1 auto;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    float: right;
+}
+
+.navbar-nav {
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-item {
+    display: list-item;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 h1, h2, h3, h4, label {
@@ -230,28 +274,60 @@ input[type='checkbox'] {
     border-color: #117a8b;
 }
 
+.mono-font {
+    font-size: 12pt;
+}
+
+#email-display {
+    margin-left: 2rem;
+}
+
+#address-display {
+    margin-left: 2rem;
+}
         </style>
     </head>
     <body>
+        <header>
+            <nav class="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" >Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="personnel.html" >Personnel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="publications.html" >Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="learn.html" >Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" >Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <main>
             
     <h1>Romano Lab @ <a href="https://www.upenn.edu/" id="pennlink">Penn</a></h1>
     
-<p>Return to <a href="index.html">home</a></p>
 <hr/>
 <h2>Open positions</h2>
 <p>
     The Romano Lab is newly established and looking for members in a variety of roles. All positions below will be officially recruiting as of January 2023, but interested applicants can <a href="mailto:joseph.romano@pennmedicine.upenn.edu">reach out</a> for more information immediately.
 </p>
-<h3>Lab staff:</h3>
+<hr/>
 
+<h3>Lab staff:</h3>
 <div class="wrap-collapsible">
     <input id="staff1" class="toggle" type="checkbox">
     <label for="staff1" class="collapsible-toggle">Software engineer</label>
     <div class="collapsible-content">
         <div class="content-inner">
             <p>
-                A major part of the lab's research involves developing open access scientific databases and tools for interacting with those databases. We are hiring a full-time developer to maintain these resources and add new functionality relating to the lab's current and future research projects. Qualified candidates should have experience with the Python and Javascript programming languages, as well as modern database technologies. They will also be comfortable with at least one modern Javascript frontend web framework. Applicants with experience in graph databases (e.g., Neo4j) will be given preference.
+                A major part of the lab's research involves developing open access scientific databases and tools for interacting with those databases. We are hiring a full-time software engineer to maintain these resources and add new functionality relating to the lab's current and future research projects. Qualified candidates should have experience with the Python and Javascript programming languages, as well as modern database technologies. Familiarity with React and Redux (or a similar front-end web framework) is a plus. Applicants with experience in graph databases (e.g., Neo4j) will be given preference.
             </p>
             <p>
                 A formal job posting for this position will be available soon on the Penn website.
@@ -262,6 +338,9 @@ input[type='checkbox'] {
         </div>
     </div>
 </div>
+<p>
+    Full-time employees of the lab are eligible for a <a href="https://www.hr.upenn.edu/PennHR/benefits-pay">comprehensive benefits package</a> through the University of Pennsylvania.
+</p>
 
 <hr/>
 <h3>Postdoctoral researchers:</h3>
@@ -288,7 +367,7 @@ input[type='checkbox'] {
     <div class="collapsible-content">
         <div class="content-inner">
             <p>
-                [Description here]
+                The Romano Lab is recruiting a postdoctoral researcher to conduct applied research in pharmacoinformatics / pharmacoepidemiology, including adverse events and/or drug-drug interactions. This position will give the opportunity to analyze observational data (electronic health records, healthcare claims data, etc.) to discover new patterns between drug exposures and previously unknown clinical effects. We are especially interested in applying explainable ML/AI in order to gain knowledge from data.
             </p>
             <p>
                 Qualified candidates for this position will have a PhD in biomedical informatics, pharmacology, computer science, or related fields, and a strong record of publication. Prior experience with data science and computer programming is preferred.
@@ -300,7 +379,7 @@ input[type='checkbox'] {
     All initial postdoc appointments will be for a period of 1 year, with the potential for renewals given satisfactory performance. Salary for new postdoc hires will be $65,000 plus comprehensive health insurance (details given <a href="https://clients.garnett-powers.com/pd/upenn/">here</a>).
 </p>
 <p>
-    Interested applicants should submit a CV, cover letter indicating their reserach interests, and names/contact information of 2 references to <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>.
+    Interested applicants should submit a CV, cover letter indicating their reserach interests, and names/contact information of 2 references to <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>. At least one of these references should be directly familiar with the applicant's research experience.
 </p>
 
 <hr/>
@@ -324,7 +403,7 @@ input[type='checkbox'] {
 <hr/>
 <h3>Other roles:</h3>
 <p>
-    Don't see a position above that fits? We're always on the lookout for highly motivated scientists and students at different levels of their academic career &mdash; contact us to set up a time to chat about possible opportunities!
+    Don't see a position above that fits? We're always on the lookout for highly motivated scientists and students at different levels of their academic career &mdash; <a href="mailto:joseph.romano@pennmedicine.upenn.edu">contact us</a> to set up a time to chat about possible opportunities!
 </p>
 
 

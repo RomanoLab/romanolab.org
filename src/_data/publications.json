@@ -1,5 +1,16 @@
 [
     {
+        "title": "Omics Methods in Toxins Research - A toolkit to Drive the Future of Scientific Inquiry",
+        "authors": "Romano JD",
+        "journal": "Toxins. 2022;14(11):761",
+        "doi": "10.3390/toxins14110761",
+        "journal_link": "https://www.mdpi.com/2072-6651/14/11/761",
+        "pmid": "36356011",
+        "pmcid": "PMC9692551",
+        "google_scholar_link": "",
+        "bib_entry": ""
+    },
+    {
         "title": "Knowledge-guided deep learning models of drug toxicity improve interpretation",
         "authors": "Hao Y, Romano JD, and Moore JH",
         "journal": "Patterns. 2022 Aug 24;3(9):100565",
