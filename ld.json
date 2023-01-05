@@ -1,0 +1,17 @@
+{
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "name": "The Romano Lab at the University of Pennsylvania",
+    "url": "https://romanolab.org/",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Philadelphia, Pennsylvania, USA",
+        "postalCode": "09104",
+        "streetAddress": "403 Blockley Hall 423 Guardian Drive"
+    },
+    "email": "joseph.romano@pennmedicine.upenn.edu",
+    "telephone": "+1-802-558-5839",
+    "member": [
+        "https://jdr.bio"
+    ]
+}
