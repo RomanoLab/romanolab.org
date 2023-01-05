@@ -1,6 +1,6 @@
 {
   "name": "romanolab.org",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0",
   "description": "Romano Lab Website",
   "main": "www/index.html",
   "scripts": {
