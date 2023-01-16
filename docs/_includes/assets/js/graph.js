@@ -227,11 +227,6 @@ class Graph {
     }
 
     drawGraph() {
-        // // Remove any orphan nodes
-        // this.nodes = this.nodes.filter(node => {
-        //     node.
-        // })
-        
         // We draw the edges first, so their tips sit 'behind' the nodes
         this.edges.forEach(e => e.drawEdge());
         this.nodes.forEach(n => n.drawNode());
@@ -252,7 +247,10 @@ function start() {
     //     G.nodes.splice(G.nodes.indexOf(o_n), 1);
     // })
 
+    // ctx.scale(0.5, 0.5);
     G.drawGraph();
+    // ctx.scale(2, 2);
+    // G.drawGraph();
 }
 
 window.setTimeout(start, 100);

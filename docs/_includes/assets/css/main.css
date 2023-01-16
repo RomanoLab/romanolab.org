@@ -253,3 +253,23 @@ input[type='checkbox'] {
 #address-display {
     margin-left: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+    #graph-banner {
+        height: 125px;
+        width: 400px;
+    }
+
+    .navbar {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        float: left;
+        padding-bottom: 1.5em;
+    }
+
+    body {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}

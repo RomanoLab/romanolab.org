@@ -285,7 +285,58 @@ input[type='checkbox'] {
 #address-display {
     margin-left: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+    #graph-banner {
+        height: 125px;
+        width: 400px;
+    }
+
+    .navbar {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        float: left;
+        padding-bottom: 1.5em;
+    }
+
+    body {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
         </style>
+
+        <!--Semantic metadata-->
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Organization",
+            "name": "The Romano Lab at the University of Pennsylvania",
+            "url": "https://romanolab.org/",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Philadelphia, Pennsylvania, USA",
+                "postalCode": "09104",
+                "streetAddress": "403 Blockley Hall 423 Guardian Drive"
+            },
+            "email": "joseph.romano@pennmedicine.upenn.edu",
+            "telephone": "+1-802-558-5839",
+            "member": [
+                "https://jdr.bio"
+            ],
+            "sameAs": [
+                "https://www.wikidata.org/wiki/Q116036288"
+            ]
+        }
+        </script>
+        <meta property="og:title" content="Open positions — Romano Lab @ Penn" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="/positions.html" />
+        <meta property="og:site_name" content="The Romano Lab at the University of Pennsylvania" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="robots" content="index, follow" />
+
     </head>
     <body>
         <header>
@@ -635,11 +686,6 @@ class Graph {
     }
 
     drawGraph() {
-        // // Remove any orphan nodes
-        // this.nodes = this.nodes.filter(node => {
-        //     node.
-        // })
-        
         // We draw the edges first, so their tips sit 'behind' the nodes
         this.edges.forEach(e => e.drawEdge());
         this.nodes.forEach(n => n.drawNode());
@@ -660,7 +706,10 @@ function start() {
     //     G.nodes.splice(G.nodes.indexOf(o_n), 1);
     // })
 
+    // ctx.scale(0.5, 0.5);
     G.drawGraph();
+    // ctx.scale(2, 2);
+    // G.drawGraph();
 }
 
 window.setTimeout(start, 100);
@@ -668,7 +717,7 @@ window.setTimeout(start, 100);
     </body>
     <footer>
         <div id="bottom-footer">
-            <p><i>Copyright &copy; 2022 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
+            <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
         </div>
     </footer>
 </html>
