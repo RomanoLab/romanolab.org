@@ -115,6 +115,12 @@ h4 {
     margin-block-end: 2px;
 }
 
+.friend p {
+    font-size: 0.9em;
+    margin-block-start: 0;
+    margin-block-end: 2px;
+}
+
 .links {
     font-size: 0.9em;
     margin-block-start: 0;
@@ -228,11 +234,19 @@ input[type='checkbox'] {
 }
 
 .person {
-    /* min-height: 200px; */
+    min-height: 200px;
     height: auto;
 }
 
 .person h4 {
+    margin-bottom: 4px;
+}
+
+.friend {
+    height: auto;
+}
+
+.friend h4 {
     margin-bottom: 4px;
 }
 
@@ -412,6 +426,20 @@ input[type='checkbox'] {
 
 <hr/>
 <h3>Students</h3>
+<div class="person">
+    <div class="headshot">
+        <img class="headshot-img" src="./_includes/assets/img/angela-wu-headshot.jpeg"/>
+    </div>
+    
+    <div class="bio">
+        <h4>Angela Wu</h4>
+        <div class="titles">
+            <p>Undergraduate research intern</p>
+            <p>Genomics and Computational Biology</p>
+            <p>University of Pennsylvania</p>
+        </div>
+    </div>
+</div>  
 <p>
     <i>Prospective students can contact Dr. Romano at <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>. For more information, see our <a href="positions.html">listing of open positions</a>.</i>
 </p>
@@ -419,7 +447,7 @@ input[type='checkbox'] {
 <hr/>
 <h3>Friends of the Lab</h3>
 
-<div class="person">
+<div class="friend">
     <h4>Sokratis Apostolidis, MD</h4>
     <div class="titles">
         <p>Instructor of Medicine</p>
@@ -427,7 +455,7 @@ input[type='checkbox'] {
         <p>University of Pennsylvania</p>
     </div>
 </div>
-<div class="person">
+<div class="friend">
     <h4>Yun Hao, MA</h4>
     <div class="titles">
         <p>PhD Student in Genomics and Computational Biology</p>
