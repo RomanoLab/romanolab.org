@@ -1,5 +1,16 @@
 [
     {
+        "title": "Exploring genetic influences on adverse outcome pathways using heuristic simulation and graph data science",
+        "authors": "Romano JD, Mei L, Senn J, Moore JH, and Mortensen HM",
+        "journal": "Computational Toxicology. 2023;25:100261",
+        "doi": "10.1016/j.comtox.2023.100261",
+        "journal_link": "https://www.sciencedirect.com/science/article/abs/pii/S2468111323000026",
+        "pmid": "",
+        "pmcid": "",
+        "google_scholar_link": "",
+        "bib_entry": ""
+    },
+    {
         "title": "Omics Methods in Toxins Research - A toolkit to Drive the Future of Scientific Inquiry",
         "authors": "Romano JD",
         "journal": "Toxins. 2022;14(11):761",

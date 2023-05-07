@@ -197,6 +197,11 @@ input[type='checkbox'] {
     text-decoration: none;
 }
 
+#homelink {
+    color: #011F5B;
+    text-decoration: none;
+}
+
 #jdrlink {
     text-decoration: none;
 }
