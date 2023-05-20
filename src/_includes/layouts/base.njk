@@ -29,12 +29,7 @@
         <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-
-        {%- set css %}
-        {% include 'assets/css/main.css' %}
-        {% endset %}
-
-        <style>{{ css | safe }}</style>
+        <link rel="stylesheet" href="{{ 'css/style.css' | url }}"/>
 
         <!--Semantic metadata-->
         <script type="application/ld+json">
@@ -68,7 +63,31 @@
 
     </head>
     <body>
-        <header>
+        <div class="container">
+            <header>
+                <nav>
+                    <ul class="nav-list">
+                        <li class="nav-item" id="logo"><a href="#">Romano Lab</a> @ <a href="https://upenn.edu" target="_blank">Penn</a></li>
+                        <li class="nav-item"><a href="#">Research</a></li>
+                        <li class="nav-item"><a href="#">People</a></li>
+                        <li class="nav-item"><a href="#">Publications</a></li>
+                        <li class="nav-item"><a href="#">Contact</a></li>
+                        <li class="nav-item"><a href="#">Blog</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="sidebar">
+                Sidebar
+            </div>
+            <main>
+                {# {% block main %}{% endblock %} #}
+                <h1>Main</h1>
+            </main>
+            <footer>
+                Footer
+            </footer>
+        </div>
+        {# <header>
             <nav class="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -90,15 +109,17 @@
             </nav>
         </header>
         <main>
-            {% block main %}{% endblock %}
+            <div class="container">
+                {% block main %}{% endblock %}
+            </div>
         </main>
         <script>
             {% include 'assets/js/graph.js' %}
-        </script>
+        </script> #}
     </body>
-    <footer>
+    {# <footer>
         <div id="bottom-footer">
             <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
         </div>
-    </footer>
+    </footer> #}
 </html>

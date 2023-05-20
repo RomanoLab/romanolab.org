@@ -4,14 +4,21 @@
   "description": "Romano Lab Website",
   "main": "www/index.html",
   "scripts": {
-    "build": "npx @11ty/eleventy --config=.eleventy.js",
-    "build-production": "ELEVENTY_PRODUCTION=true @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --config=.eleventy.js --serve --watch"
+    "watch:sass": "npx sass --watch src/_includes/stylesheets:docs/css",
+    "build:sass": "npx sass src/_includes/stylesheets:docs/css",
+    "watch:eleventy": "npx @11ty/eleventy --config=.eleventy.js --serve",
+    "build:eleventy": "npx @11ty/eleventy --config=.eleventy.js",
+    "start": "npm-run-all build:sass --parallel watch:*",
+    "build": "npm-run-all build:*",
+    "build-production": "ELEVENTY_PRODUCTION=true npm-run-all build*"
   },
   "author": "Joseph D. Romano",
   "license": "MIT",
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "clean-css": "^5.3.0"
+    "clean-css": "^5.3.0",
+    "eleventy-sass": "^2.2.1",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.62.1"
   }
 }

@@ -1,11 +1,15 @@
 const CleanCSS = require("clean-css");
+const eleventySass = require("eleventy-sass");
 
 module.exports = function(eleventyConfig) {
-    eleventyConfig.addFilter("cssmin", function(code) {
-        return new CleanCSS({}).minify(code).styles;
-    })
+    // eleventyConfig.addFilter("cssmin", function(code) {
+    //     return new CleanCSS({}).minify(code).styles;
+    // })
 
-    eleventyConfig.addPassthroughCopy('src/_includes/assets')
+    eleventyConfig.addPlugin(eleventySass);
+    eleventyConfig.addWatchTarget("./src/_includes/")
+
+    eleventyConfig.addPassthroughCopy('./src/_includes/stylesheets/')
 
     // enable CORS
     eleventyConfig.setBrowserSyncConfig({

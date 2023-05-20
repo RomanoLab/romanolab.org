@@ -6,8 +6,8 @@
 
         <meta name="author" content="Joseph D. Romano" />
         
-        
-        <title>Contact — Romano Lab @ Penn</title>
+        {# Note: The dash in the following line is an em-dash (U+2014) #}
+        <title>{{ subtitle + ' — ' if subtitle }}Romano Lab @ Penn</title>
 
         <!--Icons-->
         <script src="https://use.fontawesome.com/04f6e4e6fe.js"></script>
@@ -29,7 +29,16 @@
         <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="stylesheet" href="css/style.css"/>
+
+        {# {%- set css %}
+        {% include 'assets/css/main.css' %}
+        {% endset %} #}
+        {%- set sass %}
+        {% include '../stylesheets/style.scss' %}
+        {% endset %}
+
+        {# <style>{{ css | safe }}</style> #}
+        <style>{{ scss | safe }}</style>
 
         <!--Semantic metadata-->
         <script type="application/ld+json">
@@ -54,40 +63,46 @@
             ]
         }
         </script>
-        <meta property="og:title" content="Contact — Romano Lab @ Penn" />
+        <meta property="og:title" content="{{ subtitle + ' — ' if subtitle }}Romano Lab @ Penn" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="/contact.html" />
+        <meta property="og:url" content="{{site.url}}{{page.url}}" />
         <meta property="og:site_name" content="The Romano Lab at the University of Pennsylvania" />
         <meta property="og:locale" content="en_US" />
         <meta name="robots" content="index, follow" />
 
     </head>
     <body>
-        <div class="container">
-            <header>
-                <nav>
-                    <ul class="nav-list">
-                        <li class="nav-item" id="logo"><a href="#">Romano Lab</a> @ <a href="https://upenn.edu" target="_blank">Penn</a></li>
-                        <li class="nav-item"><a href="#">Research</a></li>
-                        <li class="nav-item"><a href="#">People</a></li>
-                        <li class="nav-item"><a href="#">Publications</a></li>
-                        <li class="nav-item"><a href="#">Contact</a></li>
-                        <li class="nav-item"><a href="#">Blog</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div class="sidebar">
-                Sidebar
-            </div>
-            <main>
-                
-                <h1>Main</h1>
-            </main>
-            <footer>
-                Footer
-            </footer>
-        </div>
-        
+        <header>
+            <nav class="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./index.html" | url }}" {% if page.url == "/" %}aria-current="page"{% endif %}>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./personnel.html" | url }}" {% if page.url == "/personnel.html" %}aria-current="page"{% endif %}>Personnel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./publications.html" | url }}" {% if page.url == "/publications.html" %}aria-current="page"{% endif %}>Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./learn.html" | url }}" {% if page.url == "/learn.html" %}aria-current="page"{% endif %}>Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ "./contact.html" | url }}" {% if page.url == "/contact.html" %}aria-current="page"{% endif %}>Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <script>
+            {% include 'assets/js/graph.js' %}
+        </script>
     </body>
-    
+    <footer>
+        <div id="bottom-footer">
+            <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
+        </div>
+    </footer>
 </html>

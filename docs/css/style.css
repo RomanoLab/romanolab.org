@@ -1,0 +1,87 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap';
+@font-face {
+  font-family: "cmu_serifroman";
+  src: url("_includes/assets/fonts/cmunrm-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "cmu_sans_serifbold";
+  src: url("_includes/assets/fonts/cmunsx-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "cmu_typewriter_textregular";
+  src: url("_includes/assets/fonts/cmuntt-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "header header header" "sidebar main main" "footer footer footer";
+  grid-gap: 0.4rem;
+}
+
+header {
+  grid-area: header;
+  background: #73ffba;
+  height: 90px;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-item {
+  list-style: none;
+  margin-right: 2rem;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-item:first-child {
+  margin-right: auto;
+}
+
+#logo {
+  font-size: 22pt;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #1de9b6;
+}
+
+main {
+  grid-area: main;
+  background: #84ffff;
+  min-height: 600px;
+}
+
+footer {
+  grid-area: footer;
+  background: #6fffd2;
+  height: 60px;
+}
+
+/*# sourceMappingURL=style.css.map */

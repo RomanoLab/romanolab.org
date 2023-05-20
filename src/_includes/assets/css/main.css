@@ -29,6 +29,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
     /* font-family: 'cmu_serifroman', serif; */
     margin-bottom: 80px;
+    background-color: #f7f9fb;
 }
 
 nav {
@@ -53,6 +54,7 @@ nav {
     display: list-item;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
+    font-weight: 700;
 }
 
 h1, h2, h3, h4, label {
