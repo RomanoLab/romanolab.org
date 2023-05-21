@@ -77,14 +77,15 @@
                 </nav>
             </header>
             <div class="sidebar">
-                Sidebar
+                
             </div>
             <main>
-                {# {% block main %}{% endblock %} #}
-                <h1>Main</h1>
+                {% block main %}{% endblock %}
             </main>
             <footer>
-                Footer
+                <div class="footer-text">
+                    <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
+                </div>
             </footer>
         </div>
         {# <header>
@@ -107,19 +108,9 @@
                     </li>
                 </ul>
             </nav>
-        </header>
-        <main>
-            <div class="container">
-                {% block main %}{% endblock %}
-            </div>
-        </main>
+        </header> #}
         <script>
             {% include 'assets/js/graph.js' %}
-        </script> #}
+        </script>
     </body>
-    {# <footer>
-        <div id="bottom-footer">
-            <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
-        </div>
-    </footer> #}
 </html>

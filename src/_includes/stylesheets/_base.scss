@@ -1,5 +1,7 @@
+
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: $rlab-offwhite;
 }
 
 h1, h2, h3, h4 {
@@ -9,19 +11,25 @@ h1, h2, h3, h4 {
 .container {
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 0.8fr 6fr 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 
         "header header header"
         "sidebar main main"
         "footer footer footer";
-    grid-gap: 0.4rem;
+    grid-gap: 0.8rem;
 }
 
 header {
     grid-area: header;
-    background: #73ffba;
-    height: 90px;
+    // background: #73ffba;
+    background: $rlab-dark;
+    height: 70px;
+    border-radius: 6px;
+}
+
+nav {
+    height: fit-content;
 }
 
 .nav-list {
@@ -33,11 +41,17 @@ header {
 .nav-item {
     list-style: none;
     margin-right: 2rem;
+    color: $rlab-lightgray;
 }
 
 .nav-item a {
     text-decoration: none;
-    color: black;
+    color: $rlab-lightgray;
+    transition:all 200ms ease-in;
+}
+
+.nav-item a:hover {
+    color: #ffffff;
 }
 
 // Push logo to left
@@ -53,17 +67,59 @@ header {
 
 .sidebar {
     grid-area: sidebar;
-    background: #1de9b6;
+    // background: #1de9b6;
 }
 
 main {
     grid-area: main;
-    background: #84ffff;
     min-height: 600px;
+
 }
 
 footer {
     grid-area: footer;
-    background: #6fffd2;
+    // background: #6fffd2;
     height: 60px;
+}
+
+.footer-text {
+    margin-left: 3rem;
+}
+
+#homepage-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "intro projects"
+        "news news";
+    grid-gap: 4rem;
+}
+
+#intro {
+    grid-area: intro;
+}
+
+#projects {
+    grid-area: projects;
+}
+
+#news {
+    grid-area: news;
+}
+
+#project-list {
+    list-style: none;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    font-size: 1rem;
+    background: $rlab-orange;
+    border: none;
+    outline:none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+
 }

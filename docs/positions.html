@@ -77,17 +77,368 @@
                 </nav>
             </header>
             <div class="sidebar">
-                Sidebar
+                
             </div>
             <main>
                 
-                <h1>Main</h1>
+    
+    
+<hr/>
+<h2>Open positions</h2>
+<p>
+    The Romano Lab is newly established and looking for members in a variety of roles. All positions below will be officially recruiting as of January 2023, but interested applicants can <a href="mailto:joseph.romano@pennmedicine.upenn.edu">reach out</a> for more information immediately.
+</p>
+<hr/>
+
+<h3>Lab staff:</h3>
+<div class="wrap-collapsible">
+    <input id="staff1" class="toggle" type="checkbox">
+    <label for="staff1" class="collapsible-toggle">Programmer</label>
+    <div class="collapsible-content">
+        <div class="content-inner">
+            <p>
+                A major part of the lab's research involves developing open access scientific databases and tools for interacting with those databases. We are hiring a full-time software engineer to maintain these resources and add new functionality relating to the lab's current and future research projects. Qualified candidates should have experience with the Python and Javascript programming languages, as well as modern database technologies. Familiarity with React and Redux (or a similar front-end web framework) is a plus. Applicants with experience in graph databases (e.g., Neo4j) will be given preference.
+            </p>
+            <p>
+                A formal job posting for this position will be available soon on the Penn website.
+            </p>
+            <p><i>
+                Note: This position will be listed as "Data Analyst" on the Penn job posting site due to internal policies. 
+            </i></p>
+        </div>
+    </div>
+</div>
+<p>
+    Full-time employees of the lab are eligible for a <a href="https://www.hr.upenn.edu/PennHR/benefits-pay">comprehensive benefits package</a> through the University of Pennsylvania.
+</p>
+
+<hr/>
+<h3>Postdoctoral researchers:</h3>
+<div class="wrap-collapsible">
+    <input id="postdoc1" class="toggle" type="checkbox">
+    <label for="postdoc1" class="collapsible-toggle">Postdoc - Computational toxicology</label>
+    <div class="collapsible-content">
+        <div class="content-inner">
+            <p>
+                The Romano Lab is recruiting a postdoctoral researcher to develop and apply new methods in computational toxicology using artificial intelligence and techniques from biomedical informatics. We develop knowledge graphs to computationally <i>predict</i> and <i>explain</i> the downstream clinical effects that arise following exposure to environmental toxicants. This postdoc position will involve extending these knowledge graphs to new biomedical data types, and applying graph machine learning (Graph ML) to detect novel <a href="https://ntp.niehs.nih.gov/whatwestudy/niceatm/comptox/ct-aop/aop.html">adverse outcome pathways</a>. They will also have the opportunity to interact with real-world observational datasets (e.g., Penn's Electronic Data Warehouse and Biobank resources) to validate the Graph ML predictions.
+            </p>
+            <p>
+                Qualified candidates for this position will have a PhD in biomedical informatics, pharmacology, computer science, or related fields, and a strong publication record. Prior experience with data science and computer programming is preferred.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="wrap-collapsible">
+    <input id="postdoc2" class="toggle" type="checkbox">
+    <label for="postdoc2" class="collapsible-toggle">Postdoc - Pharmacoinformatics</label>
+    <div class="collapsible-content">
+        <div class="content-inner">
+            <p>
+                The Romano Lab is recruiting a postdoctoral researcher to conduct applied research in pharmacoinformatics / pharmacoepidemiology, including adverse events and/or drug-drug interactions. This position will give the opportunity to analyze observational data (electronic health records, healthcare claims data, etc.) to discover new patterns between drug exposures and previously unknown clinical effects. We are especially interested in applying explainable ML/AI in order to gain knowledge from data.
+            </p>
+            <p>
+                Qualified candidates for this position will have a PhD in biomedical informatics, pharmacology, computer science, or related fields, and a strong record of publication. Prior experience with data science and computer programming is preferred.
+            </p>
+        </div>
+    </div>
+</div>
+<p>
+    All initial postdoc appointments will be for a period of 1 year, and is renewable given satisfactory performance. Salary for new postdoc hires will be $65,000 plus comprehensive health insurance (details given <a href="https://clients.garnett-powers.com/pd/upenn/">here</a>).
+</p>
+<p>
+    Interested applicants should submit a CV, cover letter indicating their reserach interests, and names/contact information of 2 references to <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>. At least one of these references should be directly familiar with the applicant's research experience.
+</p>
+
+<hr/>
+<h3>PhD Students:</h3>
+<p>
+    Prospective PhD students should <a href="https://www.med.upenn.edu/bgs/phd-application-information.html">apply</a> to the graduate group in Genomics and Computational Biology (GCB) at the University of Pennsylvania, and have interests in one or more of the following fields:
+</p>
+<ul>
+    <li>Translational bioinformatics</li>
+    <li>Computational toxicology</li>
+    <li>Biomedical ontologies</li>
+    <li>Graph machine learning</li>
+    <li>Cheminformatics</li>
+    <li>Clinical informatics</li>
+    <li>Natural product drug discovery</li>
+</ul>
+<p>
+    Current or incoming GCB students are encouraged to set up a time to discuss rotation project ideas with Dr. Romano; he can be reached at <a href="mailto:joseph.romano@pennmedicine.upenn.edu">joseph.romano <i>[at]</i> pennmedicine.upenn.edu</a>.
+</p>
+
+<hr/>
+<h3>Other roles:</h3>
+<p>
+    Don't see a position above that fits? We're always on the lookout for highly motivated scientists and students at different levels of their academic career &mdash; <a href="mailto:joseph.romano@pennmedicine.upenn.edu">contact us</a> to set up a time to chat about possible opportunities!
+</p>
+
+
             </main>
             <footer>
-                Footer
+                <div class="footer-text">
+                    <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
+                </div>
             </footer>
         </div>
         
-    </body>
+        <script>
+            /**
+ * graph.js
+ * Copyright (c) 2022 by Joseph D. Romano
+ * 
+ * Simple routines for drawing random graphs
+ */
+
+
+// Global variables
+
+const globals = {
+    'nodeRadius': 4,
+    'nodeSpacing': 25,
+    'edgeWidth': 2,
+    'edgeColor': '#808080',
+    'breathingRoom': 8
+};
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 800;
+canvas.height = 250;
+
+const colors = [
+    '#e91e63',
+    '#fa750f',
+    '#ffeb3b',
+    '#4caf50',
+    '#02b3e4',
+    '#c341d8'
+]; 
+
+/**
+ * Retrieve a random sample of an array by performing the Fisher-Yates shuffle
+ * and then taking a slice of the desired size.
+ * 
+ * See: https://stackoverflow.com/a/11935263/1730417
+ * 
+ * @param {Array} arr An array from which to draw samples
+ * @param {Integer} n Number of samples to draw from `arr`
+ */
+function getRandomSample(arr, n) {
+    let shuffled = arr.slice(0);
+    let i = arr.length;
+    let temp, idx;
+
+    while (i--) {
+        idx = Math.floor((i+1) * Math.random());
+        temp = shuffled[idx];
+        shuffled[idx] = shuffled[i];
+        shuffled[i] = temp;
+    }
     
+    return shuffled.slice(0, n);
+}
+
+
+// Data structures
+
+class Node {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+
+        this.left   = this.x - globals.nodeSpacing / 2 + globals.nodeRadius;
+        this.top    = this.y - globals.nodeSpacing / 2 + globals.nodeRadius;
+        this.right  = this.x + globals.nodeSpacing / 2 - globals.nodeRadius;
+        this.bottom = this.y + globals.nodeSpacing / 2 - globals.nodeRadius;
+
+        this.abs_x = this.left + globals.breathingRoom + (this.right - this.left) * Math.random();
+        this.abs_y = this.top + globals.breathingRoom + (this.bottom - this.top) * Math.random();
+
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    drawNode() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.abs_x, this.abs_y, globals.nodeRadius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+}
+
+
+class Edge {
+    constructor(startNode, endNode) {
+        this.startNode = startNode;
+        this.endNode = endNode;
+
+        this.x1 = this.startNode.abs_x;
+        this.x2 = this.endNode.abs_x;
+
+        this.y1 = this.startNode.abs_y;
+        this.y2 = this.endNode.abs_y;
+    }
+
+    drawEdge() {
+        ctx.globalAlpha = 1.0;
+        ctx.strokeStyle = globals.edgeColor;
+        ctx.edgeWidth = globals.edgeWidth;
+        ctx.beginPath();
+        ctx.moveTo(this.x1, this.y1);
+        ctx.lineTo(this.x2, this.y2);
+        ctx.stroke();
+    }
+
+    getLength() {
+        return Math.sqrt(
+            Math.pow((this.x1 - this.x2), 2) + Math.pow((this.y1 - this.y2), 2)
+        );
+    }
+}
+
+class Graph {
+    /**
+     * 
+     * @param {canvas} cnv <canvas> object where the graph will be drawn
+     */
+    constructor(cnv) {
+        this.nodes = Array();
+        this.edges = Array();
+        this.orphanNodes = Array();
+
+        this.canvas = cnv
+        this.canvas_height = cnv.height;
+        this.canvas_width = cnv.width;
+
+        this.usable_height = this.canvas_height - (globals.breathingRoom * 2);
+        this.usable_width = this.canvas_width - (globals.breathingRoom * 2)
+        
+        //this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
+        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2)) / 5.;
+    }
+
+    /**
+     * 
+     * @param {Integer} canvas_x x-coordinate within the associated canvas
+     * @param {Integer} canvas_y y-coordinate within the associated canvas
+     */
+    addNode(canvas_x, canvas_y) {
+        let thisNode = new Node(canvas_x, canvas_y)
+        this.nodes.push(thisNode)
+        this.orphanNodes.push(thisNode);
+    }
+
+    addRandomNodes(n_nodes) {
+        let random_node_coords = Array();
+        
+        for(var i=0; i < n_nodes; i++) {
+            random_node_coords.push([
+                Math.random() * this.usable_width,
+                Math.random() * this.usable_height
+            ]);
+        }
+
+        random_node_coords.forEach(nc => {
+            this.addNode(nc[0], nc[1])
+        });
+    }
+
+    addEdge(startNodeIndex, endNodeIndex) {
+        const startNode = this.nodes[startNodeIndex];
+        const endNode = this.nodes[endNodeIndex];
+        
+        this.edges.push(new Edge(startNode, endNode));
+        if (this.orphanNodes.includes(startNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(startNode), 1);
+        }
+        if (this.orphanNodes.includes(endNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(endNode), 1);
+        }
+    }
+
+    addRandomEdges(n_edges) {
+        let randomSample;
+        let acceptProb;
+
+        // in its most basic version, we simply randomly select pairs of nodes
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     this.edges.push(new Edge(randomSample[0], randomSample[1]));
+        // }
+
+        // here, we accept random samples with probability inversely 
+        // proportional to the length of the resulting edge
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+        //     acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+        //     if (Math.random() <= acceptProb) {
+        //         this.edges.push(candidateEdge);
+        //     } else {
+        //         console.log("REJECT with probability ", acceptProb);
+        //         --i;
+        //     }
+        // }
+
+        // Same as above, but this time we adjust probability based on logistic
+        // curve to more strongly encourage short edges
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+        //     // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+        //     acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+        //     if (Math.random() <= acceptProb) {
+        //         this.edges.push(candidateEdge);
+        //     } else {
+        //         console.log("REJECT with probability ", acceptProb);
+        //         --i;
+        //     }
+        // }
+
+        // Still not quite strong enough.
+        for(var i=0; i < n_edges; i++) {
+            randomSample = getRandomSample(this.nodes, 2);
+            let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+            //acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            acceptProb = 1-(Math.tanh(candidateEdge.getLength() / this.max_path_len))
+            if (Math.random() <= acceptProb) {
+                this.edges.push(candidateEdge);
+            } else {
+                --i;
+            }
+        }
+    }
+
+    drawGraph() {
+        // We draw the edges first, so their tips sit 'behind' the nodes
+        this.edges.forEach(e => e.drawEdge());
+        this.nodes.forEach(n => n.drawNode());
+    }
+}
+
+
+// Draw a random graph
+let G = new Graph(canvas);
+
+function start() {
+    // drawGraph(node_coords, adjacencies);
+    G.addRandomNodes(120);
+    G.addRandomEdges(200);
+
+    // get rid of the orphan nodes
+    // G.orphanNodes.forEach((o_n, i) => {
+    //     G.nodes.splice(G.nodes.indexOf(o_n), 1);
+    // })
+
+    // ctx.scale(0.5, 0.5);
+    G.drawGraph();
+    // ctx.scale(2, 2);
+    // G.drawGraph();
+}
+
+window.setTimeout(start, 100);
+        </script>
+    </body>
 </html>
