@@ -1,30 +1,11 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
-@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap';
-@font-face {
-  font-family: "cmu_serifroman";
-  src: url("_includes/assets/fonts/cmunrm-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "cmu_sans_serifbold";
-  src: url("_includes/assets/fonts/cmunsx-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "cmu_typewriter_textregular";
-  src: url("_includes/assets/fonts/cmuntt-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://fonts.googleapis.com/css2?family=Coda&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:wght@700&family=Voces&display=swap");
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #EEEEEE;
 }
 
 h1, h2, h3, h4 {
-  font-family: Roboto, sans-serif;
+  font-family: "Coda", sans-serif;
 }
 
 .container {
@@ -32,7 +13,7 @@ h1, h2, h3, h4 {
   height: 100vh;
   grid-template-columns: 0.8fr 6fr 1fr;
   grid-template-rows: auto 1fr auto;
-  grid-template-areas: "header header header" "sidebar main main" "footer footer footer";
+  grid-template-areas: "header header header" "sidebar main empty" "footer footer footer";
   grid-gap: 0.8rem;
 }
 
@@ -57,6 +38,7 @@ nav {
   list-style: none;
   margin-right: 2rem;
   color: #9d9d9d;
+  font-weight: 500;
 }
 
 .nav-item a {
@@ -76,7 +58,7 @@ nav {
 #logo {
   font-size: 22pt;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
+  font-family: "Voces", sans-serif;
 }
 
 .sidebar {
@@ -100,13 +82,27 @@ footer {
 #homepage-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas: "intro projects" "news news";
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "banner banner" "intro projects" "news news";
   grid-gap: 4rem;
 }
 
 #intro {
   grid-area: intro;
+}
+
+#motto {
+  text-align: center;
+}
+
+#banner-area {
+  grid-area: banner;
+}
+
+#graph-banner {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 #projects {
@@ -118,18 +114,88 @@ footer {
 }
 
 #project-list {
+  display: flex;
   list-style: none;
-  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 3rem;
 }
 
 .btn-primary {
-  font-size: 1rem;
+  font-family: "Coda", sans-serif;
+  font-size: 1.5rem;
   background: #DB7B51;
   border: none;
   outline: none;
   border-radius: 4px;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.7rem;
+  margin: 1rem;
+}
+
+.headshot-big {
+  height: 250px;
+  width: 250px;
+  float: left;
+  margin-right: 1.5rem;
+}
+
+.headshot {
+  height: 200px;
+  width: 200px;
+  float: left;
+  margin-right: 1rem;
+}
+
+img {
+  width: 100%;
+}
+
+.titles {
+  padding-top: 8px;
+}
+
+.location {
+  padding-top: 8px;
+}
+
+#pi {
+  min-height: 320px;
+}
+
+.member {
+  min-height: 230px;
+}
+
+.member p {
+  font-size: 0.9em;
+  margin-block-start: 0;
+  margin-block-end: 2px;
+}
+
+.alum p {
+  font-size: 0.9em;
+  margin-block-start: 0;
+  margin-block-end: 2px;
+}
+
+.friend p {
+  font-size: 0.9em;
+  margin-block-start: 0;
+  margin-block-end: 2px;
+}
+
+.member-links {
+  padding-top: 8px;
+}
+
+.alum h4 {
+  margin-bottom: 0;
+}
+
+.friend h4 {
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

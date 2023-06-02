@@ -1,11 +1,8 @@
 const CleanCSS = require("clean-css");
 const eleventySass = require("eleventy-sass");
+const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-    // eleventyConfig.addFilter("cssmin", function(code) {
-    //     return new CleanCSS({}).minify(code).styles;
-    // })
-
     eleventyConfig.addPlugin(eleventySass);
     eleventyConfig.addWatchTarget("./src/_includes/")
 
@@ -17,6 +14,18 @@ module.exports = function(eleventyConfig) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             next();
         }
+    });
+
+    eleventyConfig.addFilter("cssmin", function(code) {
+        return new CleanCSS({}).minify(code).styles;
+    });
+
+    eleventyConfig.addFilter("asPostDate", (dateObj) => {
+        return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+    });
+
+    eleventyConfig.addFilter("limit", function(array, limit) {
+        return array.slice(0, limit);
     });
     
     return {

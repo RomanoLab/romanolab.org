@@ -6,11 +6,14 @@ permalink: /index.html
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-    <h1>Knowledge-driven biomedical AI</h1>
-    {# <canvas id="graph-banner" width="800" height="250"/> #}
+    <div id="banner-area">
+        <h1 id="motto">Knowledge-driven biomedical AI</h1>
+        <canvas id="graph-banner" width="800" height="250"/>
+    </div>
     <div id="homepage-content">
         <div id="intro">
             <h2>About the lab's research</h2>
+            <hr/>
             <p>
                 We use translational bioinformatics and artificial intelligence to discover new links between chemical exposures and human disease.
             </p>
@@ -26,6 +29,7 @@ permalink: /index.html
         </div>
         <div id="projects">
             <h2>Current research projects</h2>
+            <hr/>
             <ul id="project-list">
                 <li><button class="btn-primary">ComptoxAI</button></li>
                 <li><button class="btn-primary">AlzKB</button></li>
@@ -34,10 +38,15 @@ permalink: /index.html
         </div>
         <div id="news">
             <h2>Recent news and publications</h2>
+            <hr/>
             <ul class="news-list">
-                <li class="news-item">Check out our new publication!</li>
+                {% set newslist = collections.news | limit(4) %}
+                {%- for news in newslist | reverse -%}
+                    <li class="news-item">{{ news.data.date | asPostDate }}: <a href="{{ news.url }}">{{ news.data.title }}</a></li>
+                {%- endfor -%}
+                {# <li class="news-item">Check out our new publication!</li>
                 <li class="news-item">Welcome Jane Doe to the lab!</li>
-                <li class="news-item">This is a slightly longer news item, and its purpose is to demonstrate how text wraps in the page's CSS grid layout a bit better than the short items above are able to do!</li>
+                <li class="news-item">This is a slightly longer news item, and its purpose is to demonstrate how text wraps in the page's CSS grid layout a bit better than the short items above are able to do!</li> #}
             </ul>
         </div>
     </div>

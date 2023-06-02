@@ -7,190 +7,91 @@
         <meta name="author" content="Joseph D. Romano" />
         
         
-        <title>Lab Members — Romano Lab @ Penn</title>
+        <title>Romano Lab @ Penn</title>
 
-        <style>
-        @font-face {
-    font-family: 'cmu_serifroman';
-    src: url('_includes/assets/fonts/cmunrm-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'cmu_sans_serifbold';
-    src: url('_includes/assets/fonts/cmunsx-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'cmu_typewriter_textregular';
-    src: url('_includes/assets/fonts/cmuntt-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+        <!--Icons-->
+        <script src="https://use.fontawesome.com/04f6e4e6fe.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="_includes/assets/icons/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="_includes/assets/icons/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="_includes/assets/icons/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="_includes/assets/icons/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="_includes/assets/icons/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="_includes/assets/icons/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="_includes/assets/icons/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="_includes/assets/icons/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="_includes/assets/icons/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="_includes/assets/icons/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="_includes/assets/icons/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="_includes/assets/icons/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="_includes/assets/icons/favicons/favicon-16x16.png">
+        <link rel="manifest" href="_includes/assets/icons/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 
-html {
-    position: relative;
-    min-height: 100%;
-}
+        <link rel="stylesheet" href="css/style.css"/>
 
-body {
-    max-width: 800px;
-    padding-top: 36px;
-    padding-left: 48px;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-    /* font-family: 'cmu_serifroman', serif; */
-    margin-bottom: 80px;
-}
+        <!--Semantic metadata-->
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Organization",
+            "name": "The Romano Lab at the University of Pennsylvania",
+            "url": "https://romanolab.org/",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Philadelphia, Pennsylvania, USA",
+                "postalCode": "09104",
+                "streetAddress": "403 Blockley Hall 423 Guardian Drive"
+            },
+            "email": "joseph.romano@pennmedicine.upenn.edu",
+            "telephone": "+1-802-558-5839",
+            "member": [
+                "https://jdr.bio"
+            ],
+            "sameAs": [
+                "https://www.wikidata.org/wiki/Q116036288"
+            ]
+        }
+        </script>
+        <meta property="og:title" content="Romano Lab @ Penn" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="/pages/posts/2023-05-22-new-site/" />
+        <meta property="og:site_name" content="The Romano Lab at the University of Pennsylvania" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="robots" content="index, follow" />
 
-h1, h2, h3, h4 {
-    font-family: 'cmu_sans_serifbold', sans-serif;
-}
-
-h4 {
-    margin-bottom: 8pt;
-}
-
-.headshot {
-    height: 200px;
-    width: 200px;
-    float: left;
-}
-
-.headshot-img {
-    width: 100%;
-}
-
-.bio {
-    margin-left: 216px;
-}
-
-.titles p {
-    font-size: 0.9em;
-    margin-block-start: 0;
-    margin-block-end: 2px;
-}
-
-#bottom-footer {
-    position: absolute;
-    /* padding-left: 48px; */
-    bottom: 0;
-    height: 80px;
-
-}
-
-
-/* Collapsible info displays */
-.wrap-collapsible {
-    margin-left: 12px;
-}
-input[type='checkbox'] {
-    display: none;
-}
-.collapsible-toggle {
-    display: block;
-
-    font-weight: bold;
-    
-    /* color: #A77B0E;
-    background: #FAE042; */
-
-    cursor: pointer;
-
-    border-radius: 4px;
-
-    transition: all 0.25s ease-out;
-}
-.collapsible-toggle:hover {
-    color: #7C5A0B;
-}
-.collapsible-toggle::before {
-    content: ' ';
-    display: inline-block;
-
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid currentColor;
-
-    vertical-align: middle;
-    margin-right: .7rem;
-    transform: translateY(-2px);
-
-    transition: transform .2s ease-out;
-}
-.collapsible-content .content-inner {
-    background: rgba(250, 224, 66, .2);
-    border-bottom: 1px solid rgba(250, 224, 66, .45);
-
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-    padding: .5rem 1rem;
-}
-.collapsible-content {
-    max-height: 0px;
-    overflow: hidden;
-
-    transition: max-height .25s ease-in-out;
-}
-.toggle:checked + .collapsible-toggle + .collapsible-content {
-    max-height: 100vh;
-}
-.toggle:checked + .collapsible-toggle::before {
-    transform: rotate(90deg) translateX(-3px);
-}
-.toggle:checked + .collapsible-toggle {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-#graph-banner {
-    height: 250px;
-    width: 800px;
-}
-
-#pennlink {
-    color: #011F5B;
-    text-decoration: none;
-}
-
-#jdrlink {
-    text-decoration: none;
-}
-        </style>
     </head>
     <body>
-        <main>
-            
-    <h1>Romano Lab @ <a href="https://www.upenn.edu/" id="pennlink">Penn</a></h1>
-    
-<p>Return to <a href="index.html">home</a></p>
-<hr/>
-<h2>Current lab members</h2>
-<h3>Principal Investigator</h3>
-<div class="person">
-    
-    <div class="headshot">
-        <img class="headshot-img" src="./_includes/assets/img/headshot-500px-1.jpg"/>
-    </div>
-    
-    <div class="bio">
-        <h4>Joseph D. Romano, PhD</h4>
-        <div class="titles">
-            <p>Assistant Professor of Informatics</p>
-            <p>Institute for Biomedical Informatics</p>
-            <p>Center of Excellence in Environmental Toxicology</p>
-            <p>Department of Biostatistics, Epidemiology, &amp; Informatics</p>
+        <div class="container">
+            <header>
+                <nav>
+                    <ul class="nav-list">
+                        <li class="nav-item" id="logo"><a href="index.html" >Romano Lab</a> @ <a href="https://upenn.edu" target="_blank">Penn</a></li>
+                        <li class="nav-item"><a href="#">Research</a></li>
+                        <li class="nav-item"><a href="people.html" >People</a></li>
+                        <li class="nav-item"><a href="#">Publications</a></li>
+                        <li class="nav-item"><a href="#">Contact</a></li>
+                        <li class="nav-item"><a href="#">Blog</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="sidebar">
+                
+            </div>
+            <main>
+                
+
+We have a new website layout!
+
+            </main>
+            <footer>
+                <div class="footer-text">
+                    <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
+                </div>
+            </footer>
         </div>
-        <p>
-            <a href="http://jdr.bio">Personal website</a> | <a href="https://twitter.com/JDRomano2">Twitter</a> | <a href="https://www.linkedin.com/in/jdromano2/">LinkedIn</a>
-        </p>
         
-    </div>
-
-</div>
-
-
-        </main>
         <script>
             /**
  * graph.js
@@ -315,6 +216,7 @@ class Graph {
     constructor(cnv) {
         this.nodes = Array();
         this.edges = Array();
+        this.orphanNodes = Array();
 
         this.canvas = cnv
         this.canvas_height = cnv.height;
@@ -323,7 +225,8 @@ class Graph {
         this.usable_height = this.canvas_height - (globals.breathingRoom * 2);
         this.usable_width = this.canvas_width - (globals.breathingRoom * 2)
         
-        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
+        //this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2));
+        this.max_path_len = Math.sqrt(Math.pow(this.canvas_height, 2) + Math.pow(this.canvas_width, 2)) / 5.;
     }
 
     /**
@@ -332,7 +235,9 @@ class Graph {
      * @param {Integer} canvas_y y-coordinate within the associated canvas
      */
     addNode(canvas_x, canvas_y) {
-        this.nodes.push(new Node(canvas_x, canvas_y))
+        let thisNode = new Node(canvas_x, canvas_y)
+        this.nodes.push(thisNode)
+        this.orphanNodes.push(thisNode);
     }
 
     addRandomNodes(n_nodes) {
@@ -355,6 +260,12 @@ class Graph {
         const endNode = this.nodes[endNodeIndex];
         
         this.edges.push(new Edge(startNode, endNode));
+        if (this.orphanNodes.includes(startNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(startNode), 1);
+        }
+        if (this.orphanNodes.includes(endNode)) {
+            this.orphanNodes.splice(this.orphanNodes.indexOf(endNode), 1);
+        }
     }
 
     addRandomEdges(n_edges) {
@@ -383,24 +294,34 @@ class Graph {
 
         // Same as above, but this time we adjust probability based on logistic
         // curve to more strongly encourage short edges
+        // for(var i=0; i < n_edges; i++) {
+        //     randomSample = getRandomSample(this.nodes, 2);
+        //     let candidateEdge = new Edge(randomSample[0], randomSample[1]);
+        //     // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
+        //     acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+        //     if (Math.random() <= acceptProb) {
+        //         this.edges.push(candidateEdge);
+        //     } else {
+        //         console.log("REJECT with probability ", acceptProb);
+        //         --i;
+        //     }
+        // }
+
+        // Still not quite strong enough.
         for(var i=0; i < n_edges; i++) {
             randomSample = getRandomSample(this.nodes, 2);
             let candidateEdge = new Edge(randomSample[0], randomSample[1]);
-            // acceptProb = 1 - (candidateEdge.getLength() / this.max_path_len);
-            acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            //acceptProb = 1 / (Math.pow(Math.E, 2*(candidateEdge.getLength() / this.max_path_len))+1);
+            acceptProb = 1-(Math.tanh(candidateEdge.getLength() / this.max_path_len))
             if (Math.random() <= acceptProb) {
                 this.edges.push(candidateEdge);
             } else {
-                console.log("REJECT with probability ", acceptProb);
                 --i;
             }
         }
     }
 
     drawGraph() {
-        // Remove any orphan nodes
-        
-        
         // We draw the edges first, so their tips sit 'behind' the nodes
         this.edges.forEach(e => e.drawEdge());
         this.nodes.forEach(n => n.drawNode());
@@ -413,18 +334,21 @@ let G = new Graph(canvas);
 
 function start() {
     // drawGraph(node_coords, adjacencies);
-    G.addRandomNodes(30);
-    G.addRandomEdges(20);
+    G.addRandomNodes(120);
+    G.addRandomEdges(200);
 
+    // get rid of the orphan nodes
+    // G.orphanNodes.forEach((o_n, i) => {
+    //     G.nodes.splice(G.nodes.indexOf(o_n), 1);
+    // })
+
+    // ctx.scale(0.5, 0.5);
     G.drawGraph();
+    // ctx.scale(2, 2);
+    // G.drawGraph();
 }
 
 window.setTimeout(start, 100);
         </script>
     </body>
-    <footer>
-        <div id="bottom-footer">
-            <p><i>Copyright &copy; 2022 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
-        </div>
-    </footer>
 </html>
