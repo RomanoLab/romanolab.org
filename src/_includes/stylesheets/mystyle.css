@@ -1,7 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Coda&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:wght@700&family=Voces&display=swap');
+
+:root {
+    /* Fonts */
+    --text-font-family: cmu_serifroman, Georgia, serif;
+    --heading-font-family: cmu_sans_serifbold, Helvetica, sans-serif;
+    --typewriter-font-family: cmu_typewriter_textregular, "Lucida Console", monospace;
+
+    /* Colors */
+    --bg-color: #f7f9fb;
+    --fg-color: #212121;
+
+    --rlab-purple: #6F5961;
+    --rlab-greengray: #5E666A;
+    --rlab-dark: #222222;
+    --rlab-offwhite: #EEEEEE;
+    --rlab-lightgray: #9d9d9d;
+    --rlab-green: #6D8E87;
+    --rlab-yellow: #E0C59B;
+    --rlab-orange: #DB7B51;
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: $rlab-offwhite;
+    background-color: var(--rlab-offwhite);
 }
 
 h1, h2, h3, h4 {
@@ -22,7 +43,7 @@ h1, h2, h3, h4 {
 
 header {
     grid-area: header;
-    background: $rlab-dark;
+    background: var(--rlab-dark);
     height: 70px;
     border-radius: 6px;
 }
@@ -40,13 +61,13 @@ nav {
 .nav-item {
     list-style: none;
     margin-right: 2rem;
-    color: $rlab-lightgray;
+    color: var(--rlab-lightgray);
     font-weight: 500;
 }
 
 .nav-item a {
     text-decoration: none;
-    color: $rlab-lightgray;
+    color: var(--rlab-lightgray);
     transition:all 200ms ease-in;
 }
 
@@ -54,7 +75,7 @@ nav {
     color: #ffffff;
 }
 
-// Push logo to left
+/* Push logo to left */
 .nav-item:first-child {
     margin-right: auto;
 }
@@ -105,7 +126,7 @@ footer {
 
 #banner-area {
     grid-area: banner;
-    // min-height: 290px;
+    /* min-height: 290px; */
 }
 
 #graph-banner {
@@ -134,7 +155,7 @@ footer {
 .btn-primary {
     font-family: 'Coda', sans-serif;
     font-size: 1.5rem;
-    background: $rlab-orange;
+    background: var(--rlab-orange);
     border: none;
     outline:none;
     border-radius: 4px;
