@@ -1,12 +1,12 @@
 const CleanCSS = require("clean-css");
-const eleventySass = require("eleventy-sass");
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-    eleventyConfig.addPlugin(eleventySass);
-    eleventyConfig.addWatchTarget("./src/_includes/")
+    eleventyConfig.addWatchTarget("./src/_includes/");
 
-    eleventyConfig.addPassthroughCopy('./src/_includes/stylesheets/')
+    // eleventyConfig.addPassthroughCopy('./src/_includes/stylesheets/')
+
+    eleventyConfig.addPassthroughCopy('./src/mystyle.css');
 
     // enable CORS
     eleventyConfig.setBrowserSyncConfig({

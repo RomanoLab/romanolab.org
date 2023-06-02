@@ -29,13 +29,7 @@
         <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        {# <link rel="stylesheet" href="{{ 'css/style.css' | url }}"/> #}
-        {% set css %}
-            {% include "css/style.css" %}
-        {% endset %}
-        <style>
-            {{ css | cssmin | safe }}
-        </style>
+        <link rel="stylesheet" href="{{ 'mystyle.css' | url }}"/>
         
         <!--Semantic metadata-->
         <script type="application/ld+json">

@@ -1,16 +1,12 @@
 {
   "name": "romanolab.org",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Romano Lab Website",
-  "main": "www/index.html",
+  "main": "docs/index.html",
   "scripts": {
-    "watch:sass": "npx sass --watch src/_includes/stylesheets:docs/css",
-    "build:sass": "npx sass src/_includes/stylesheets:docs/css",
-    "watch:eleventy": "npx @11ty/eleventy --config=.eleventy.js --serve",
-    "build:eleventy": "npx @11ty/eleventy --config=.eleventy.js",
-    "start": "npm-run-all build:sass --parallel watch:*",
-    "build": "npm-run-all build:*",
-    "build-production": "ELEVENTY_PRODUCTION=true npm-run-all build*"
+    "start": "npx @11ty/eleventy --config=.eleventy.js --serve",
+    "build": "npx @11ty/eleventy --config=.eleventy.js",
+    "build-production": "ELEVENTY_PRODUCTION=true npx @11ty/eleventy --config=.eleventy.js"
   },
   "author": "Joseph D. Romano",
   "license": "MIT",
