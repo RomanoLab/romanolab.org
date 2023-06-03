@@ -1,12 +1,11 @@
 const CleanCSS = require("clean-css");
 const { DateTime } = require("luxon");
+const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 
 module.exports = function(eleventyConfig) {
     eleventyConfig.addWatchTarget("./src/_includes/");
 
-    // eleventyConfig.addPassthroughCopy('./src/_includes/stylesheets/')
-
-    eleventyConfig.addPassthroughCopy('./src/mystyle.css');
+    eleventyConfig.addPassthroughCopy('./src/_includes/');
 
     // enable CORS
     eleventyConfig.setBrowserSyncConfig({
@@ -26,6 +25,10 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addFilter("limit", function(array, limit) {
         return array.slice(0, limit);
+    });
+
+    eleventyConfig.addPlugin(faviconsPlugin, {
+        'outputDir': 'docs'
     });
     
     return {

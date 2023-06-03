@@ -1,114 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="author" content="Joseph D. Romano" />
-        
-        {# Note: The dash in the following line is an em-dash (U+2014) #}
-        <title>{{ subtitle + ' — ' if subtitle }}Romano Lab @ Penn</title>
-
-        <!--Icons-->
-        <script src="https://use.fontawesome.com/04f6e4e6fe.js"></script>
-        <link rel="apple-touch-icon" sizes="57x57" href="_includes/assets/icons/favicons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="_includes/assets/icons/favicons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="_includes/assets/icons/favicons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="_includes/assets/icons/favicons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="_includes/assets/icons/favicons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="_includes/assets/icons/favicons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="_includes/assets/icons/favicons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="_includes/assets/icons/favicons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="_includes/assets/icons/favicons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="_includes/assets/icons/favicons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="_includes/assets/icons/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="_includes/assets/icons/favicons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="_includes/assets/icons/favicons/favicon-16x16.png">
-        <link rel="manifest" href="_includes/assets/icons/favicons/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="_includes/assets/icons/favicons/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-
-        <link rel="stylesheet" href="{{ 'mystyle.css' | url }}"/>
-        
-        <!--Semantic metadata-->
-        <script type="application/ld+json">
-        {
-            "@context": "http://schema.org/",
-            "@type": "Organization",
-            "name": "The Romano Lab at the University of Pennsylvania",
-            "url": "https://romanolab.org/",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Philadelphia, Pennsylvania, USA",
-                "postalCode": "09104",
-                "streetAddress": "403 Blockley Hall 423 Guardian Drive"
-            },
-            "email": "joseph.romano@pennmedicine.upenn.edu",
-            "telephone": "+1-802-558-5839",
-            "member": [
-                "https://jdr.bio"
-            ],
-            "sameAs": [
-                "https://www.wikidata.org/wiki/Q116036288"
-            ]
-        }
-        </script>
-        <meta property="og:title" content="{{ subtitle + ' — ' if subtitle }}Romano Lab @ Penn" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{site.url}}{{page.url}}" />
-        <meta property="og:site_name" content="The Romano Lab at the University of Pennsylvania" />
-        <meta property="og:locale" content="en_US" />
-        <meta name="robots" content="index, follow" />
-
-    </head>
+    {% include "layouts/head.njk" %}
+    
     <body>
         <div class="container">
-            <header>
-                <nav>
-                    <ul class="nav-list">
-                        <li class="nav-item" id="logo"><a href="{{ "./index.html" | url }}" {% if page.url == "/" %}aria-current="page"{% endif %}>Romano Lab</a> @ <a href="https://upenn.edu" target="_blank">Penn</a></li>
-                        <li class="nav-item"><a href="#">Research</a></li>
-                        <li class="nav-item"><a href="{{ "./people.html" | url }}" {% if page.url == "/people.html" %}aria-current="page"{% endif %}>People</a></li>
-                        <li class="nav-item"><a href="#">Publications</a></li>
-                        <li class="nav-item"><a href="#">Contact</a></li>
-                        <li class="nav-item"><a href="#">Blog</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div class="sidebar">
-                
-            </div>
+            {% include "layouts/header.njk" %}
+            
+            <div class="sidebar"></div>
+            
             <main>
                 {{ content | safe }}
             </main>
-            <footer>
-                <div class="footer-text">
-                    <p><i>Copyright &copy; 2023 by <a href="http://jdr.bio" id="jdrlink">Joseph D. Romano</a> and the Romano Lab</i></p>
-                </div>
-            </footer>
+            
+            {% include "layouts/footer.njk" %}
         </div>
-        {# <header>
-            <nav class="navbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "./index.html" | url }}" {% if page.url == "/" %}aria-current="page"{% endif %}>Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "./personnel.html" | url }}" {% if page.url == "/personnel.html" %}aria-current="page"{% endif %}>Personnel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "./publications.html" | url }}" {% if page.url == "/publications.html" %}aria-current="page"{% endif %}>Publications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "./learn.html" | url }}" {% if page.url == "/learn.html" %}aria-current="page"{% endif %}>Learn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "./contact.html" | url }}" {% if page.url == "/contact.html" %}aria-current="page"{% endif %}>Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </header> #}
+        
         <script>
             {% include 'assets/js/graph.js' %}
         </script>

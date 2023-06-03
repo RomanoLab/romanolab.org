@@ -1,6 +1,7 @@
 {% extends 'layouts/base.njk' %}
 
-{% block main %}
+{# {% block main %}
     <h1><a href="{{ "./index.html" | url }}" id="homelink">Romano Lab</a> @ <a href="https://www.upenn.edu/" id="pennlink">Penn</a></h1>
     {% block content %}{% endblock %}
-{% endblock %}
+{% endblock %} #}
+{{ content | safe }}
