@@ -31,13 +31,19 @@ h1, h2, h3, h4 {
 
 .container {
     display: grid;
-    height: 100vh;
+    /* height: 100vh;
     grid-template-columns: 0.8fr 6fr 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 
         "header header header"
         "sidebar main empty"
-        "footer footer footer";
+        "footer footer footer"; */
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "header"
+        "main";
     grid-gap: 0.8rem;
 }
 
@@ -90,10 +96,14 @@ nav {
     grid-area: sidebar;
 }
 
-main {
-    grid-area: main;
-    min-height: 600px;
-
+.container > main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 0.8fr 6fr 1fr;
+    grid-template-areas: 
+        "sidebar main empty"
+        "footer footer footer";
+    grid-gap: 0.8rem;
 }
 
 footer {

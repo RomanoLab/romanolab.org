@@ -6,13 +6,17 @@
         <div class="container">
             {% include "layouts/header.njk" %}
             
-            <div class="sidebar"></div>
+            
             
             <main>
-                {{ content | safe }}
+                <div class="sidebar"></div>
+                <div id="content">
+                    {{ content | safe }}
+                </div>
+                {% include "layouts/footer.njk" %}
             </main>
             
-            {% include "layouts/footer.njk" %}
+            
         </div>
         
         <script>
