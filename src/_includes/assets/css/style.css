@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Coda&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:wght@700&family=Voces&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coda&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@700&family=Voces&display=swap');
 
 :root {
     /* Fonts */
@@ -12,17 +12,23 @@
 
     --rlab-purple: #6F5961;
     --rlab-greengray: #5E666A;
-    --rlab-dark: #222222;
+    /* --rlab-dark: #222222; */
     --rlab-offwhite: #EEEEEE;
     --rlab-lightgray: #9d9d9d;
     --rlab-green: #6D8E87;
     --rlab-yellow: #E0C59B;
-    --rlab-orange: #DB7B51;
+    /* --rlab-orange: #DB7B51; */
+
+    --rlab-orange: #DD5929;
+    --rlab-purple: #630AA7;
+    --rlab-silver: #C4C4C4;
+    --rlab-dark: #2E2E2E;
+    --rlab-royal-blue: #3A69D6;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--rlab-offwhite);
+    background-color: var(--rlab-silver);
 }
 
 h1, h2, h3, h4 {
@@ -67,18 +73,19 @@ nav {
 .nav-item {
     list-style: none;
     margin-right: 2rem;
-    color: var(--rlab-lightgray);
-    font-weight: 500;
+    color: var(--rlab-offwhite);
+    font-weight: 600;
 }
 
 .nav-item a {
     text-decoration: none;
-    color: var(--rlab-lightgray);
-    transition:all 200ms ease-in;
+    color: var(--rlab-offwhite);
+    transition:all 170ms ease-in;
 }
 
 .nav-item a:hover {
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: var(--rlab-royal-blue)
 }
 
 /* Push logo to left */
