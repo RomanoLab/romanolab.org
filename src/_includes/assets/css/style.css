@@ -7,32 +7,25 @@
     --typewriter-font-family: cmu_typewriter_textregular, "Lucida Console", monospace;
 
     /* Colors */
-    --bg-color: #f7f9fb;
-    --fg-color: #212121;
-
-    --rlab-purple: #6F5961;
-    --rlab-greengray: #5E666A;
-    /* --rlab-dark: #222222; */
+    --bg-color: #212121;
     --rlab-offwhite: #EEEEEE;
-    --rlab-lightgray: #9d9d9d;
-    --rlab-green: #6D8E87;
-    --rlab-yellow: #E0C59B;
-    /* --rlab-orange: #DB7B51; */
-
-    --rlab-orange: #DD5929;
-    --rlab-purple: #630AA7;
-    --rlab-silver: #C4C4C4;
     --rlab-dark: #2E2E2E;
-    --rlab-royal-blue: #3A69D6;
+    --primary: #DB27E9;
+    --secondary: #00ad07;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--rlab-silver);
+    background-color: var(--bg-color);
+    color: var(--rlab-offwhite);
 }
 
 h1, h2, h3, h4 {
     font-family: 'Coda', sans-serif;
+}
+
+a {
+    color: var(--secondary);
 }
 
 .container {
@@ -85,7 +78,7 @@ nav {
 
 .nav-item a:hover {
     /* color: #ffffff; */
-    color: var(--rlab-royal-blue)
+    color: var(--primary)
 }
 
 /* Push logo to left */
@@ -125,11 +118,12 @@ footer {
 #homepage-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
         "banner banner"
         "intro projects"
-        "news news";
+        "news news"
+        "poslink poslink";
     grid-gap: 4rem;
 }
 
@@ -160,6 +154,10 @@ footer {
     grid-area: news;
 }
 
+#pos-link {
+    grid-area: poslink;
+}
+
 #project-list {
     display: flex;
     list-style: none;
@@ -172,7 +170,7 @@ footer {
 .btn-primary {
     font-family: 'Coda', sans-serif;
     font-size: 1.5rem;
-    background: var(--rlab-orange);
+    background: var(--primary);
     border: none;
     outline:none;
     border-radius: 4px;
@@ -243,4 +241,36 @@ img {
 
 .friend h4 {
     margin-bottom: 0;
+}
+
+hr {
+    border: 1px solid var(--primary);
+}
+
+.pub-entry {
+    margin-top: 24px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    border-left: solid var(--primary) 5px;
+}
+.pub-entry p {
+    margin-top: 6px;
+}
+
+.pub-button-journal {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 4px;
+    padding-top: 4px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.pub-button-journal:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.grant {
+    padding-top: 8px;
 }

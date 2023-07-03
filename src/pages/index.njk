@@ -43,10 +43,12 @@ layout: layouts/base.njk
                 {%- for news in newslist | reverse -%}
                     <li class="news-item">{{ news.data.date | asPostDate }}: <a href="{{ news.url }}">{{ news.data.title }}</a></li>
                 {%- endfor -%}
-                {# <li class="news-item">Check out our new publication!</li>
-                <li class="news-item">Welcome Jane Doe to the lab!</li>
-                <li class="news-item">This is a slightly longer news item, and its purpose is to demonstrate how text wraps in the page's CSS grid layout a bit better than the short items above are able to do!</li> #}
             </ul>
+        </div>
+        <div id="pos-link">
+            <h2>Open positions</h2>
+            <hr/>
+            <p>See our <a href="{{ "./contact.html" }}">contact page</a> for information on open positions in the lab.</p>
         </div>
     </div>
 {% endblock %}
