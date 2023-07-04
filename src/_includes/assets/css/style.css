@@ -10,7 +10,7 @@
     --bg-color: #212121;
     --rlab-offwhite: #EEEEEE;
     --rlab-dark: #2E2E2E;
-    --primary: #DB27E9;
+    --primary: #e45fee;
     --secondary: #00ad07;
 }
 
@@ -273,4 +273,20 @@ hr {
 
 .grant {
     padding-top: 8px;
+}
+
+#pennlink:hover {
+    color: #82AFD3;
+}
+
+.content > li {
+    padding-top: 4px;
+}
+
+.post-metadata {
+    gap: .5rem;
+    list-style: none;
+    padding-left: 0;
+    font-style: italic;
+    padding-bottom: 2rem;
 }

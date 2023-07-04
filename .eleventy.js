@@ -27,6 +27,14 @@ module.exports = function(eleventyConfig) {
         return array.slice(0, limit);
     });
 
+    eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
+        return DateTime.fromJSDate(dateObj, { zone: zone || "utc" }).toFormat(format || "LLLL dd, yyyy");
+    })
+
+    eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+        return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+    })
+
     eleventyConfig.addPlugin(faviconsPlugin, {
         'outputDir': 'docs'
     });
