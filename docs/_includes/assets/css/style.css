@@ -197,6 +197,10 @@ img {
     width: 100%;
 }
 
+.img-300 {
+    width: 300px;
+}
+
 .titles {
     padding-top: 8px;
 }
