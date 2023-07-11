@@ -1,5 +1,16 @@
 [
     {
+        "title": "Discovering Venom-Derived Drug Candidates Using Differential Gene Expression",
+        "authors": "Romano JD, Li H, Napolitano T, Realubit R, Karan C, Holford M, and Tatonetti NP",
+        "journal": "Toxins. 2023;15(7):451",
+        "doi": "10.3390/toxins15070451",
+        "journal_link": "https://www.mdpi.com/2072-6651/15/7/451",
+        "pmid": "",
+        "pmcid": "",
+        "google_scholar_link": "",
+        "bib_entry": ""
+    },
+    {
         "title": "Exploring genetic influences on adverse outcome pathways using heuristic simulation and graph data science",
         "authors": "Romano JD, Mei L, Senn J, Moore JH, and Mortensen HM",
         "journal": "Computational Toxicology. 2023;25:100261",
