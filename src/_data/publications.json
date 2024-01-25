@@ -1,12 +1,23 @@
 [
     {
-        "title": "Discovering Venom-Derived Drug Candidates Using Differential Gene Expression",
-        "authors": "Romano JD, Li H, Napolitano T, Realubit R, Karan C, Holford M, and Tatonetti NP",
-        "journal": "Toxins. 2023;15(7):451",
-        "doi": "10.3390/toxins15070451",
-        "journal_link": "https://www.mdpi.com/2072-6651/15/7/451",
+        "title": "The Alzheimer’s Knowledge Base – A knowledge graph for therapeutic discovery in Alzheimer’s Disease research",
+        "authors": "Romano JD, Truong V, Kumar R, Venkatesan M, Graham BE, Hao Y, Matsumoto N, Li X, Wang Z, Ritchie M, Shen L, and Moore JH",
+        "journal": "Journal of Medical Internet Research. (in press).",
+        "doi": "",
+        "journal_link": "",
         "pmid": "",
         "pmcid": "",
+        "google_scholar_link": "",
+        "bib_entry": ""
+    },
+    {
+        "title": "Discovering Venom-Derived Drug Candidates using Differential Gene Expression",
+        "authors": "Romano JD, Li H, Napolitano T, Realubit R, Karan C, Holford M, and Tatonetti NP",
+        "journal": "Toxins. 2023;15(7):451.",
+        "doi": "10.3390/toxins15070451",
+        "journal_link": "https://www.mdpi.com/2072-6651/15/7/451",
+        "pmid": "37505720",
+        "pmcid": "PMC10467105",
         "google_scholar_link": "",
         "bib_entry": ""
     },
