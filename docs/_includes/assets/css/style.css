@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Coda&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@700&family=Voces&display=swap');
 
 :root {
-    /* Fonts */
-    --text-font-family: cmu_serifroman, Georgia, serif;
-    --heading-font-family: cmu_sans_serifbold, Helvetica, sans-serif;
-    --typewriter-font-family: cmu_typewriter_textregular, "Lucida Console", monospace;
-
     /* Colors */
     --bg-color: #212121;
     --rlab-offwhite: #EEEEEE;
@@ -30,13 +25,6 @@ a {
 
 .container {
     display: grid;
-    /* height: 100vh;
-    grid-template-columns: 0.8fr 6fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas: 
-        "header header header"
-        "sidebar main empty"
-        "footer footer footer"; */
     height: 100vh;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
@@ -77,7 +65,6 @@ nav {
 }
 
 .nav-item a:hover {
-    /* color: #ffffff; */
     color: var(--primary)
 }
 
