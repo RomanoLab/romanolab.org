@@ -154,6 +154,10 @@ footer {
     margin-top: 3rem;
 }
 
+.list-item-standard {
+    padding-top: 8px;
+}
+
 .btn-primary {
     font-family: 'Coda', sans-serif;
     font-size: 1.5rem;
