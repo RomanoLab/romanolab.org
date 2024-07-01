@@ -6,6 +6,13 @@ Use the following in HTML to pull in the Adobe Fonts:
 /* Or just use the @import... */
 @import url("https://use.typekit.net/zkd1hxc.css");
 
+@font-face {
+    font-family: 'cmuntt';
+    src: url('../fonts/cmuntt.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .font-futura-standard {
     font-family: futura-pt, sans-serif;
     font-weight: 400;
@@ -69,4 +76,21 @@ main {
 
 p {
     margin-top: 4pt;
+    font-size: 14pt;
+}
+
+.tt {
+    font-family: 'cmuntt';
+}
+
+#logo {
+    padding-bottom: 1em;
+}
+
+h1,h2,h3,h4 {
+    color: #8b1e24;
+}
+
+hr {
+    border: 1px solid #8b1e24;
 }

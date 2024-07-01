@@ -1,4 +1,5 @@
 const nunjucks = require("nunjucks");
+const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 
 module.exports = function(eleventyConfig) {
     let nunjucksEnvironment = new nunjucks.Environment(
@@ -13,16 +14,18 @@ module.exports = function(eleventyConfig) {
 
     // Passthrough copy for static assets
     eleventyConfig.addPassthroughCopy("src/assets");
-    eleventyConfig.addPassthroughCopy("src/themes/romanolab-retro/assets")
 
     // Watch targets for SCSS/CSS changes (include the theme's CSS)
     eleventyConfig.addWatchTarget("src/assets/css");
-    eleventyConfig.addWatchTarget("src/themes/romanolab-retro/assets/css");
 
     // Custom collections
     // eleventyConfig.addCollection("posts", function(collectionApi) {
     //     return collectionApi.getFilteredByGlob("src/blog/*.md").reverse();
     // });
+
+    eleventyConfig.addPlugin(faviconsPlugin, {
+        'outputDir': 'docs'
+    });
 
     // Eleventy configuration
     return {
@@ -34,6 +37,7 @@ module.exports = function(eleventyConfig) {
         },
         templateFormats: ["njk", "md", "html"],
         htmlTemplateEngine: "njk",
-        markdownTemplateEngine: "njk"
+        markdownTemplateEngine: "njk",
+        passthroughFileCopy: true
     };
 };
