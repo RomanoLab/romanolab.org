@@ -24,8 +24,49 @@ body {
     font-style: normal;
     background-color: #ecdfc4;
     color: #2c3e6a;
+    margin: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#logo {
+    font-size: 28pt;
 }
 
 .nav-list {
     list-style: none;
+}
+
+.punchcard {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    min-height: 80px;
+    background: #92C5CE;
+    border-radius: 10px;
+    padding: 1.5em;
+}
+  
+.punchcard::after {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 13px solid #ecdfc4;
+    border-right: 7px solid #ecdfc4;
+    border-left: 7px solid #92C5CE;
+    border-bottom: 13px solid #92C5CE;
+    content: '';
+}
+
+main {
+    margin: auto; 
+    width: 60%;  
+}
+
+p {
+    margin-top: 4pt;
 }
