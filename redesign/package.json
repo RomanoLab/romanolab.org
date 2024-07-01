@@ -1,0 +1,40 @@
+{
+    "name": "romanolab-website",
+    "version": "2.0.0",
+    "description": "Website for the Romano Lab at the University of Pennsylvania's Perelman School of Medicine",
+    "main": ".eleventy.js",
+    "scripts": {
+        "build": "eleventy --config=.eleventy.js",
+        "serve": "eleventy --config=.eleventy.js --serve",
+        "start": "npm-run-all build serve",
+        "watch": "eleventy --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/romanolab/romanolab.org.git"
+    },
+    "keywords": [
+        "static-site",
+        "blog",
+        "informatics",
+        "AI",
+        "research",
+        "science"
+    ],
+    "author": "Joseph D. Romano, PhD",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/romanolab/romanolab.org/issues"
+    },
+    "homepage": "https://github.com/romanolab/romanolab.org#readme",
+    "dependencies": {
+        "@11ty/eleventy": "^2.0.0",
+        "nunjucks": "^3.2.4"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.2.5",
+        "npm-run-all": "^4.1.5",
+        "postcss": "^8.2.6",
+        "sass": "^1.32.8"
+    }
+}

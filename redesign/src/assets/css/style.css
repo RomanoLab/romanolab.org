@@ -1,0 +1,31 @@
+/*
+Use the following in HTML to pull in the Adobe Fonts:
+<link rel="stylesheet" href="https://use.typekit.net/zkd1hxc.css">
+*/
+
+/* Or just use the @import... */
+@import url("https://use.typekit.net/zkd1hxc.css");
+
+.font-futura-standard {
+    font-family: futura-pt, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-futura-oblique {
+    font-family: futura-pt, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+body {
+    font-family: futura-pt, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #ecdfc4;
+    color: #2c3e6a;
+}
+
+.nav-list {
+    list-style: none;
+}
