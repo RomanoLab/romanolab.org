@@ -1,10 +1,11 @@
 ---
-title: People
-permalink: /people.html
 layout: layouts/base.njk
+title: People
+permalink: people.html
 ---
 
 {% block content %}
+<div class="container">
     <h1>Lab Members</h1>
     <p>
         <i>See our <a href="{{ "./contact.html" }}">contact page</a> for information on open positions in the lab.</i>
@@ -13,7 +14,7 @@ layout: layouts/base.njk
         <h3>Principal Investigator</h3>
         <div class="member">
             <div class="headshot-big">
-                <img src="./_includes/assets/img/headshot-500px-1.jpg" alt="Headshot of Joseph D. Romano, PhD"/>
+                <img src="./assets/img/headshot-500px-1.jpg" alt="Headshot of Joseph D. Romano, PhD"/>
             </div>
             <h4>Joseph D. Romano, PhD, MPhil, MA</h4>
             <div class="titles">
@@ -36,15 +37,16 @@ layout: layouts/base.njk
         </div>
     </div>
     <hr/>
-    <div id="trainees">
-        <h3>Lab Staff</h3>
+    <div id="staff">
+        <h3>Staff</h3>
         <div class="member">
             <div class="headshot">
-                <img src="./_includes/assets/img/tom.jpg" alt="Headshot of Tom Pan"/>
+                <img src="./assets/img/tom.jpg" alt="Headshot of Tom Pan"/>
             </div>
             <h4>Tom Pan</h4>
             <div class="titles">
                 <p>Data Scientist</p>
+                <p>University of Pennsylvania</p>
             </div>
         </div>
     </div>
@@ -53,61 +55,7 @@ layout: layouts/base.njk
         <h3>Students and Trainees</h3>
         <div class="member">
             <div class="headshot">
-                <img src="./_includes/assets/img/placeholder.jpeg" alt="Placeholder image"/>
-            </div>
-            <h4>Nia Abdurezak</h4>
-            <div class="titles">
-                <p>PhD Rotation Student</p>
-                <p><a href="https://www.med.upenn.edu/gcb/" target="_blank">Graduate Group in Genomics and Computational Biology</a></p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="headshot">
-                <img src="./_includes/assets/img/placeholder.jpeg" alt="Placeholder image"/>
-            </div>
-            <h4>Giuseppe Albi</h4>
-            <div class="titles">
-                <p>PhD Student</p>
-                <p>Università di Pavia</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="headshot">
-                <img src="./_includes/assets/img/oresta.jpg" alt="Headshot of Oresta Hewryk"/>
-            </div>
-            <h4>Oresta Hewryk</h4>
-            <div class="titles">
-                <p>PhD Student</p>
-                <p><a href="https://www.bio.upenn.edu/graduate" target="_blank">Department of Biology</a></p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="headshot">
-                <img src="./_includes/assets/img/placeholder.jpeg" alt="Placeholder image"/>
-            </div>
-            <h4>Sophie Kearney</h4>
-            <div class="titles">
-                <p>PhD Rotation Student</p>
-                <p><a href="https://www.med.upenn.edu/gcb/" target="_blank">Graduate Group in Genomics and Computational Biology</a></p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="headshot">
-                <img src="./_includes/assets/img/tram-anh.jpg" alt="Headshot of Tram Anh Nguyen"/>
-            </div>
-            <h4>Tram Anh Nguyen</h4>
-            <div class="titles">
-                <p>PhD Rotation Student</p>
-                <p><a href="https://www.med.upenn.edu/gcb/" target="_blank">Graduate Group in Genomics and Computational Biology</a></p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
-        <div class="member">
-            <div class="headshot">
-                <img src="./_includes/assets/img/chloe-paris-headshot.jpeg" alt="Headshot of Chloé Paris"/>
+                <img src="./assets/img/chloe-paris-headshot.jpeg" alt="Headshot of Chloé Paris"/>
             </div>
             <h4>Chloé Paris</h4>
             <div class="titles">
@@ -118,7 +66,28 @@ layout: layouts/base.njk
         </div>
         <div class="member">
             <div class="headshot">
-                <img src="./_includes/assets/img/wendy-cropped.jpg" alt="Headshot of Wendy Su"/>
+                <img src="./assets/img/tram-anh.jpg" alt="Headshot of Tram Anh Nguyen"/>
+            </div>
+            <h4>Tram Anh Nguyen</h4>
+            <div class="titles">
+                <p>PhD Rotation Student</p>
+                <p><a href="https://www.med.upenn.edu/gcb/" target="_blank">Graduate Group in Genomics and Computational Biology</a></p>
+                <p>University of Pennsylvania</p>
+            </div>
+        </div>
+        <div class="member">
+            <div class="headshot">
+                <img src="./assets/img/placeholder.jpeg" alt="Headshot of Giuseppe Albi"/>
+            </div>
+            <h4>Giuseppe Albi</h4>
+            <div class="titles">
+                <p>Visiting PhD Student</p>
+                <p>University of Pavia</p>
+            </div>
+        </div>
+        <div class="member">
+            <div class="headshot">
+                <img src="./assets/img/wendy-cropped.jpg" alt="Headshot of Wendy Su"/>
             </div>
             <h4>Wendy Su</h4>
             <div class="titles">
@@ -127,24 +96,31 @@ layout: layouts/base.njk
                 <p>University of Pennsylvania</p>
             </div>
         </div>
+        <div class="member">
+            <div class="headshot">
+                <img src="./assets/img/estefania-morales-headshot.jpg" alt="Headshot of Estefaia Morales"/>
+            </div>
+            <h4>Estefania Morales</h4>
+            <div class="titles">
+                <p>Undergraduate Researcher</p>
+                <p><a href="https://www.med.upenn.edu/idealresearch/suip/" target="_blank">Summer Undergraduate Internship Program</a></p>
+                <p>University of Pennsylvania (visiting from Tufts University)</p>
+            </div>
+        </div>
+        <div class="member">
+            <div class="headshot">
+                <img src="./assets/img/placeholder.jpeg" alt="Headshot of Kevin Shen"/>
+            </div>
+            <h4>Kevin Shen</h4>
+            <div class="titles">
+                <p>Undergraduate Researcher</p>
+                <p>University of Pennsylvania</p>
+            </div>
+        </div>
     </div>
     <hr/>
     <div id="alumni">
         <h3>Lab Alumni</h3>
-        <div class="alum">
-            <h4>Travyse Edwards</h4>
-            <div class="titles">
-                <p>PhD Student</p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
-        <div class="alum">
-            <h4>Kevin Shen</h4>
-            <div class="titles">
-                <p>Undergraduate Student</p>
-                <p>University of Pennsylvania</p>
-            </div>
-        </div>
         <div class="alum">
             <h4>Angela Wu</h4>
             <div class="titles">
@@ -176,4 +152,5 @@ layout: layouts/base.njk
             <p>University of Pennsylvania</p>
         </div>
     </div>
+</div>
 {% endblock %}
