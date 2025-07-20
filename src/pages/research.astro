@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Import research data
+const researchData = await import('../data/research.json');
+const research = researchData.default;
+---
+
+<Layout title="Research - Romano Lab">
+  <h1>Our Research</h1>
+  
+  <section class="research-overview">
+    <p class="lead">
+      Our laboratory focuses on [research overview]. We use [methodologies] 
+      to investigate [research questions].
+    </p>
+  </section>
+  
+  <section class="research-areas">
+    {research.areas.map((area) => (
+      <div class="research-area">
+        <h2>{area.title}</h2>
+        <div class="area-content">
+          {area.image && (
+            <img src={area.image} alt={area.title} class="area-image" />
+          )}
+          <div class="area-text">
+            <p>{area.description}</p>
+            {area.publications && (
+              <div class="related-pubs">
+                <h4>Related Publications:</h4>
+                <ul>
+                  {area.publications.map((pub) => (
+                    <li>{pub}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+  
+  <section class="funding">
+    <h2>Funding</h2>
+    <p>Our research is supported by:</p>
+    <ul>
+      {research.funding.map((grant) => (
+        <li><strong>{grant.agency}:</strong> {grant.title} ({grant.years})</li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .lead {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+  
+  .research-area {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .research-area:last-child {
+    border-bottom: none;
+  }
+  
+  .area-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  .area-image {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .related-pubs {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .related-pubs h4 {
+    margin-top: 0;
+    color: #003366;
+  }
+  
+  .funding {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .area-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

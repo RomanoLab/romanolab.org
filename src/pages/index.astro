@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Romano Lab @ Penn">
+  <div class="hero">
+    <h1>Welcome to the Romano Lab @ Penn</h1>
+    <p class="hero-subtitle">Knowledge-Driven Translational Bioinformatics</p>
+  </div>
+  
+  <section class="intro">
+    <h2>About Our Lab</h2>
+    <p>
+      We are a team of biomedical informaticians dedicated to improving healthcare by
+      discovering the mechanisms and risk factors underlying complex diseases. We
+      combine AI methods with structured biomedical knowledge to gain new data-driven
+      insights into human health.
+    </p>
+  </section>
+  
+  <section class="highlights">
+    <h2>Research Interests</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <h3>Geometric Machine Learning</h3>
+        <p>We use graph representations of complex multimodal data to improve the inferential capacity of machine learning models.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>Mechanisms of Adverse Women's Health Outcomes</h3>
+        <p>We investigate the biological and social determinants that contribute to health disparities in women, integrating electronic health records, biobanks, and public health datasets.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>Computational Toxicology</h3>
+        <p>We develop and apply AI-based computational methods to predict and explain the effects of environmental toxicants on the human body.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin: -2rem -2rem 3rem -2rem;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem 0;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+  }
+  
+  .intro, .highlights {
+    margin: 3rem 0;
+  }
+  
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .highlight-card {
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .highlight-card h3 {
+    color: #003366;
+    margin-top: 0;
+  }
+</style>

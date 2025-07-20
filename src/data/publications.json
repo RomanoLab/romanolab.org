@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Sample Publication Title",
+    "authors": "Romano, A., Collaborator, B., Student, C.",
+    "journal": "Journal of Science",
+    "volume": "123",
+    "pages": "456-789",
+    "year": 2024,
+    "doi": "10.1000/sample",
+    "pmid": "12345678",
+    "pdf": "/papers/sample2024.pdf",
+    "abstract": "This is a sample abstract for demonstration purposes."
+  },
+  {
+    "title": "Another Research Paper",
+    "authors": "Student, C., Romano, A.",
+    "journal": "Nature Communications",
+    "volume": "45",
+    "pages": "123-456",
+    "year": 2023,
+    "doi": "10.1038/sample",
+    "abstract": "Another sample abstract."
+  }
+]

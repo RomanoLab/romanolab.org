@@ -1,0 +1,31 @@
+{
+  "areas": [
+    {
+      "title": "Research Area 1",
+      "description": "Detailed description of your first research area, methodologies used, and goals.",
+      "image": "/images/research/area1.jpg",
+      "publications": [
+        "Author et al. (2024). Title. Journal Name.",
+        "Author et al. (2023). Title. Journal Name."
+      ]
+    },
+    {
+      "title": "Research Area 2",
+      "description": "Detailed description of your second research area.",
+      "image": "/images/research/area2.jpg",
+      "publications": []
+    }
+  ],
+  "funding": [
+    {
+      "agency": "NSF",
+      "title": "Grant Title",
+      "years": "2023-2026"
+    },
+    {
+      "agency": "NIH",
+      "title": "Another Grant Title",
+      "years": "2022-2025"
+    }
+  ]
+}

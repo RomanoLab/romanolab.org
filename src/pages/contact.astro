@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact - Romano Lab">
+  <h1>Contact Us</h1>
+  
+  <div class="contact-grid">
+    <section class="contact-info">
+      <h2>Lab Information</h2>
+      
+      <div class="contact-item">
+        <h3>Principal Investigator</h3>
+        <p>
+          Dr. [Your Name]<br>
+          [Title]<br>
+          <a href="mailto:your.email@institution.edu">your.email@institution.edu</a>
+        </p>
+      </div>
+      
+      <div class="contact-item">
+        <h3>Mailing Address</h3>
+        <p>
+          Romano Lab<br>
+          [Department Name]<br>
+          [Institution Name]<br>
+          [Address Line 1]<br>
+          [City, State ZIP]
+        </p>
+      </div>
+      
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p>[Phone Number]</p>
+      </div>
+      
+      <div class="contact-item">
+        <h3>Lab Location</h3>
+        <p>
+          [Building Name]<br>
+          Room [Number]<br>
+          [Campus/Institution]
+        </p>
+      </div>
+    </section>
+    
+    <section class="opportunities">
+      <h2>Join Our Lab</h2>
+      <p>
+        We are always interested in hearing from motivated students and 
+        postdocs who share our research interests.
+      </p>
+      
+      <h3>Graduate Students</h3>
+      <p>
+        Prospective graduate students should apply through the 
+        [Department/Program] graduate program. Please mention your 
+        interest in the Romano Lab in your application.
+      </p>
+      
+      <h3>Undergraduate Students</h3>
+      <p>
+        We welcome undergraduate students interested in research experience. 
+        Please email Dr. Romano with your CV and a brief description of 
+        your research interests.
+      </p>
+      
+      <h3>Postdocs</h3>
+      <p>
+        Please send your CV, a cover letter describing your research interests, 
+        and contact information for three references to Dr. Romano.
+      </p>
+    </section>
+  </div>
+  
+  <section class="map-section">
+    <h2>Find Us</h2>
+    <div class="map-placeholder">
+      <!-- Replace with actual map embed or directions -->
+      <p>Campus map or directions to lab location</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 2rem 0;
+  }
+  
+  .contact-item {
+    margin: 2rem 0;
+  }
+  
+  .contact-item h3 {
+    color: #003366;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-item p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .contact-item a {
+    color: #003366;
+    text-decoration: none;
+  }
+  
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .opportunities {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .opportunities h3 {
+    color: #003366;
+    margin-top: 2rem;
+  }
+  
+  .map-section {
+    margin: 3rem 0;
+  }
+  
+  .map-placeholder {
+    height: 300px;
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
