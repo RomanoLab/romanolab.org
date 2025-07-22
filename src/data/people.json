@@ -8,7 +8,28 @@
       "image": "/images/people/romano.jpg"
     }
   ],
+  "researchStaff": [
+    {
+      "name": "Tom Pan, MS",
+      "title": "Data Scientist",
+      "bio": "Tom is a data scientist with expertise in machine learning and structural biology. He will be beginning his doctoral studies at Duke University in Fall 2025.",
+      "email": "iantong.pan@pennmedicine.upenn.edu",
+      "image": "/images/people/pan.jpg"
+    }
+  ],
   "gradStudents": [
+    {
+      "name": "Chloé Paris, MS",
+      "program": "PhD Candidate in Genomics and Computational Biology",
+      "research": "Research focus: Environmental epidemiology, hypertensive disorders of pregnancy, machine learning.",
+      "image": "/images/people/paris.jpg"
+    },
+    {
+      "name": "Oresta Hewryk",
+      "program": "PhD Candidate in Biology",
+      "research": "Research focus: Phytotherapies, biomedical ontologies, machine learning.", 
+      "image": "/images/people/hewryk.jpg"
+    },
     {
       "name": "Tram Anh Nguyen",
       "program": "PhD Candidate in Genomics and Computational Biology",
@@ -16,37 +37,30 @@
       "image": "/images/people/nguyen.jpg"
     },
     {
-      "name": "Chloé Paris",
-      "program": "PhD Candidate in Genomics and Computational Biology",
-      "research": "Research focus: Multimodal data integration, graph machine learning, uterine fibroids.",
-      "image": "/images/people/nguyen.jpg"
-    },
-    {
       "name": "Wendy Su",
       "program": "PhD Candidate in Genomics and Computational Biology",
-      "research": "Research focus: Multimodal data integration, graph machine learning, uterine fibroids.",
-      "image": "/images/people/nguyen.jpg"
+      "research": "Research focus: Endometriosis, Omics-based risk prediction, natural language processing.",
+      "image": "/images/people/su.jpg"
     },
     {
-      "name": "Oresta Hewryk",
-      "program": "PhD Candidate in Biology",
-      "research": "Research focus: Multimodal data integration, graph machine learning, uterine fibroids.",
-      "image": "/images/people/nguyen.jpg"
+      "name": "Ananya Rajagopalan",
+      "program": "PhD Student in Genomics and Computational Biology (co-advised by Shefali Setia-Verma)",
+      "research": "Research focus: Maternal health, integrating clinical and genetic data, machine learning.",
+      "image": "/images/people/rajagopalan.png"
     },
     {
       "name": "Nia Abdurezak",
       "program": "PhD Student in Genomics and Computational Biology",
-      "research": "Research focus: Multimodal data integration, graph machine learning, uterine fibroids.",
-      "image": "/images/people/nguyen.jpg"
-    },
-    {
-      "name": "Ananya Rajagopalan",
-      "program": "PhD Student in Genomics and Computational Biology (co-advised by Dr. Shefali Setia-Verma)",
-      "research": "Research focus: Multimodal data integration, graph machine learning, uterine fibroids.",
-      "image": "/images/people/nguyen.jpg"
+      "research": "Research focus: Informatics of autoimmune disease, drug adverse events, machine learning.",
+      "image": "/images/people/abdurezak.jpg"
     }
   ],
   "alumni": [
+    {
+      "name": "Sophie Kearney",
+      "year": "2024",
+      "currentPosition": "PhD Student in Genomics and Computational Biology at UPenn"
+    },
     {
       "name": "Kestian Orsetti",
       "year": "2024",

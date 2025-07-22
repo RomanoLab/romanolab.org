@@ -19,13 +19,15 @@
   "funding": [
     {
       "agency": "NSF",
-      "title": "Grant Title",
-      "years": "2023-2026"
+      "title": "SCH: An intraoral device for multimodal data integration and risk modification connects the oral microbiome to systemic health",
+      "awardNumber": "2500339",
+      "years": "2025-2029"
     },
     {
-      "agency": "NIH",
-      "title": "Another Grant Title",
-      "years": "2022-2025"
+      "agency": "NIH/NLM",
+      "title": "Discovering clinical endpoints of toxicity via graph machine learning and semantic data analysis",
+      "awardNumber": "K99/R00LM013646",
+      "years": "2021-2025"
     }
   ]
 }

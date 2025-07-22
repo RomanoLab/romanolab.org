@@ -15,10 +15,11 @@ const publications = pubsData.default;
       <strong>{publications.length}</strong>
       <span>Total Publications</span>
     </div>
-    <div class="stat">
+    <!-- Note: The following is broken: -->
+    <!-- <div class="stat">
       <strong>{publications.filter(p => new Date(p.year).getFullYear() >= new Date().getFullYear() - 5).length}</strong>
       <span>Last 5 Years</span>
-    </div>
+    </div> -->
   </div>
   
   <section class="publications-list">
@@ -29,10 +30,7 @@ const publications = pubsData.default;
           <h3>{pub.title}</h3>
           <p class="authors">{pub.authors}</p>
           <p class="journal">
-            <em>{pub.journal}</em>
-            {pub.volume && `, ${pub.volume}`}
-            {pub.pages && `, ${pub.pages}`}
-            ({pub.year})
+            <em>{pub.journal}</em>{pub.volume && `, ${pub.volume}`}{pub.pages && `, ${pub.pages}`}({pub.year})
           </p>
           {pub.doi && (
             <p class="links">

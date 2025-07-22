@@ -12,13 +12,31 @@
     "abstract": "This is a sample abstract for demonstration purposes."
   },
   {
-    "title": "Another Research Paper",
-    "authors": "Student, C., Romano, A.",
-    "journal": "Nature Communications",
-    "volume": "45",
-    "pages": "123-456",
+    "title": "Enhancing Molecular Representation Learning through the Combination of 3D and 2D Graph Machine Learning",
+    "authors": "Pan IT & Romano JD",
+    "journal": "The 39th Annual AAAI Conference on Artificial Intelligence",
+    "volume": "39",
+    "year": 2025
+  },
+  {
+    "title": "The Alzheimer's Knowledge Base: A Knowledge Graph for Alzheimer's Disease Research",
+    "authors": "Romano JD, Truong V, Kumar R, Venkatesan M, Graham BE, Hao Y, Matsumoto N, Li X, Wang Z, Ritchie M, Shen L, & Moore JH",
+    "journal": "Journal of Medical Internet Research",
+    "volume": "26",
+    "pages": "e46777",
+    "year": 2024,
+    "doi": "10.2196/46777",
+    "pmid": "38635981"
+  },
+  {
+    "title": "Knowledge Graph Aids Comprehensive Explanation of Drug and Chemical Toxicity",
+    "authors": "Hao Y, Romano JD, & Moore JH",
+    "journal": "CPT: Pharmacometrics & Systems Pharmacology",
+    "volume": "12",
+    "issue": "8",
+    "pages": "1072-1079",
     "year": 2023,
-    "doi": "10.1038/sample",
-    "abstract": "Another sample abstract."
+    "doi": "10.1002/psp4.12975",
+    "pmid": "37475158"
   }
 ]

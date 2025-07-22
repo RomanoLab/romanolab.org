@@ -25,6 +25,21 @@ const people = peopleData.default;
   </section>
   
   <section class="people-section">
+    <h2>Research Staff</h2>
+    <div class="person-grid">
+      {people.researchStaff.map((person) => (
+        <div class="person-card">
+          <img src={person.image || '/images/placeholder-person.jpg'} alt={person.name} />
+          <h3>{person.name}</h3>
+          <p class="title">{person.title}</p>
+          <p>{person.bio}</p>
+          {person.email && <p><strong>Email:</strong> <a href={`mailto:${person.email}`}>{person.email}</a></p>}
+        </div>
+      ))}
+    </div>
+  </section>
+  
+  <section class="people-section">
     <h2>Graduate Students</h2>
     <div class="person-grid">
       {people.gradStudents.map((person) => (
