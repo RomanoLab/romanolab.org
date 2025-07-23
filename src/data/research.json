@@ -1,19 +1,22 @@
 {
   "areas": [
     {
-      "title": "Research Area 1",
+      "title": "Heterogeneous Graph Machine Learning",
       "description": "Detailed description of your first research area, methodologies used, and goals.",
-      "image": "/images/research/area1.jpg",
+      "image": "/images/research/area1.png",
       "publications": [
-        "Author et al. (2024). Title. Journal Name.",
-        "Author et al. (2023). Title. Journal Name."
+        "Romano, Joseph D., Yun Hao, and Jason H. Moore. \"Improving QSAR modeling for predictive toxicology using publicly aggregated semantic graph data and graph neural networks.\" Pacific Symposium on Biocomputing. Pacific Symposium on Biocomputing. Vol. 27. 2022.",
+        "Romano, Joseph D., et al. \"The Alzheimer’s knowledge base: a knowledge graph for Alzheimer disease research.\" Journal of Medical Internet Research 26 (2024): e46777."
       ]
     },
     {
-      "title": "Research Area 2",
+      "title": "Computational Toxicology",
       "description": "Detailed description of your second research area.",
       "image": "/images/research/area2.jpg",
-      "publications": []
+      "publications": [
+        "Romano, Joseph D., et al. \"Automating predictive toxicology using ComptoxAI.\" Chemical research in toxicology 35.8 (2022): 1370-1382.",
+        "Hao, Yun, et al. \"Knowledge graph aids comprehensive explanation of drug and chemical toxicity.\" CPT: Pharmacometrics & Systems Pharmacology 12.8 (2023): 1072-1079."
+      ]
     }
   ],
   "funding": [

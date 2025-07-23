@@ -11,8 +11,7 @@ const research = researchData.default;
   
   <section class="research-overview">
     <p class="lead">
-      Our laboratory focuses on [research overview]. We use [methodologies] 
-      to investigate [research questions].
+      The Romano Lab conducts original research at the interface of clinical/translational informatics and environmental health, with particular focus on developing new artificial intelligence (AI) models that explain the biology underlying environmental risk factors and mechanisms of disease. Other areas of research interest include autoimmune-related adverse events, maternal environmental health, and natural products drug discovery. Dr. Romano leads the development of several major biomedical knowledge bases, including ComptoxAI, VenomKB, and the Alzheimer's Knowledge Base.
     </p>
   </section>
   
@@ -56,7 +55,7 @@ const research = researchData.default;
 <style>
   .lead {
     font-size: 1.2rem;
-    color: #555;
+    color: var(--color-on-bg);
     line-height: 1.6;
     margin-bottom: 3rem;
   }
@@ -89,11 +88,18 @@ const research = researchData.default;
     padding: 1rem;
     background: #f9f9f9;
     border-radius: 8px;
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
   }
   
   .related-pubs h4 {
     margin-top: 0;
-    color: #003366;
+    color: var(--color-secondary)
+  }
+
+  .related-pubs ul {
+    list-style: disc;
+    padding-left: 1.5rem;
   }
   
   .funding {
@@ -101,6 +107,8 @@ const research = researchData.default;
     padding: 2rem;
     background: #f5f5f5;
     border-radius: 8px;
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
   }
   
   @media (max-width: 768px) {

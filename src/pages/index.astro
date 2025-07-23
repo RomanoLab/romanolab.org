@@ -9,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
   </div>
   
   <section class="intro">
-    <h2>About Our Lab</h2>
+    <h2>About Us</h2>
     <p>
       We are a team of biomedical informaticians dedicated to improving healthcare by
       discovering the mechanisms and risk factors underlying complex diseases. We
@@ -19,7 +19,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
   
   <section class="highlights">
-    <h2>Research Interests</h2>
+    <h2>Our Research Interests</h2>
     <div class="highlight-grid">
       <div class="highlight-card">
         <h3>Geometric Machine Learning</h3>
@@ -41,19 +41,28 @@ import Layout from '../layouts/Layout.astro';
   .hero {
     text-align: center;
     padding: 4rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    background: var(--gradient-hero);
+    /* color: white; */
+    border-width: var(--hero-border-width);
+    border-style: var(--hero-border-style);
+    border-color: var(--hero-border-color);
+    border-radius: 0 0 var(--hero-border-radius) var(--hero-border-radius);
+    box-shadow: var(--hero-box-shadow);
     margin: -2rem -2rem 3rem -2rem;
+    border-top: none;
   }
   
   .hero h1 {
     font-size: 3rem;
     margin: 0 0 1rem 0;
+    color: var(--color-primary);
   }
   
   .hero-subtitle {
     font-size: 1.3rem;
     opacity: 0.9;
+    color: var(--color-secondary);
   }
   
   .intro, .highlights {
@@ -69,14 +78,14 @@ import Layout from '../layouts/Layout.astro';
   
   .highlight-card {
     padding: 2rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
-    background: white;
+    background: var(--color-surface);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
   .highlight-card h3 {
-    color: #003366;
+    color: var(--color-secondary);
     margin-top: 0;
   }
 </style>

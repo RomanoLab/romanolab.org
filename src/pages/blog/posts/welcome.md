@@ -5,7 +5,7 @@ author: "Joseph D. Romano"
 excerpt: "Welcome to our new website! Here's what you can expect from our lab blog."
 ---
 
-# Welcome tothe Romano Lab
+# Welcome to the Romano Lab
 
 We're excited to launch our new website and blog! This space will serve as a hub for sharing:
 

@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 
 // Get all blog posts
-const posts = await Astro.glob('./posts/*.md');
+const posts = await Astro.glob('./blog/posts/*.md');
 const sortedPosts = posts.sort((a, b) => 
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
 );
