@@ -4,14 +4,15 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Romano Lab @ Penn">
   <div class="hero">
+    <canvas id="graphCanvas" width="900" height="250"></canvas>
     <h1>Welcome to the Romano Lab @ Penn</h1>
-    <p class="hero-subtitle">Knowledge-Driven Translational Bioinformatics</p>
+    <h2 class="hero-subtitle">Knowledge-Driven Translational Bioinformatics</h2>
   </div>
   
   <section class="intro">
     <h2>About Us</h2>
     <p>
-      We are a team of biomedical informaticians dedicated to improving healthcare by
+      We're a team of informaticians dedicated to improving healthcare by
       discovering the mechanisms and risk factors underlying complex diseases. We
       combine AI methods with structured biomedical knowledge to gain new data-driven
       insights into human health.
@@ -37,13 +38,195 @@ import Layout from '../layouts/Layout.astro';
   </section>
 </Layout>
 
+<script>
+  // Function to dynamically set the canvas width based on the hero div
+  function setCanvasWidth(canvasId, containerId) {
+    const canvas = document.getElementById(canvasId);
+    const container = document.getElementById(containerId);
+
+    if (canvas && container) {
+      // Set canvas width to match the container width
+      canvas.width = container.offsetWidth;
+      console.log(`Canvas width set to: ${canvas.width}`);
+    } else {
+      console.error('Canvas or container not found.');
+    }
+  }
+
+  // Function to generate a random graph
+  function generateGraph(nodeCount, edgeCount) {
+    const nodes = [];
+    const edges = [];
+    const degrees = new Array(nodeCount).fill(0); // Track node degrees
+
+    // Generate random nodes
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        id: i,
+        color: i % 3 === 0 ? '#667eea' : i % 3 === 1 ? '#764ba2' : '#ff6f61',
+        x: Math.random() * 800,
+        y: Math.random() * 400,
+        vx: 0, // Velocity in x
+        vy: 0, // Velocity in y
+      });
+    }
+
+    // Ensure all nodes are connected by creating a spanning tree
+    for (let i = 1; i < nodeCount; i++) {
+      const source = i;
+      const target = Math.floor(Math.random() * i); // Connect to a previous node
+      edges.push({ source, target });
+      degrees[source]++;
+      degrees[target]++;
+    }
+
+    // Add additional edges using preferential attachment
+    for (let i = 0; i < edgeCount - (nodeCount - 1); i++) {
+      const source = Math.floor(Math.random() * nodeCount);
+      let target;
+
+      // Preferential attachment: higher degree nodes are more likely to be chosen
+      do {
+        target = weightedRandom(degrees);
+      } while (source === target); // Avoid self-loops
+
+      edges.push({ source, target });
+      degrees[source]++;
+      degrees[target]++;
+    }
+
+    return { nodes, edges };
+  }
+
+  // Helper function for preferential attachment
+  function weightedRandom(degrees) {
+    const totalDegree = degrees.reduce((sum, degree) => sum + degree, 0);
+    const rand = Math.random() * totalDegree;
+    let cumulative = 0;
+
+    for (let i = 0; i < degrees.length; i++) {
+      cumulative += degrees[i];
+      if (rand < cumulative) {
+        return i;
+      }
+    }
+
+    return degrees.length - 1; // Fallback to the last node
+  }
+
+  // Function to apply force-directed layout
+  function applyForces(graph, canvasWidth, canvasHeight) {
+    const repulsionForce = 1000; // Strength of repulsion between nodes
+    const springForce = 0.01; // Strength of spring force for edges
+    const damping = 0.85; // Damping factor to slow down movement
+    const horizontalBias = 1.5; // Bias to spread nodes horizontally
+
+    graph.nodes.forEach((node) => {
+      let fx = 0; // Force in x direction
+      let fy = 0; // Force in y direction
+
+      // Repulsion between nodes
+      graph.nodes.forEach((otherNode) => {
+        if (node !== otherNode) {
+          const dx = node.x - otherNode.x;
+          const dy = node.y - otherNode.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) + 0.1; // Avoid division by zero
+          const force = repulsionForce / (distance * distance);
+          fx += force * (dx / distance) * horizontalBias; // Apply horizontal bias
+          fy += force * (dy / distance);
+        }
+      });
+
+      // Spring force for edges
+      graph.edges.forEach((edge) => {
+        const sourceNode = graph.nodes[edge.source];
+        const targetNode = graph.nodes[edge.target];
+        if (node === sourceNode || node === targetNode) {
+          const otherNode = node === sourceNode ? targetNode : sourceNode;
+          const dx = node.x - otherNode.x;
+          const dy = node.y - otherNode.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const force = springForce * (distance - 100); // Target edge length is 100px
+          fx -= force * (dx / distance);
+          fy -= force * (dy / distance);
+        }
+      });
+
+      // Update velocity and position
+      node.vx = (node.vx + fx) * damping;
+      node.vy = (node.vy + fy) * damping;
+      node.x += node.vx;
+      node.y += node.vy;
+
+      // Keep nodes within canvas bounds
+      node.x = Math.max(10, Math.min(canvasWidth - 10, node.x));
+      node.y = Math.max(10, Math.min(canvasHeight - 10, node.y));
+    });
+  }
+
+  // Function to draw the graph on the canvas
+  function drawGraph(graph, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Center the graph horizontally
+    const offsetX = (canvas.width - 800) / 2;
+
+    // Draw edges
+    graph.edges.forEach((edge) => {
+      const sourceNode = graph.nodes[edge.source];
+      const targetNode = graph.nodes[edge.target];
+      ctx.beginPath();
+      ctx.moveTo(sourceNode.x + offsetX, sourceNode.y);
+      ctx.lineTo(targetNode.x + offsetX, targetNode.y);
+      ctx.strokeStyle = '#aaa';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Draw nodes (all circles with multiple colors)
+    graph.nodes.forEach((node) => {
+      ctx.beginPath();
+      ctx.arc(node.x + offsetX, node.y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = node.color;
+      ctx.fill();
+    });
+  }
+
+  // Animate the graph
+  function animateGraph(graph, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    function step() {
+      applyForces(graph, canvasWidth, canvasHeight);
+      drawGraph(graph, canvasId);
+      requestAnimationFrame(step);
+    }
+
+    step();
+  }
+
+  // Wait for the DOM to be fully loaded before setting the canvas width and generating the graph
+  window.addEventListener('DOMContentLoaded', () => {
+    setCanvasWidth('graphCanvas', 'hero');
+
+    // Generate and animate the graph
+    const graph = generateGraph(30, 70);
+    animateGraph(graph, 'graphCanvas');
+  });
+</script>
+
 <style>
   .hero {
+    position: relative; /* Create a positioning context for the canvas */
     text-align: center;
     padding: 4rem 0;
-    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
     background: var(--gradient-hero);
-    /* color: white; */
     border-width: var(--hero-border-width);
     border-style: var(--hero-border-style);
     border-color: var(--hero-border-color);
@@ -51,6 +234,16 @@ import Layout from '../layouts/Layout.astro';
     box-shadow: var(--hero-box-shadow);
     margin: -2rem -2rem 3rem -2rem;
     border-top: none;
+    height: 400px;
+  }
+
+  #graphCanvas {
+    position: absolute; /* Position the canvas absolutely within the hero */
+    top: 0; /* Align the canvas to the top of the hero */
+    left: 0; /* Align the canvas to the left of the hero */
+    width: 100%; /* Make the canvas span the full width of the hero */
+    height: 100%; /* Make the canvas span the full height of the hero */
+    z-index: -1; /* Send the canvas behind other elements */
   }
   
   .hero h1 {
@@ -60,7 +253,7 @@ import Layout from '../layouts/Layout.astro';
   }
   
   .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 2rem;
     opacity: 0.9;
     color: var(--color-secondary);
   }

@@ -57,6 +57,11 @@
   ],
   "alumni": [
     {
+      "name": "Giuseppe Albi",
+      "year": "2024",
+      "currentPosition": "PhD Candidate; Università di Pavia, Pavia, Italy"
+    },
+    {
       "name": "Sophie Kearney",
       "year": "2024",
       "currentPosition": "PhD Student in Genomics and Computational Biology at UPenn"
@@ -70,6 +75,11 @@
       "name": "Estefania Morales",
       "year": "2023",
       "currentPosition": "Postbaccalaureate Research Fellow at NIH/NCATS"
+    },
+    {
+      "name": "Travyse Edwards",
+      "year": "2023",
+      "currentPosition": "PhD Student in Genomics and Computational Biology at UPenn"
     }
   ]
 }

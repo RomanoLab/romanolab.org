@@ -2,7 +2,7 @@
   "areas": [
     {
       "title": "Heterogeneous Graph Machine Learning",
-      "description": "Detailed description of your first research area, methodologies used, and goals.",
+      "description": "Geometric machine learning - or graph machine learning (GraphML) - is a branch of machine learning that discovers patterns in graph-formatted (network) data structures, and uses those patterns to make intelligent decisions on future data.",
       "image": "/images/research/area1.png",
       "publications": [
         "Romano, Joseph D., Yun Hao, and Jason H. Moore. \"Improving QSAR modeling for predictive toxicology using publicly aggregated semantic graph data and graph neural networks.\" Pacific Symposium on Biocomputing. Pacific Symposium on Biocomputing. Vol. 27. 2022.",

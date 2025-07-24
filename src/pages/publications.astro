@@ -4,6 +4,25 @@ import Layout from '../layouts/Layout.astro';
 // Import publications data
 const pubsData = await import('../data/publications.json');
 const publications = pubsData.default;
+
+// Function to calculate unique authors
+function getUniqueAuthors(publications) {
+  const authorsSet = new Set();
+
+  publications.forEach((pub) => {
+    const authors = pub.authors
+      .split(/,|&/)
+      .map((author) => author.trim())
+      .filter((author) => author !== ""); // Remove empty strings
+    authors.forEach((author) => authorsSet.add(author));
+  });
+
+  // const sortedAuthors = Array.from(authorsSet).sort(); // Sort authors alphabetically
+  // console.log("Distinct Authors (Sorted):", sortedAuthors); // Print sorted authors to the console
+  return authorsSet.size;
+}
+
+const uniqueAuthorsCount = getUniqueAuthors(publications);
 ---
 
 <Layout title="Publications - Romano Lab">
@@ -15,11 +34,10 @@ const publications = pubsData.default;
       <strong>{publications.length}</strong>
       <span>Total Publications</span>
     </div>
-    <!-- Note: The following is broken: -->
-    <!-- <div class="stat">
-      <strong>{publications.filter(p => new Date(p.year).getFullYear() >= new Date().getFullYear() - 5).length}</strong>
-      <span>Last 5 Years</span>
-    </div> -->
+    <div class="stat">
+      <strong>{uniqueAuthorsCount}</strong>
+      <span>Unique Authors</span>
+    </div>
   </div>
   
   <section class="publications-list">
@@ -28,21 +46,41 @@ const publications = pubsData.default;
       .map((pub) => (
         <article class="publication">
           <h3>{pub.title}</h3>
-          <p class="authors">{pub.authors}</p>
+          <p class="authors">
+            {pub.authors}
+            {pub.fa && (
+              <span class="fa-symbol" title="PI is first author">FA</span>
+            )}
+            {pub.la && (
+              <span class="la-symbol" title="PI is last author">LA</span>
+            )}
+          </p>
           <p class="journal">
             <em>{pub.journal}</em>{pub.volume && `, ${pub.volume}`}{pub.pages && `, ${pub.pages}`}({pub.year})
           </p>
-          {pub.doi && (
-            <p class="links">
+          <p class="links">
+            {pub.doi && (
               <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener">DOI</a>
-              {pub.pmid && (
-                <> | <a href={`https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`} target="_blank" rel="noopener">PubMed</a></>
-              )}
-              {pub.pdf && (
-                <> | <a href={pub.pdf} target="_blank" rel="noopener">PDF</a></>
-              )}
-            </p>
-          )}
+            )}
+            {pub.pmid && (
+              <>
+                {pub.doi && ' | '}
+                <a href={`https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`} target="_blank" rel="noopener">PubMed</a>
+              </>
+            )}
+            {pub.pmcid && (
+              <>
+                {(pub.doi || pub.pmid) && ' | '}
+                <a href={`https://www.ncbi.nlm.nih.gov/pmc/articles/${pub.pmcid}/`} target="_blank" rel="noopener">PMC</a>
+              </>
+            )}
+            {pub.pdf && (
+              <>
+                {(pub.doi || pub.pmid || pub.pmcid) && ' | '}
+                <a href={pub.pdf} target="_blank" rel="noopener">PDF</a>
+              </>
+            )}
+          </p>
           {pub.abstract && (
             <details class="abstract">
               <summary>Abstract</summary>
@@ -80,57 +118,95 @@ const publications = pubsData.default;
   }
   
   .publication {
-    margin: 2rem 0;
-    padding: 2rem;
+    margin: 1rem 0; /* Reduce vertical spacing */
+    padding: 1.5rem; /* Compact padding */
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 6px; /* Slightly smaller border radius */
     background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
   }
-  
+
   .publication h3 {
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0; /* Reduce spacing below title */
+    font-size: 1.2rem; /* Slightly smaller font size */
     color: #003366;
-    line-height: 1.3;
+    line-height: 1.4;
   }
-  
+
   .authors {
-    margin: 0.5rem 0;
+    margin: 0.3rem 0; /* Reduce spacing */
+    font-size: 0.9rem; /* Smaller font size */
     color: #555;
   }
-  
+
   .journal {
-    margin: 0.5rem 0;
+    margin: 0.3rem 0; /* Reduce spacing */
+    font-size: 0.9rem; /* Smaller font size */
     color: #777;
   }
-  
+
   .links {
-    margin: 1rem 0;
+    margin: 0.5rem 0; /* Reduce spacing */
+    font-size: 0.9rem; /* Smaller font size */
   }
-  
+
   .links a {
     color: #003366;
     text-decoration: none;
     font-weight: 500;
   }
-  
+
   .links a:hover {
     text-decoration: underline;
   }
-  
+
   .abstract {
-    margin-top: 1rem;
+    margin-top: 0.5rem; /* Reduce spacing */
   }
-  
+
   .abstract summary {
     cursor: pointer;
     font-weight: 500;
     color: #003366;
+    font-size: 0.9rem; /* Smaller font size */
   }
-  
+
   .abstract p {
-    margin-top: 1rem;
-    line-height: 1.6;
+    margin-top: 0.5rem; /* Reduce spacing */
+    line-height: 1.4; /* Slightly tighter line spacing */
+    font-size: 0.9rem; /* Smaller font size */
     color: #555;
+  }
+
+  .fa-symbol {
+    display: inline-block;
+    margin-left: 0.5rem; /* Space between author list and symbol */
+    padding: 0.2rem 0.4rem; /* Compact padding */
+    font-size: 0.8rem; /* Smaller font size */
+    font-weight: bold;
+    color: white;
+    background-color: #003366; /* Dark blue background for FA */
+    border-radius: 4px; /* Rounded corners */
+    cursor: help; /* Indicates additional information is available */
+  }
+
+  .fa-symbol:hover {
+    background-color: #0055a5; /* Slightly lighter blue on hover */
+  }
+
+  .la-symbol {
+    display: inline-block;
+    margin-left: 0.5rem; /* Space between author list and symbol */
+    padding: 0.2rem 0.4rem; /* Compact padding */
+    font-size: 0.8rem; /* Smaller font size */
+    font-weight: bold;
+    color: white;
+    background-color: #a50000; /* Dark red background for LA */
+    border-radius: 4px; /* Rounded corners */
+    cursor: help; /* Indicates additional information is available */
+  }
+
+  .la-symbol:hover {
+    background-color: #cc0000; /* Slightly lighter red on hover */
   }
 </style>
