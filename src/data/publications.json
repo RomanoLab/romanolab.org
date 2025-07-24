@@ -145,5 +145,81 @@
     "pages": "451",
     "year": 2023,
     "month": "July"
+  },
+  {
+    "title": "Systems biology approaches for identifying adverse drug reactions and elucidating their underlying biological mechanisms",
+    "authors": "Boland MR, Jacunski A, Lorberbaum T, Romano JD, Moskovitch R, & Tatonetti NP",
+    "journal": "Wiley Interdisciplinary Reviews: Systems Biology and Medicine",
+    "volume": "8",
+    "issue": "2",
+    "pages": "104-122",
+    "year": 2015,
+    "month": "November",
+    "pmcid": "PMC4760887"
+  },
+  {
+    "title": "Informatics and Computational Methods in Natural Product Drug Discovery: A Review and Perspectives",
+    "authors": "Romano JD & Tatonetti NP",
+    "journal": "Frontiers in Genetics",
+    "volume": "10",
+    "pages": "368",
+    "year": 2019,
+    "month": "April",
+    "pmcid": "PMC6503039"
+  },
+  {
+    "title": "The promise of automated machine learning for the genetic analysis of complex traits",
+    "authors": "Manduchi E, Romano JD, & Moore JH",
+    "journal": "Human Genetics",
+    "volume": "141",
+    "issue": "9",
+    "pages": "1529-1544",
+    "year": 2022,
+    "month": "September"
+  },
+  {
+    "title": "Centralized and Federated Models for the Analysis of Clinical Data",
+    "authors": "Li R, Romano JD, Chen Y, & Moore JH",
+    "journal": "Annual Review of Biomedical Data Science",
+    "volume": "7",
+    "pages": "179-199",
+    "year": 2024,
+    "month": "August"
+  },
+  {
+    "title": "Network-based analyses of multiomics data in biomedicine",
+    "authors": "Kumar R, Romano JD, & Ritchie MD",
+    "journal": "BioData Mining",
+    "year": 2025
+  },
+  {
+    "title": "Ten simple rules for writing a paper about scientific software",
+    "authors": "Romano JD & Moore JH",
+    "journal": "PLoS Computational Biology",
+    "volume": "16",
+    "pages": "e1008390",
+    "year": 2020,
+    "month": "November",
+    "pmcid": "PMC7660560"
+  },
+  {
+    "title": "Omics Methods in Toxins Research-A Toolkit to Drive the Future of Scientific Inquiry",
+    "authors": "Romano JD",
+    "journal": "Toxins",
+    "volume": "14",
+    "issue": "11",
+    "pages": "761",
+    "year": 2022,
+    "month": "November",
+    "pmcid": "PMC9692551"
+  },
+  {
+    "title": "Session Introduction: AI and Machine Learning in Clinical Medicine: Generative and Interactive Systems at the Human-Machine Interface",
+    "authors": "Hardasht FN, Kim D, Romano JD, Tison G, Daneshjou R, & Chen JH",
+    "journal": "Pacific Symposium on Biocomputing",
+    "volume": "30",
+    "pages": "33-39",
+    "year": 2025,
+    "month": "January"
   }
 ]
