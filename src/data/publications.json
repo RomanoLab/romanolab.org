@@ -1,17 +1,5 @@
 [
   {
-    "title": "Sample Publication Title",
-    "authors": "Romano, A., Collaborator, B., Student, C.",
-    "journal": "Journal of Science",
-    "volume": "123",
-    "pages": "456-789",
-    "year": 2024,
-    "doi": "10.1000/sample",
-    "pmid": "12345678",
-    "pdf": "/papers/sample2024.pdf",
-    "abstract": "This is a sample abstract for demonstration purposes."
-  },
-  {
     "title": "Enhancing Molecular Representation Learning through the Combination of 3D and 2D Graph Machine Learning",
     "authors": "Pan IT & Romano JD",
     "journal": "The 39th Annual AAAI Conference on Artificial Intelligence",
@@ -36,7 +24,126 @@
     "issue": "8",
     "pages": "1072-1079",
     "year": 2023,
+    "month": "August",
     "doi": "10.1002/psp4.12975",
-    "pmid": "37475158"
+    "pmid": "37475158",
+    "pmcid": "PMC10431039"
+  },
+  {
+    "title": "Adapting simultaneous analysis phylogenomic techniques to study complex disease gene relationships",
+    "authors": "Romano JD, Tharp WG, & Sarkar IN",
+    "journal": "Journal of Biomedical Informatics",
+    "volume": "54",
+    "pages": "10-38",
+    "year": "2015",
+    "month": "January"
+  },
+  {
+    "title": "VenomKB, a new knowledge base for facilitating the validation of putative venom therapies",
+    "authors": "Romano JD & Tatonetti NP",
+    "journal": "Scientific Data",
+    "volume": "2",
+    "pages": "150065",
+    "year": 2015,
+    "month": "November",
+    "pmcid": "PMC4658572"
+  },
+  {
+    "title": "Using a Novel Ontology to Inform the Discovery of Therapeutic Peptides from Animal Venoms",
+    "authors": "Romano JD & Tatonetti NP",
+    "journal": "AMIA Joint Summits on Translational Science Proceedings",
+    "volume": "2016",
+    "pages": "209-218",
+    "year": 2016,
+    "month": "July",
+    "pmcid": "PMC6568133"
+  },
+  {
+    "title": "A Decade of Translational Bioinformatics: A Retrospective Analysis of \"Year-in-Review\" Presentations",
+    "authors": "Romano JD, Bernauer M, McGrath SP, Nagar SD, & Freimuth RR",
+    "journal": "AMIA Joint Summits on Translational Science Proceedings",
+    "volume": "2019",
+    "pages": "335-344",
+    "year": 2019,
+    "month": "May",
+    "pmcid": "PMC6568133"
+  },
+  {
+    "title": "Embedding covariate adjustments in tree-based automated machine learning for biomedical big data analyses",
+    "authors": "Manduchi E, Fu W, Romano JD, Ruberto S, & Moore JH",
+    "journal": "BMC Bioinformatics",
+    "volume": "21",
+    "pages": "430",
+    "year": 2020,
+    "month": "October",
+    "pmcid": "PMC7528347"
+  },
+  {
+    "title": "TPOT-NN: Augmenting tree-based automated machine learning with neural network estimators",
+    "authors": "Romano JD, Le TT, Fu W, & Moore JH",
+    "journal": "Genetic Programming and Evolvable Machines",
+    "volume": "22",
+    "pages": "207-227",
+    "year": 2021,
+    "month": "March"
+  },
+  {
+    "title": "Improving QSAR Modeling for Predictive Toxicology using Publicly Aggregated Semantic Graph Data and Graph Neural Networks",
+    "authors": "Romano JD, Hao Y, & Moore JH",
+    "journal": "Pacific Symposium on Biocomputing",
+    "volume": "27",
+    "pages": "187-198",
+    "year": 2022,
+    "month": "January",
+    "pmcid": "PMC8714189"
+  },
+  {
+    "title": "PMLB v1.0: An open-source dataset collection for benchmarking machine learning methods",
+    "authors": "Romano JD, Le TT, La Cava W, Gregg JT, Goldberg DJ, Chakraborty P, Ray NL, Himmelstein D, Fu W, & Moore JH",
+    "journal": "Bioinformatics",
+    "volume": "38",
+    "issue": "3",
+    "pages": "878-880",
+    "year": 2022,
+    "month": "February",
+    "pmcid": "PMC8756190"
+  },
+  {
+    "title": "Automating toxicological knowledge discovery using ComptoxAI",
+    "authors": "Romano JD, Hao Y, Moore JH, & Penning T",
+    "journal": "Chemical Research in Toxicology",
+    "volume": "35",
+    "issue": "8",
+    "pages": "1370-1382",
+    "year": 2022,
+    "month": "July"
+  },
+  {
+    "title": "Knowledge-guided deep learning models of drug toxicity improve interpretation",
+    "authors": "Hao Y, Romano JD, & Moore JH",
+    "journal": "Patterns",
+    "volume": "3",
+    "issue": "9",
+    "year": 2022,
+    "month": "August"
+  },
+  {
+    "title": "Exploring genetic influences on adverse outcome pathways using heuristic simulation and graph data science",
+    "authors": "Romano JD, Mei L, Senn J, Moore JH, & Mortensen HM",
+    "journal": "Computational Toxicology",
+    "volume": "25",
+    "pages": "100261",
+    "year": 2023,
+    "month": "February"
+  },
+  {
+    "title": "Discovering venom-derived drug candidates using differential gene expression",
+    "authors": "Romano JD, Li H, Napolitano T, Realubit R, Karan C, Holford M, & Tatonetti NP",
+    "journal": "Toxins",
+    "volume": "15",
+    "issue": "7",
+    "pages": "451",
+    "year": 2023,
+    "month": "July"
   }
 ]
