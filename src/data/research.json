@@ -11,7 +11,7 @@
     },
     {
       "title": "Computational Toxicology",
-      "description": ".",
+      "description": "Computational toxicology is a field that uses computational models to predict and explain the toxic effects of specific chemical compounds on humans and ecosystems. For decades, this has been done almost entirely using a small set of techniques (like quantitative structure-activity relationship (QSAR) modeling), but recent advances in machine learning and knowledge graph construction have opened up new possibilities. We are particularly interested in using structured biomedical knowledge (e.g., Adverse Outcome Pathways) and emerging AI methods (e.g., graph neural networks) to improve the accuracy and explainability of predictive toxicology.",
       "image": "/images/research/area2.jpg",
       "publications": [
         "Romano, Joseph D., et al. \"Automating predictive toxicology using ComptoxAI.\" Chemical research in toxicology 35.8 (2022): 1370-1382.",
