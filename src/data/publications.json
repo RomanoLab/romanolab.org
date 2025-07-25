@@ -93,7 +93,8 @@
     "month": "October",
     "pmcid": "PMC7528347",
     "pmid": "32998684",
-    "doi": "10.1186/s12859-020-03755-4"
+    "doi": "10.1186/s12859-020-03755-4",
+    "abstract": "Background: A typical task in bioinformatics consists of identifying which features are associated with a target outcome of interest and building a predictive model. Automated machine learning (AutoML) systems such as the Tree-based Pipeline Optimization Tool (TPOT) constitute an appealing approach to this end. However, in biomedical data, there are often baseline characteristics of the subjects in a study or batch effects that need to be adjusted for in order to better isolate the effects of the features of interest on the target. Thus, the ability to perform covariate adjustments becomes particularly important for applications of AutoML to biomedical big data analysis. Results: We developed an approach to adjust for covariates affecting features and/or target in TPOT. Our approach is based on regressing out the covariates in a manner that avoids 'leakage' during the cross-validation training procedure. We describe applications of this approach to toxicogenomics and schizophrenia gene expression data sets. The TPOT extensions discussed in this work are available at https://github.com/EpistasisLab/tpot/tree/v0.11.1-resAdj. Conclusions: In this work, we address an important need in the context of AutoML, which is particularly crucial for applications to bioinformatics and medical informatics, namely covariate adjustments. To this end we present a substantial extension of TPOT, a genetic programming based AutoML approach. We show the utility of this extension by applications to large toxicogenomics and differential gene expression data. The method is generally applicable in many other scenarios from the biomedical field. Keywords: AutoML; Covariate adjustment; Feature importance; Genetic programming; Pathways."
   },
   {
     "title": "TPOT-NN: Augmenting tree-based automated machine learning with neural network estimators",
@@ -104,7 +105,8 @@
     "year": 2021,
     "month": "March",
     "fa": true,
-    "doi": "10.1007/s10710-021-09401-z"
+    "doi": "10.1007/s10710-021-09401-z",
+    "abstract": "Automated machine learning (AutoML) and artificial neural networks (ANNs) have revolutionized the field of artificial intelligence by yielding incredibly high-performing models to solve a myriad of inductive learning tasks. In spite of their successes, little guidance exists on when to use one versus the other. Furthermore, relatively few tools exist that allow the integration of both AutoML and ANNs in the same analysis to yield results combining both of their strengths. Here, we present TPOT-NN—a new extension to the tree-based AutoML software TPOT—and use it to explore the behavior of automated machine learning augmented with neural network estimators (AutoML+NN), particularly when compared to non-NN AutoML in the context of simple binary classification on a number of public benchmark datasets. Our observations suggest that TPOT-NN is an effective tool that achieves greater classification accuracy than standard tree-based AutoML on some datasets, with no loss in accuracy on others. We also provide preliminary guidelines for performing AutoML+NN analyses, and recommend possible future directions for AutoML+NN methods research, especially in the context of TPOT."
   },
   {
     "title": "Improving QSAR Modeling for Predictive Toxicology using Publicly Aggregated Semantic Graph Data and Graph Neural Networks",
@@ -117,7 +119,8 @@
     "pmcid": "PMC8714189",
     "fa": true,
     "pmid": "34677586",
-    "doi": "10.1093/bioinformatics/btab727"
+    "doi": "10.1093/bioinformatics/btab727",
+    "abstract": "Quantitative Structure-Activity Relationship (QSAR) modeling is a common computational technique for predicting chemical toxicity, but a lack of new methodological innovations has impeded QSAR performance on many tasks. We show that contemporary QSAR modeling for predictive toxicology can be substantially improved by incorporating semantic graph data aggregated from open-access public databases, and analyzing those data in the context of graph neural networks (GNNs). Furthermore, we introspect the GNNs to demonstrate how they can lead to more interpretable applications of QSAR, and use ablation analysis to explore the contribution of different data elements to the final models' performance."
   },
   {
     "title": "PMLB v1.0: An open-source dataset collection for benchmarking machine learning methods",
