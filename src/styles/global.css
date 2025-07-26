@@ -73,7 +73,13 @@
 }
 
 
-/* Typography */
+@media (max-width: 768px) {
+  .area-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 html {
   font-family: system-ui, sans-serif;
 }
@@ -104,40 +110,6 @@ hr {
   color: var(--color-muted);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-on-surface);
-  text-decoration: none;
-}
-
-.nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-links a {
-  color: var(--color-on-surface);
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-
-.nav-links a:hover {
-  opacity: 0.8;
-}
-
 main {
   flex: 1;
   max-width: 1200px;
@@ -151,14 +123,6 @@ footer {
   background: var(--color-surface);
   padding: 2rem 0;
   margin-top: auto;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
-  color: var(--color-muted);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -196,8 +160,46 @@ a:hover {
   text-decoration: underline;
 }
 
+p {
+  padding-bottom: 0.5rem;
+}
+
 .text-center {
   text-align: center;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-on-surface);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--color-on-surface);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
 }
 
 .mb-2 {
@@ -365,11 +367,6 @@ a:hover {
   color: var(--color-on-surface);
 }
 
-@media (max-width: 768px) {
-  .area-content {
-    grid-template-columns: 1fr;
-  }
-}
 
 .pub-stats {
   display: flex;
@@ -426,6 +423,7 @@ a:hover {
 .links {
   margin: 0.5rem 0; /* Reduce spacing */
   font-size: 0.9rem; /* Smaller font size */
+  padding-bottom: 0;
 }
 
 .links a {
@@ -503,15 +501,6 @@ a:hover {
   height: 400px;
 }
 
-#graphCanvas {
-  position: absolute; /* Position the canvas absolutely within the hero */
-  top: 0; /* Align the canvas to the top of the hero */
-  left: 0; /* Align the canvas to the left of the hero */
-  width: 100%; /* Make the canvas span the full width of the hero */
-  height: 100%; /* Make the canvas span the full height of the hero */
-  z-index: -1; /* Send the canvas behind other elements */
-}
-
 .hero h1 {
   font-size: 3rem;
   margin: 0 0 1rem 0;
@@ -546,4 +535,23 @@ a:hover {
 .highlight-card h3 {
   color: var(--color-secondary);
   margin-top: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+
+
+#graphCanvas {
+  position: absolute; /* Position the canvas absolutely within the hero */
+  top: 0; /* Align the canvas to the top of the hero */
+  left: 0; /* Align the canvas to the left of the hero */
+  width: 100%; /* Make the canvas span the full width of the hero */
+  height: 100%; /* Make the canvas span the full height of the hero */
+  z-index: -1; /* Send the canvas behind other elements */
 }
