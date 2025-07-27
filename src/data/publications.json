@@ -16,7 +16,8 @@
     "year": 2024,
     "doi": "10.2196/46777",
     "pmid": "38635981",
-    "fa": true
+    "fa": true,
+    "pdf": "/papers/pdfs/jmir-2024-1-e46777.pdf"
   },
   {
     "title": "Knowledge Graph Aids Comprehensive Explanation of Drug and Chemical Toxicity",
@@ -171,7 +172,8 @@
     "fa": true,
     "pmid": "37829618",
     "doi": "10.1016/j.comtox.2023.100261",
-    "pmcid": "PMC10569310"
+    "pmcid": "PMC10569310",
+    "pdf": "/papers/pdfs/1-s2.0-S2468111323000026-main.pdf"
   },
   {
     "title": "Discovering venom-derived drug candidates using differential gene expression",
@@ -185,7 +187,8 @@
     "fa": true,
     "pmid": "37505720",
     "doi": "10.3390/toxins15070451",
-    "pmcid": "PMC10467105"
+    "pmcid": "PMC10467105",
+    "pdf": "/papers/pdfs/toxins-15-00451-with-cover.pdf"
   },
   {
     "title": "Systems biology approaches for identifying adverse drug reactions and elucidating their underlying biological mechanisms",
