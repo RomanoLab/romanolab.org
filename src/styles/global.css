@@ -486,6 +486,22 @@ p {
   background-color: #cc0000; /* Slightly lighter red on hover */
 }
 
+.ca-symbol {
+  display: inline-block;
+  margin-left: 0.5rem; /* Space between author list and symbol */
+  padding: 0.2rem 0.4rem; /* Compact padding */
+  font-size: 0.8rem; /* Smaller font size */
+  font-weight: bold;
+  color: white;
+  background-color: #006600; /* Dark green background for CA */
+  border-radius: 4px; /* Rounded corners */
+  cursor: help; /* Indicates additional information is available */
+}
+
+.ca-symbol:hover {
+  background-color: #009900; /* Slightly lighter green on hover */
+}
+
 .hero {
   position: relative; /* Create a positioning context for the canvas */
   text-align: center;

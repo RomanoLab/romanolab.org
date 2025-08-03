@@ -11,6 +11,7 @@
     "doi": "10.1609/aaai.v39i28.35289",
     "url": "https://ojs.aaai.org/index.php/AAAI/article/view/35289",
     "la": true,
+    "ca": true,
     "abstract": "Molecular machine learning has broad applications across multiple domains such as drug development, environmental toxicology, and materials science. Various pre-trained frameworks using self-supervised representation learning have emerged to tackle the difficulty of obtaining large molecular datasets useful for training high-performing molecular machine learning models. In this study, we explore a novel representation learning framework trained using both 2D and 3D molecular data. Specifically, a 3D invariant graph neural network to learn how to capture 3D atomic information and then pass these atomic representations into a regular 2D graph neural network which can leverage molecular topology. Results from experiments demonstrate the representations produced by our method using both 3D and 2D molecular information lead to strong performance in downstream tasks."
   },
   {
@@ -23,6 +24,7 @@
     "doi": "10.2196/46777",
     "pmid": "38635981",
     "fa": true,
+    "ca": true,
     "pdf": "/papers/pdfs/jmir-2024-1-e46777.pdf",
     "abstract": "Background: As global populations age and become susceptible to neurodegenerative illnesses, new therapies for Alzheimer disease (AD) are urgently needed. Existing data resources for drug discovery and repurposing fail to capture relationships central to the disease’s etiology and response to drugs. Objective: We designed the Alzheimer’s Knowledge Base (AlzKB) to alleviate this need by providing a comprehensive knowledge representation of AD etiology and candidate therapeutics. Methods: We designed the AlzKB as a large, heterogeneous graph knowledge base assembled using 22 diverse external data sources describing biological and pharmaceutical entities at different levels of organization (eg, chemicals, genes, anatomy, and diseases). AlzKB uses a Web Ontology Language 2 ontology to enforce semantic consistency and allow for ontological inference. We provide a public version of AlzKB and allow users to run and modify local versions of the knowledge base. Results: AlzKB is freely available on the web and currently contains 118,902 entities with 1,309,527 relationships between those entities. To demonstrate its value, we used graph data science and machine learning to (1) propose new therapeutic targets based on similarities of AD to Parkinson disease and (2) repurpose existing drugs that may treat AD. For each use case, AlzKB recovers known therapeutic associations while proposing biologically plausible new ones. Conclusions: AlzKB is a new, publicly available knowledge resource that enables researchers to discover complex translational associations for AD drug discovery. Through 2 use cases, we show that it is a valuable tool for proposing novel therapeutic hypotheses based on public biomedical knowledge."
   },
@@ -280,6 +282,7 @@
     "month": "November",
     "pmcid": "PMC7660560",
     "fa": true,
+    "ca": true,
     "pmid": "33180774",
     "doi": "10.1371/journal.pcbi.1008390",
     "abstract": "Papers describing software are an important part of computational fields of scientific research. These “software papers” are unique in a number of ways, and they require special consideration to improve their impact on the scientific community and their efficacy at conveying important information. Here, we discuss 10 specific rules for writing software papers, covering some of the different scenarios and publication types that might be encountered, and important questions from which all computational researchers would benefit by asking along the way."
@@ -296,6 +299,7 @@
     "pmcid": "PMC9692551",
     "fa": true,
     "la": true,
+    "ca": true,
     "pmid": "36356011",
     "doi": "10.3390/toxins14110761"
   },
