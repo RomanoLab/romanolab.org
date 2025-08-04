@@ -582,3 +582,17 @@ p {
   z-index: 1;
   pointer-events: none; /* Allow mouse events to pass through text to canvas */
 }
+
+.award-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: normal;
+}
+
+.award-number a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.award-number a:hover {
+  text-decoration: underline;
+}

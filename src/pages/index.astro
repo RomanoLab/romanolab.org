@@ -177,7 +177,7 @@ import Layout from '../layouts/Layout.astro';
           const dx = node.x - otherNode.x;
           const dy = node.y - otherNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const force = springForce * (distance - 100); // Target edge length is 100px
+          const force = springForce * (distance - 60); // Target edge length is 100px
           fx -= force * (dx / distance);
           fy -= force * (dy / distance);
         }

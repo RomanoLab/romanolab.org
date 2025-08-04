@@ -24,13 +24,15 @@
       "agency": "NSF",
       "title": "SCH: An intraoral device for multimodal data integration and risk modification connects the oral microbiome to systemic health",
       "awardNumber": "2500339",
-      "years": "2025-2029"
+      "years": "2025-2029",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2500339"
     },
     {
       "agency": "NIH/NLM",
       "title": "Discovering clinical endpoints of toxicity via graph machine learning and semantic data analysis",
-      "awardNumber": "K99/R00LM013646",
-      "years": "2021-2025"
+      "awardNumber": "K99/R00-LM013646",
+      "years": "2021-2025",
+      "url": "https://reporter.nih.gov/project-details/11000821"
     }
   ]
 }
