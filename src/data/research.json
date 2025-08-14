@@ -34,5 +34,12 @@
       "years": "2021-2025",
       "url": "https://reporter.nih.gov/project-details/11000821"
     }
+  ],
+  "pastFunding": [
+    {
+      "agency": "Colton Institute for Autoimmunity",
+      "title": "Biomarker discovery for early prediction of autoimmunity in immunotherapy patients through deep immune profiling and temporal graph convolutional networks",
+      "years": "2023-2025"
+    }
   ]
 }

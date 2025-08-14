@@ -43,9 +43,27 @@ const research = researchData.default;
   
   <section class="funding">
     <h2>Funding</h2>
-    <p>Our research is supported by:</p>
+    <p>We're tremendously grateful for our funding sources, including both federal and private organizations:</p>
+    <h3>Current Funding</h3>
     <ul>
       {research.funding.map((grant) => (
+        <li>
+          <strong>{grant.agency}</strong>
+          {grant.awardNumber && (
+            <span class="award-number">
+              {" "}[{grant.url ? (
+                <a href={grant.url} target="_blank" rel="noopener">{grant.awardNumber}</a>
+              ) : (
+                grant.awardNumber
+              )}]</span>
+          )}:
+          {" "}{grant.title} ({grant.years}).
+        </li>
+      ))}
+    </ul>
+    <h3>Past Funding</h3>
+    <ul>
+      {research.pastFunding.map((grant) => (
         <li>
           <strong>{grant.agency}</strong>
           {grant.awardNumber && (

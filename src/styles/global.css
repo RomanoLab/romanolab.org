@@ -596,3 +596,184 @@ p {
 .award-number a:hover {
   text-decoration: underline;
 }
+
+/* Mobile-first improvements */
+:root {
+  --nav-break: 780px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 4px 0;
+  background: var(--color-text, #fff);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 2.5rem 1rem 3rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    line-height: 1.15;
+  }
+  .hero h2 {
+    font-size: clamp(1rem, 4.2vw, 1.4rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 2.2rem 0.75rem 2.6rem;
+  }
+  #graphCanvas {
+    height: 100%;
+  }
+}
+
+/* Nav collapse */
+@media (max-width: 780px) {
+  .nav-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20,20,24,0.95);
+    backdrop-filter: blur(6px);
+    margin: 0;
+    padding: 0.75rem 1rem 1.25rem;
+    gap: 0.35rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: 0.35s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links.open {
+    max-height: 420px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-links li a {
+    padding: 0.55rem 0.4rem;
+    display: block;
+    font-size: 0.95rem;
+  }
+  header nav {
+    position: relative;
+  }
+  .logo {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* --- Mobile nav layering + hero interplay --- */
+header, header nav, .nav-container {
+  position: relative;
+  z-index: 500;
+}
+
+.nav-toggle {
+  z-index: 610;
+}
+
+.nav-links {
+  z-index: 600;
+}
+
+/* Open state becomes a full overlay */
+@media (max-width: 780px) {
+  .nav-links.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 4.2rem 1.1rem 2rem; /* space for header area */
+    background: rgba(15,15,22,0.96);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+    box-shadow: 0 4px 18px -4px rgba(0,0,0,0.55);
+  }
+}
+
+/* Ensure hero canvas stays behind */
+#graphCanvas {
+  z-index: 0;
+}
+
+.hero h1,
+.hero h2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dim / blur background while menu open */
+.menu-open .hero {
+  filter: blur(2px) brightness(.8);
+  transition: filter .3s;
+}
+
+.menu-open #graphCanvas {
+  filter: blur(3px) brightness(.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-open .hero,
+  .menu-open #graphCanvas {
+    filter: none;
+  }
+}
+
+/* Prevent body scroll when menu open */
+.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+}
+
+/* Canvas stacking context + passthrough */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#graphCanvas {
+  pointer-events: auto;
+}
+
+/* Optional: lighten hero text shadow for contrast over canvas */
+.hero h1, .hero h2 {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
