@@ -1,4 +1,4 @@
-# Astro Starter Kit: Basics
+# Romano Lab Website
 
 ```sh
 npm create astro@latest -- --template basics
