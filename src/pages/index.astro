@@ -48,8 +48,14 @@ import Layout from '../layouts/Layout.astro';
     const container = document.getElementById(containerId);
 
     if (canvas && container) {
-      // Set canvas width to match the container width
+      // Set both the canvas element size AND the CSS size
       canvas.width = container.offsetWidth;
+      canvas.height = 250; // Keep height consistent
+      
+      // Ensure CSS matches canvas element size
+      canvas.style.width = canvas.width + 'px';
+      canvas.style.height = canvas.height + 'px';
+      
       console.log(`Canvas width set to: ${canvas.width}`);
     } else {
       console.error('Canvas or container not found.');
@@ -71,6 +77,8 @@ import Layout from '../layouts/Layout.astro';
         y: Math.random() * 400,
         vx: 0, // Velocity in x
         vy: 0, // Velocity in y
+        isDragging: false, // Track if node is being dragged
+        isFixed: false, // Track if node position is fixed
       });
     }
 
@@ -117,6 +125,19 @@ import Layout from '../layouts/Layout.astro';
     return degrees.length - 1; // Fallback to the last node
   }
 
+  // Function to find node at mouse position
+  function getNodeAtPosition(graph, x, y, offsetX) {
+    for (let node of graph.nodes) {
+      const nodeX = node.x + offsetX;
+      const nodeY = node.y;
+      const distance = Math.sqrt((x - nodeX) ** 2 + (y - nodeY) ** 2);
+      if (distance <= 8) { // Node radius + small buffer
+        return node;
+      }
+    }
+    return null;
+  }
+
   // Function to apply force-directed layout
   function applyForces(graph, canvasWidth, canvasHeight) {
     const repulsionForce = 1000; // Strength of repulsion between nodes
@@ -125,6 +146,13 @@ import Layout from '../layouts/Layout.astro';
     const horizontalBias = 1.5; // Bias to spread nodes horizontally
 
     graph.nodes.forEach((node) => {
+      // Skip physics for dragged or fixed nodes
+      if (node.isDragging || node.isFixed) {
+        node.vx = 0;
+        node.vy = 0;
+        return;
+      }
+
       let fx = 0; // Force in x direction
       let fy = 0; // Force in y direction
 
@@ -149,7 +177,7 @@ import Layout from '../layouts/Layout.astro';
           const dx = node.x - otherNode.x;
           const dy = node.y - otherNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const force = springForce * (distance - 100); // Target edge length is 100px
+          const force = springForce * (distance - 60); // Target edge length is 100px
           fx -= force * (dx / distance);
           fy -= force * (dy / distance);
         }
@@ -178,7 +206,8 @@ import Layout from '../layouts/Layout.astro';
     // Center the graph horizontally
     const offsetX = (canvas.width - 800) / 2;
 
-    // Draw edges
+    // Draw edges first (behind nodes) with low opacity
+    ctx.globalAlpha = 0.2; // Lower opacity for edges
     graph.edges.forEach((edge) => {
       const sourceNode = graph.nodes[edge.source];
       const targetNode = graph.nodes[edge.target];
@@ -190,12 +219,93 @@ import Layout from '../layouts/Layout.astro';
       ctx.stroke();
     });
 
-    // Draw nodes (all circles with multiple colors)
+    // Draw all nodes on top of edges with higher opacity
+    ctx.globalAlpha = 0.4; // Higher opacity for nodes
     graph.nodes.forEach((node) => {
       ctx.beginPath();
       ctx.arc(node.x + offsetX, node.y, 5, 0, Math.PI * 2);
       ctx.fillStyle = node.color;
       ctx.fill();
+      
+      // Add a border to dragged nodes (even more visible)
+      if (node.isDragging) {
+        ctx.globalAlpha = 0.8; // Make dragged node more visible
+        ctx.beginPath();
+        ctx.arc(node.x + offsetX, node.y, 7, 0, Math.PI * 2);
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.globalAlpha = 0.4; // Reset for other nodes
+      }
+    });
+
+    // Reset global opacity for any future drawing
+    ctx.globalAlpha = 1.0;
+  }
+
+  // Setup mouse interaction
+  function setupMouseInteraction(graph, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    let draggedNode = null;
+    let mouseOffset = { x: 0, y: 0 };
+
+    canvas.addEventListener('mousedown', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;   // Account for CSS scaling
+      const scaleY = canvas.height / rect.height; // Account for CSS scaling
+      
+      const mouseX = (e.clientX - rect.left) * scaleX;
+      const mouseY = (e.clientY - rect.top) * scaleY;
+      const offsetX = (canvas.width - 800) / 2;
+
+      const node = getNodeAtPosition(graph, mouseX, mouseY, offsetX);
+      if (node) {
+        draggedNode = node;
+        node.isDragging = true;
+        mouseOffset.x = mouseX - (node.x + offsetX);
+        mouseOffset.y = mouseY - node.y;
+        canvas.style.cursor = 'grabbing';
+      }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;   // Account for CSS scaling
+      const scaleY = canvas.height / rect.height; // Account for CSS scaling
+      
+      const mouseX = (e.clientX - rect.left) * scaleX;
+      const mouseY = (e.clientY - rect.top) * scaleY;
+      const offsetX = (canvas.width - 800) / 2;
+
+      if (draggedNode) {
+        // Update dragged node position
+        draggedNode.x = mouseX - mouseOffset.x - offsetX;
+        draggedNode.y = mouseY - mouseOffset.y;
+        
+        // Keep node within bounds
+        draggedNode.x = Math.max(10, Math.min(800 - 10, draggedNode.x));
+        draggedNode.y = Math.max(10, Math.min(canvas.height - 10, draggedNode.y));
+      } else {
+        // Change cursor when hovering over nodes
+        const node = getNodeAtPosition(graph, mouseX, mouseY, offsetX);
+        canvas.style.cursor = node ? 'grab' : 'default';
+      }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      if (draggedNode) {
+        draggedNode.isDragging = false;
+        draggedNode = null;
+        canvas.style.cursor = 'default';
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      if (draggedNode) {
+        draggedNode.isDragging = false;
+        draggedNode = null;
+        canvas.style.cursor = 'default';
+      }
     });
   }
 
@@ -220,6 +330,7 @@ import Layout from '../layouts/Layout.astro';
 
     // Generate and animate the graph
     const graph = generateGraph(30, 70);
+    setupMouseInteraction(graph, 'graphCanvas');
     animateGraph(graph, 'graphCanvas');
   });
 </script>

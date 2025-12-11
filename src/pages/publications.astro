@@ -26,9 +26,9 @@ const uniqueAuthorsCount = getUniqueAuthors(publications);
 ---
 
 <Layout title="Publications - Romano Lab">
-  <h1>Publications</h1>
-  <p>(Ordered newest to oldest)</p>
+  <h1>Research Publications</h1>
   
+  <h3>Publication statistics</h3>
   <div class="pub-stats">
     <div class="stat">
       <strong>{publications.length}</strong>
@@ -40,6 +40,7 @@ const uniqueAuthorsCount = getUniqueAuthors(publications);
     </div>
   </div>
   
+  <h3>All Peer-Reviewed Publications (newest first)</h3>
   <section class="publications-list">
     {publications
       .sort((a, b) => b.year - a.year)
@@ -53,6 +54,9 @@ const uniqueAuthorsCount = getUniqueAuthors(publications);
             )}
             {pub.la && (
               <span class="la-symbol" title="PI is last author">LA</span>
+            )}
+            {pub.ca && (
+              <span class="ca-symbol" title="PI is corresponding author">CA</span>
             )}
           </p>
           <p class="journal">

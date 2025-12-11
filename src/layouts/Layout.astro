@@ -26,6 +26,9 @@ const { title, description = "Romano Lab - Translational Bioinformatics at UPenn
       <nav>
         <div class="nav-container">
           <a href="/" class="logo voces-regular">Romano Lab @ Penn</a>
+          <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </button>
           <ul class="nav-links voces-regular">
             <li><a href="/">Home</a></li>
             <li><a href="/people">People</a></li>
@@ -47,5 +50,35 @@ const { title, description = "Romano Lab - Translational Bioinformatics at UPenn
         <p>&copy; {new Date().getFullYear()} <a href="https://jdr.bio">Joseph D. Romano</a> and the Romano Lab. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      const btn = document.querySelector('.nav-toggle');
+      const list = document.querySelector('.nav-links');
+      const body = document.body;
+
+      function closeMenu() {
+        list.classList.remove('open');
+        body.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (btn && list) {
+        btn.addEventListener('click', () => {
+          const open = list.classList.toggle('open');
+          body.classList.toggle('menu-open', open);
+          btn.setAttribute('aria-expanded', open);
+        });
+
+        // Close on ESC
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+        // Close after tapping a link (mobile)
+        list.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A') closeMenu();
+        });
+      }
+    </script>
   </body>
 </html>

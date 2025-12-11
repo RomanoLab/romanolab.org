@@ -4,8 +4,15 @@
     "authors": "Pan IT & Romano JD",
     "journal": "The 39th Annual AAAI Conference on Artificial Intelligence",
     "volume": "39",
+    "issue": "28",
+    "pages": "29464-29465",
     "year": 2025,
-    "la": true
+    "month": "April",
+    "doi": "10.1609/aaai.v39i28.35289",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/35289",
+    "la": true,
+    "ca": true,
+    "abstract": "Molecular machine learning has broad applications across multiple domains such as drug development, environmental toxicology, and materials science. Various pre-trained frameworks using self-supervised representation learning have emerged to tackle the difficulty of obtaining large molecular datasets useful for training high-performing molecular machine learning models. In this study, we explore a novel representation learning framework trained using both 2D and 3D molecular data. Specifically, a 3D invariant graph neural network to learn how to capture 3D atomic information and then pass these atomic representations into a regular 2D graph neural network which can leverage molecular topology. Results from experiments demonstrate the representations produced by our method using both 3D and 2D molecular information lead to strong performance in downstream tasks."
   },
   {
     "title": "The Alzheimer's Knowledge Base: A Knowledge Graph for Alzheimer's Disease Research",
@@ -17,7 +24,9 @@
     "doi": "10.2196/46777",
     "pmid": "38635981",
     "fa": true,
-    "pdf": "/papers/pdfs/jmir-2024-1-e46777.pdf"
+    "ca": true,
+    "pdf": "/papers/pdfs/jmir-2024-1-e46777.pdf",
+    "abstract": "Background: As global populations age and become susceptible to neurodegenerative illnesses, new therapies for Alzheimer disease (AD) are urgently needed. Existing data resources for drug discovery and repurposing fail to capture relationships central to the disease’s etiology and response to drugs. Objective: We designed the Alzheimer’s Knowledge Base (AlzKB) to alleviate this need by providing a comprehensive knowledge representation of AD etiology and candidate therapeutics. Methods: We designed the AlzKB as a large, heterogeneous graph knowledge base assembled using 22 diverse external data sources describing biological and pharmaceutical entities at different levels of organization (eg, chemicals, genes, anatomy, and diseases). AlzKB uses a Web Ontology Language 2 ontology to enforce semantic consistency and allow for ontological inference. We provide a public version of AlzKB and allow users to run and modify local versions of the knowledge base. Results: AlzKB is freely available on the web and currently contains 118,902 entities with 1,309,527 relationships between those entities. To demonstrate its value, we used graph data science and machine learning to (1) propose new therapeutic targets based on similarities of AD to Parkinson disease and (2) repurpose existing drugs that may treat AD. For each use case, AlzKB recovers known therapeutic associations while proposing biologically plausible new ones. Conclusions: AlzKB is a new, publicly available knowledge resource that enables researchers to discover complex translational associations for AD drug discovery. Through 2 use cases, we show that it is a valuable tool for proposing novel therapeutic hypotheses based on public biomedical knowledge."
   },
   {
     "title": "Knowledge Graph Aids Comprehensive Explanation of Drug and Chemical Toxicity",
@@ -82,7 +91,8 @@
     "month": "May",
     "pmcid": "PMC6568133",
     "fa": true,
-    "pmid": "31258986"
+    "pmid": "31258986",
+    "abstract": "For the past 11 years, the year-in-review (YIR) keynote presentation at the AMIA Informatics summit has been a perennial highlight. We hypothesized that the presented material from these keynotes could be used to assess both the recent trajectory of topics in informatics-especially translational bioinformatics (TBI)-as well as the scientific merit of the crowd-sourced process used to nominate, review, and select the papers presented at the YIR. We compare YIR articles to a background set of non-YIR articles from informatics journals using structured metadata and qualitative thematic analysis, paying specific attention to trends and popularity over time. These trends were inspected both internally (comparing the YIR sessions to each other) and externally (comparing them to the overall content of scientific literature for the same time period). In doing so, we identified some unexpected patterns that suggest important opportunities for TBI research in the future."
   },
   {
     "title": "Embedding covariate adjustments in tree-based automated machine learning for biomedical big data analyses",
@@ -133,7 +143,8 @@
     "year": 2022,
     "month": "February",
     "pmcid": "PMC8756190",
-    "fa": true
+    "fa": true,
+    "abstract": "Motivation: Novel machine learning and statistical modeling studies rely on standardized comparisons to existing methods using well-studied benchmark datasets. Few tools exist that provide rapid access to many of these datasets through a standardized, user-friendly interface that integrates well with popular data science workflows. Results: This release of PMLB (Penn Machine Learning Benchmarks) provides the largest collection of diverse, public benchmark datasets for evaluating new machine learning and data science methods aggregated in one location. v1.0 introduces a number of critical improvements developed following discussions with the open-source community. Availability and implementation: PMLB is available at https://github.com/EpistasisLab/pmlb. Python and R interfaces for PMLB can be installed through the Python Package Index and Comprehensive R Archive Network, respectively."
   },
   {
     "title": "Automating predictive toxicology using ComptoxAI",
@@ -147,7 +158,8 @@
     "fa": true,
     "pmid": "35819939",
     "doi": "10.1021/acs.chemrestox.2c00074",
-    "pmcid": "PMC9805296"
+    "pmcid": "PMC9805296",
+    "abstract": "ComptoxAI is a new data infrastructure for computational and artificial intelligence research in predictive toxicology. Here, we describe and showcase ComptoxAI’s graph-structured knowledge base in the context of three real-world use-cases, demonstrating that it can rapidly answer complex questions about toxicology that are infeasible using previous technologies and data resources. These use-cases each demonstrate a tool for information retrieval from the knowledge base being used to solve a specific task: The “shortest path” module is used to identify mechanistic links between perfluorooctanoic acid (PFOA) exposure and nonalcoholic fatty liver disease; the “expand network” module identifies communities that are linked to dioxin toxicity; and the quantitative structure–activity relationship (QSAR) dataset generator predicts pregnane X receptor agonism in a set of 4,021 pesticide ingredients. The contents of ComptoxAI’s source data are rigorously aggregated from a diverse array of public third-party databases, and ComptoxAI is designed as a free, public, and open-source toolkit to enable diverse classes of users including biomedical researchers, public health and regulatory officials, and the general public to predict toxicology of unknowns and modes of action."
   },
   {
     "title": "Knowledge-guided deep learning models of drug toxicity improve interpretation",
@@ -159,7 +171,8 @@
     "month": "August",
     "pmid": "36124309",
     "doi": "10.1016/j.patter.2022.100565",
-    "pmcid": "PMC9481960"
+    "pmcid": "PMC9481960",
+    "abstract": "In drug development, a major reason for attrition is the lack of understanding of cellular mechanisms governing drug toxicity. The black-box nature of conventional classification models has limited their utility in identifying toxicity pathways. Here we developed DTox (deep learning for toxicology), an interpretation framework for knowledge-guided neural networks, which can predict compound response to toxicity assays and infer toxicity pathways of individual compounds. We demonstrate that DTox can achieve the same level of predictive performance as conventional models with a significant improvement in interpretability. Using DTox, we were able to rediscover mechanisms of transcription activation by three nuclear receptors, recapitulate cellular activities induced by aromatase inhibitors and pregnane X receptor (PXR) agonists, and differentiate distinctive mechanisms leading to HepG2 cytotoxicity. Virtual screening by DTox revealed that compounds with predicted cytotoxicity are at higher risk for clinical hepatic phenotypes. In summary, DTox provides a framework for deciphering cellular mechanisms of toxicity in silico."
   },
   {
     "title": "Exploring genetic influences on adverse outcome pathways using heuristic simulation and graph data science",
@@ -173,7 +186,8 @@
     "pmid": "37829618",
     "doi": "10.1016/j.comtox.2023.100261",
     "pmcid": "PMC10569310",
-    "pdf": "/papers/pdfs/1-s2.0-S2468111323000026-main.pdf"
+    "pdf": "/papers/pdfs/1-s2.0-S2468111323000026-main.pdf",
+    "abstract": "Adverse outcome pathways provide a powerful tool for understanding the biological signaling cascades that lead to disease outcomes following toxicity. The framework outlines downstream responses known as key events, culminating in a clinically significant adverse outcome as a final result of the toxic exposure. Here we use the AOP framework combined with artificial intelligence methods to gain novel insights into genetic mechanisms that underlie toxicity-mediated adverse health outcomes. Specifically, we focus on liver cancer as a case study with diverse underlying mechanisms that are clinically significant. Our approach uses two complementary AI techniques: Generative modeling via automated machine learning and genetic algorithms, and graph machine learning. We used data from the US Environmental Protection Agency's Adverse Outcome Pathway Database (AOP-DB; aopdb.epa.gov) and the UK Biobank's genetic data repository. We use the AOP-DB to extract disease-specific AOPs and build graph neural networks used in our final analyses. We use the UK Biobank to retrieve real-world genotype and phenotype data, where genotypes are based on single nucleotide polymorphism data extracted from the AOP-DB, and phenotypes are case/control cohorts for the disease of interest (liver cancer) corresponding to those adverse outcome pathways. We also use propensity score matching to appropriately sample based on important covariates (demographics, comorbidities, and social deprivation indices) and to balance the case and control populations in our machine language training/testing datasets. Finally, we describe a novel putative risk factor for LC that depends on genetic variation in both the aryl-hydrocarbon receptor (AHR) and ATP binding cassette subfamily B member 11 (ABCB11) genes."
   },
   {
     "title": "Discovering venom-derived drug candidates using differential gene expression",
@@ -188,7 +202,8 @@
     "pmid": "37505720",
     "doi": "10.3390/toxins15070451",
     "pmcid": "PMC10467105",
-    "pdf": "/papers/pdfs/toxins-15-00451-with-cover.pdf"
+    "pdf": "/papers/pdfs/toxins-15-00451-with-cover.pdf",
+    "abstract": "Venoms are a diverse and complex group of natural toxins that have been adapted to treat many types of human disease, but rigorous computational approaches for discovering new therapeutic activities are scarce. We have designed and validated a new platform-named VenomSeq-to systematically identify putative associations between venoms and drugs/diseases via high-throughput transcriptomics and perturbational differential gene expression analysis. In this study, we describe the architecture of VenomSeq and its evaluation using the crude venoms from 25 diverse animal species and 9 purified teretoxin peptides. By integrating comparisons to public repositories of differential expression, associations between regulatory networks and disease, and existing knowledge of venom activity, we provide a number of new therapeutic hypotheses linking venoms to human diseases supported by multiple layers of preliminary evidence."
   },
   {
     "title": "Systems biology approaches for identifying adverse drug reactions and elucidating their underlying biological mechanisms",
@@ -201,7 +216,8 @@
     "month": "November",
     "pmcid": "PMC4760887",
     "pmid": "26559926",
-    "doi": "10.1002/wsbm.1323"
+    "doi": "10.1002/wsbm.1323",
+    "abstract": "Small molecules are indispensable to modern medical therapy. However, their use may lead to unintended, negative medical outcomes commonly referred to as adverse drug reactions (ADRs). These effects vary widely in mechanism, severity, and populations affected, making ADR prediction and identification important public health concerns. Current methods rely on clinical trials and postmarket surveillance programs to find novel ADRs; however, clinical trials are limited by small sample size, whereas postmarket surveillance methods may be biased and inherently leave patients at risk until sufficient clinical evidence has been gathered. Systems pharmacology, an emerging interdisciplinary field combining network and chemical biology, provides important tools to uncover and understand ADRs and may mitigate the drawbacks of traditional methods. In particular, network analysis allows researchers to integrate heterogeneous data sources and quantify the interactions between biological and chemical entities. Recent work in this area has combined chemical, biological, and large-scale observational health data to predict ADRs in both individual patients and global populations. In this review, we explore the rapid expansion of systems pharmacology in the study of ADRs. We enumerate the existing methods and strategies and illustrate progress in the field with a model framework that incorporates crucial data elements, such as diet and comorbidities, known to modulate ADR risk. Using this framework, we highlight avenues of research that may currently be underexplored, representing opportunities for future work."
   },
   {
     "title": "Informatics and Computational Methods in Natural Product Drug Discovery: A Review and Perspectives",
@@ -214,7 +230,8 @@
     "pmcid": "PMC6503039",
     "fa": true,
     "pmid": "31114606",
-    "doi": "10.3389/fgene.2019.00368"
+    "doi": "10.3389/fgene.2019.00368",
+    "abstract": "The discovery of new pharmaceutical drugs is one of the preeminent tasks-scientifically, economically, and socially-in biomedical research. Advances in informatics and computational biology have increased productivity at many stages of the drug discovery pipeline. Nevertheless, drug discovery has slowed, largely due to the reliance on small molecules as the primary source of novel hypotheses. Natural products (such as plant metabolites, animal toxins, and immunological components) comprise a vast and diverse source of bioactive compounds, some of which are supported by thousands of years of traditional medicine, and are largely disjoint from the set of small molecules used commonly for discovery. However, natural products possess unique characteristics that distinguish them from traditional small molecule drug candidates, requiring new methods and approaches for assessing their therapeutic potential. In this review, we investigate a number of state-of-the-art techniques in bioinformatics, cheminformatics, and knowledge engineering for data-driven drug discovery from natural products. We focus on methods that aim to bridge the gap between traditional small-molecule drug candidates and different classes of natural products. We also explore the current informatics knowledge gaps and other barriers that need to be overcome to fully leverage these compounds for drug discovery. Finally, we conclude with a \"road map\" of research priorities that seeks to realize this goal."
   },
   {
     "title": "The promise of automated machine learning for the genetic analysis of complex traits",
@@ -227,7 +244,8 @@
     "month": "September",
     "pmid": "34713318",
     "doi": "10.1007/s00439-021-02393-x",
-    "pmcid": "PMC9360157"
+    "pmcid": "PMC9360157",
+    "abstract": "The genetic analysis of complex traits has been dominated by parametric statistical methods due to their theoretical properties, ease of use, computational efficiency, and intuitive interpretation. However, there are likely to be patterns arising from complex genetic architectures which are more easily detected and modeled using machine learning methods. Unfortunately, selecting the right machine learning algorithm and tuning its hyperparameters can be daunting for experts and non-experts alike. The goal of automated machine learning (AutoML) is to let a computer algorithm identify the right algorithms and hyperparameters thus taking the guesswork out of the optimization process. We review the promises and challenges of AutoML for the genetic analysis of complex traits and give an overview of several approaches and some example applications to omics data. It is our hope that this review will motivate studies to develop and evaluate novel AutoML methods and software in the genetics and genomics space. The promise of AutoML is to enable anyone, regardless of training or expertise, to apply machine learning as part of their genetic analysis strategy."
   },
   {
     "title": "Centralized and Federated Models for the Analysis of Clinical Data",
@@ -239,7 +257,8 @@
     "month": "August",
     "pmid": "38723657",
     "doi": "10.1146/annurev-biodatasci-122220-115746",
-    "pmcid": "PMC11571052"
+    "pmcid": "PMC11571052",
+    "abstract": "The progress of precision medicine research hinges on the gathering and analysis of extensive and diverse clinical datasets. With the continued expansion of modalities, scales, and sources of clinical datasets, it becomes imperative to devise methods for aggregating information from these varied sources to achieve a comprehensive understanding of diseases. In this review, we describe two important approaches for the analysis of diverse clinical datasets, namely the centralized model and federated model. We compare and contrast the strengths and weaknesses inherent in each model and present recent progress in methodologies and their associated challenges. Finally, we present an outlook on the opportunities that both models hold for the future analysis of clinical data."
   },
   {
     "title": "Network-based analyses of multiomics data in biomedicine",
@@ -250,7 +269,8 @@
     "month": "May",
     "doi": "10.1186/s13040-025-00452-x",
     "pmid": "40426270",
-    "pmcid": "PMC12117783"
+    "pmcid": "PMC12117783",
+    "abstract": "Network representations of data are designed to encode relationships between concepts as sets of edges between nodes. Human biology is inherently complex and is represented by data that often exists in a hierarchical nature. One canonical example is the relationship that exists within and between various -omics datasets, including genomics, transcriptomics, and proteomics, among others. Encoding such data in a network-based or graph-based representation allows the explicit incorporation of such relationships into various biomedical big data tasks, including (but not limited to) disease subtyping, interaction prediction, biomarker identification, and patient classification. This review will present various existing approaches in using network representations and analysis of data in multiomics in the framework of deep learning and machine learning approaches, subdivided into supervised and unsupervised approaches, to identify benefits and drawbacks of various approaches as well as the possible next steps for the field."
   },
   {
     "title": "Ten simple rules for writing a paper about scientific software",
@@ -262,8 +282,10 @@
     "month": "November",
     "pmcid": "PMC7660560",
     "fa": true,
+    "ca": true,
     "pmid": "33180774",
-    "doi": "10.1371/journal.pcbi.1008390"
+    "doi": "10.1371/journal.pcbi.1008390",
+    "abstract": "Papers describing software are an important part of computational fields of scientific research. These “software papers” are unique in a number of ways, and they require special consideration to improve their impact on the scientific community and their efficacy at conveying important information. Here, we discuss 10 specific rules for writing software papers, covering some of the different scenarios and publication types that might be encountered, and important questions from which all computational researchers would benefit by asking along the way."
   },
   {
     "title": "Omics Methods in Toxins Research-A Toolkit to Drive the Future of Scientific Inquiry",
@@ -277,6 +299,7 @@
     "pmcid": "PMC9692551",
     "fa": true,
     "la": true,
+    "ca": true,
     "pmid": "36356011",
     "doi": "10.3390/toxins14110761"
   },
@@ -289,6 +312,7 @@
     "year": 2025,
     "month": "January",
     "doi": "10.1142/9789819807024_0003",
-    "pmid": "39670359"
+    "pmid": "39670359",
+    "abstract": "Artificial Intelligence (AI) technologies are increasingly capable of processing complex and multilayered datasets. Innovations in generative AI and deep learning have notably enhanced the extraction of insights from both unstructured texts, images, and structured data alike. These breakthroughs in AI technology have spurred a wave of research in the medical field, leading to the creation of a variety of tools aimed at improving clinical decision-making, patient monitoring, image analysis, and emergency response systems. However, thorough research is essential to fully understand the broader impact and potential consequences of deploying AI within the healthcare sector."
   }
 ]

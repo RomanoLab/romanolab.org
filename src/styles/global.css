@@ -81,13 +81,17 @@
 
 
 html {
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .voces-regular {
   font-family: "Voces", sans-serif;
   font-weight: 400;
   font-style: normal;
+  letter-spacing: -0.01em;
 }
 
 
@@ -98,12 +102,15 @@ body {
   flex-direction: column;
   background-color: var(--color-bg);
   color: var(--color-on-bg);
+  line-height: 1.6;
+  font-size: 16px;
 }
 
 header {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
-  padding: 1rem 0;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 hr {
@@ -127,23 +134,25 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
-  line-height: 1.3;
+  line-height: 1.2;
   font-family: "Voces", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   margin-bottom: 1.5rem;
 }
 
 h2 {
-  font-size: 2rem;
-  margin: 2rem 0 1rem 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 2.5rem 0 1.25rem 0;
 }
 
 h3 {
-  font-size: 1.5rem;
-  margin: 1.5rem 0 0.5rem 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  margin: 2rem 0 0.75rem 0;
 }
 
 img {
@@ -152,16 +161,19 @@ img {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--color-primary);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
+  color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
 p {
-  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
 }
 
 .text-center {
@@ -180,7 +192,7 @@ p {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--color-on-surface);
+  color: var(--color-secondary);
   text-decoration: none;
 }
 
@@ -195,11 +207,15 @@ p {
 .nav-links a {
   color: var(--color-on-surface);
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: color 0.2s ease, transform 0.2s ease;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  display: inline-block;
 }
 
 .nav-links a:hover {
-  opacity: 0.8;
+  color: var(--color-primary);
+  transform: translateY(-1px);
 }
 
 .mb-2 {
@@ -217,69 +233,25 @@ p {
 
 .person-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .person-card {
   text-align: center;
-  padding: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.person-card img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  text-align: center;
-  display: block;
-  margin: auto;
-}
-
-.person-card h3 {
-  color: #003366;
-  margin: 0.5rem 0;
-}
-
-.title {
-  font-style: italic;
-  color: #666;
-}
-
-.alumni-list {
-  margin-top: 2rem;
-}
-
-.alumni-item {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.people-section {
-  margin: 3rem 0;
-}
-
-.person-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.person-card {
-  text-align: center;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--color-surface);
   color: var(--color-on-surface);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.person-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 .person-card img {
@@ -287,17 +259,20 @@ p {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1rem;
+  margin: 0 auto 1.5rem auto;
+  display: block;
+  border: 3px solid var(--color-border);
 }
 
 .person-card h3 {
   color: var(--color-secondary);
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0.25rem 0;
 }
 
 .title {
   font-style: italic;
   color: var(--color-muted);
+  font-size: 0.95rem;
 }
 
 .alumni-list {
@@ -306,20 +281,26 @@ p {
 
 .alumni-item {
   padding: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.alumni-item:hover {
+  background-color: var(--color-surface);
 }
 
 .lead {
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   color: var(--color-on-bg);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 3rem;
+  font-weight: 300;
 }
 
 .research-area {
   margin: 3rem 0;
-  padding: 2rem 0;
-  border-bottom: 1px solid #eee;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .research-area:last-child {
@@ -329,42 +310,51 @@ p {
 .area-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: start;
 }
 
 .area-image {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.area-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .related-pubs {
   margin-top: 2rem;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 8px;
+  padding: 1.5rem;
+  border-radius: 12px;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .related-pubs h4 {
   margin-top: 0;
-  color: var(--color-secondary)
+  color: var(--color-secondary);
 }
 
 .related-pubs ul {
   list-style: disc;
   padding-left: 1.5rem;
+  margin: 0.5rem 0;
 }
 
 .funding {
   margin-top: 4rem;
-  padding: 2rem;
-  background: #f5f5f5;
-  border-radius: 8px;
+  padding: 2.5rem;
+  border-radius: 12px;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 
@@ -372,67 +362,85 @@ p {
   display: flex;
   gap: 2rem;
   margin: 2rem 0 3rem 0;
-  padding: 2rem;
-  background: #f9f9f9;
-  border-radius: 8px;
+  padding: 2.5rem;
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 .stat {
   text-align: center;
+  flex: 1;
 }
 
 .stat strong {
   display: block;
-  font-size: 2rem;
-  color: #003366;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .stat span {
-  color: #666;
+  color: var(--color-muted);
   font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .publication {
-  margin: 1rem 0; /* Reduce vertical spacing */
-  padding: 1.5rem; /* Compact padding */
-  border: 1px solid #ddd;
-  border-radius: 6px; /* Slightly smaller border radius */
-  background: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  margin: 1.25rem 0;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.publication:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .publication h3 {
-  margin: 0 0 0.5rem 0; /* Reduce spacing below title */
-  font-size: 1.2rem; /* Slightly smaller font size */
-  color: #003366;
-  line-height: 1.4;
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  line-height: 1.3;
+  font-weight: 500;
 }
 
 .authors {
-  margin: 0.3rem 0; /* Reduce spacing */
-  font-size: 0.9rem; /* Smaller font size */
-  color: #555;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--color-on-surface);
 }
 
 .journal {
-  margin: 0.3rem 0; /* Reduce spacing */
-  font-size: 0.9rem; /* Smaller font size */
-  color: #777;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-style: italic;
 }
 
 .links {
-  margin: 0.5rem 0; /* Reduce spacing */
-  font-size: 0.9rem; /* Smaller font size */
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
   padding-bottom: 0;
 }
 
 .links a {
-  color: #003366;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .links a:hover {
+  color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
@@ -486,31 +494,58 @@ p {
   background-color: #cc0000; /* Slightly lighter red on hover */
 }
 
+.ca-symbol {
+  display: inline-block;
+  margin-left: 0.5rem; /* Space between author list and symbol */
+  padding: 0.2rem 0.4rem; /* Compact padding */
+  font-size: 0.8rem; /* Smaller font size */
+  font-weight: bold;
+  color: white;
+  background-color: #006600; /* Dark green background for CA */
+  border-radius: 4px; /* Rounded corners */
+  cursor: help; /* Indicates additional information is available */
+}
+
+.ca-symbol:hover {
+  background-color: #009900; /* Slightly lighter green on hover */
+}
+
 .hero {
-  position: relative; /* Create a positioning context for the canvas */
+  position: relative;
   text-align: center;
   padding: 4rem 0;
   background: var(--gradient-hero);
   border-width: var(--hero-border-width);
   border-style: var(--hero-border-style);
   border-color: var(--hero-border-color);
-  border-radius: 0 0 var(--hero-border-radius) var(--hero-border-radius);
-  box-shadow: var(--hero-box-shadow);
-  margin: -2rem -2rem 3rem -2rem;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  margin: -2rem -2rem 4rem -2rem;
   border-top: none;
   height: 400px;
+  overflow: hidden;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
   margin: 0 0 1rem 0;
   color: var(--color-primary);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.hero h2 {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-subtitle {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   opacity: 0.9;
   color: var(--color-secondary);
+  font-weight: 300;
+  letter-spacing: -0.01em;
 }
 
 .intro, .highlights {
@@ -525,16 +560,23 @@ p {
 }
 
 .highlight-card {
-  padding: 2rem;
+  padding: 2.5rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--color-surface);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 .highlight-card h3 {
   color: var(--color-secondary);
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .footer-container {
@@ -548,10 +590,210 @@ p {
 
 
 #graphCanvas {
-  position: absolute; /* Position the canvas absolutely within the hero */
-  top: 0; /* Align the canvas to the top of the hero */
-  left: 0; /* Align the canvas to the left of the hero */
-  width: 100%; /* Make the canvas span the full width of the hero */
-  height: 100%; /* Make the canvas span the full height of the hero */
-  z-index: -1; /* Send the canvas behind other elements */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero h1, .hero h2 {
+  position: relative;
+  z-index: 1;
+  pointer-events: none; /* Allow mouse events to pass through text to canvas */
+}
+
+.award-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: normal;
+}
+
+.award-number a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.award-number a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile-first improvements */
+:root {
+  --nav-break: 780px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 4px 0;
+  background: var(--color-text, #fff);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 2.5rem 1rem 3rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    line-height: 1.15;
+  }
+  .hero h2 {
+    font-size: clamp(1rem, 4.2vw, 1.4rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 2.2rem 0.75rem 2.6rem;
+  }
+  #graphCanvas {
+    height: 100%;
+  }
+}
+
+/* Nav collapse */
+@media (max-width: 780px) {
+  .nav-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20,20,24,0.95);
+    backdrop-filter: blur(6px);
+    margin: 0;
+    padding: 0.75rem 1rem 1.25rem;
+    gap: 0.35rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: 0.35s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links.open {
+    max-height: 420px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-links li a {
+    padding: 0.55rem 0.4rem;
+    display: block;
+    font-size: 0.95rem;
+  }
+  header nav {
+    position: relative;
+  }
+  .logo {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* --- Mobile nav layering + hero interplay --- */
+header, header nav, .nav-container {
+  position: relative;
+  z-index: 500;
+}
+
+.nav-toggle {
+  z-index: 610;
+}
+
+.nav-links {
+  z-index: 600;
+}
+
+/* Open state becomes a full overlay */
+@media (max-width: 780px) {
+  .nav-links.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 4.2rem 1.1rem 2rem; /* space for header area */
+    background: rgba(15,15,22,0.96);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+    box-shadow: 0 4px 18px -4px rgba(0,0,0,0.55);
+  }
+}
+
+/* Ensure hero canvas stays behind */
+#graphCanvas {
+  z-index: 0;
+}
+
+.hero h1,
+.hero h2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dim / blur background while menu open */
+.menu-open .hero {
+  filter: blur(2px) brightness(.8);
+  transition: filter .3s;
+}
+
+.menu-open #graphCanvas {
+  filter: blur(3px) brightness(.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-open .hero,
+  .menu-open #graphCanvas {
+    filter: none;
+  }
+}
+
+/* Prevent body scroll when menu open */
+.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+}
+
+/* Canvas stacking context + passthrough */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#graphCanvas {
+  pointer-events: auto;
+}
+
+/* Optional: lighten hero text shadow for contrast over canvas */
+.hero h1, .hero h2 {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
