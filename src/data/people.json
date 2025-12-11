@@ -1,7 +1,7 @@
 {
   "pi": [
     {
-      "name": "Joseph D. Romano, PhD, MPhil, MA",
+      "name": "Joseph D. Romano, PhD, MPhil, MA, FAMIA",
       "title": "Assistant Professor of Informatics and Pharmacology",
       "bio": "Dr. Romano is a translational bioinformatician with expertise in AI and machine learning, biomedical knowledge representation, multimodal data integration, and environmental toxicology. He earned PhD, MPhil, and MA degrees in Biomedical Informatics from Columbia University before completing a postdoctoral fellowship in the lab of Jason Moore. At Penn, he serves as Associate Director of Biomedical Informatics Education, Associate Director of the Environmental Health Informatics Core, and a Senior Fellow in the Institute for Biomedical Informatics.",
       "email": "joseph.romano@pennmedicine.upenn.edu",
@@ -27,7 +27,7 @@
     {
       "name": "Oresta Hewryk",
       "program": "PhD Candidate in Biology",
-      "research": "Research focus: Phytotherapies, biomedical ontologies, machine learning.", 
+      "research": "Research focus: Phytotherapies, biomedical ontologies, machine learning.",
       "image": "/images/people/hewryk.jpg"
     },
     {
@@ -57,9 +57,9 @@
   ],
   "alumni": [
     {
-      "name": "Giuseppe Albi",
+      "name": "Giuseppe Albi, PhD",
       "year": "2024",
-      "currentPosition": "PhD Candidate; Università di Pavia, Pavia, Italy"
+      "currentPosition": "Graduate Research Fellow; Università di Pavia, Pavia, Italy"
     },
     {
       "name": "Sophie Kearney",
