@@ -1,0 +1,34 @@
+name: Deploy ista Documentation
+
+on:
+  repository_dispatch:
+    types: [deploy-ista-docs]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-ista-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dawidd6/action-download-artifact@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo: JDRomano2/ista
+          workflow: build-docs.yml
+          name: ista-docs
+          path: software/ista
+          workflow_conclusion: success
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add software/ista
+          git diff --staged --quiet || git commit -m "Update ista documentation"
+          git push
