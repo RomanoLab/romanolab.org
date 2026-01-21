@@ -22,13 +22,13 @@ jobs:
           repo: JDRomano2/ista
           workflow: build-docs.yml
           name: ista-docs
-          path: software/ista
+          path: public/software/ista
           workflow_conclusion: success
 
       - name: Commit and push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add software/ista
+          git add public/software/ista
           git diff --staged --quiet || git commit -m "Update ista documentation"
           git push
