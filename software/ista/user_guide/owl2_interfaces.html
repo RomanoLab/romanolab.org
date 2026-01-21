@@ -1,0 +1,986 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Python Library Guide" href="python_library.html"><link rel="prev" title="User Guide" href="index.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>OWL2 Interface in ista - ista 0.1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ista 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">ista 0.1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">User Guide</a><input aria-label="Toggle navigation of User Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OWL2 Interface in ista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_converters.html">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loading_schema.html">Data Loading YAML Schema Reference</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">OWL2 Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_converters.html">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loading_schema.html">Data Loading Schema Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Python API Reference</a><input aria-label="Toggle navigation of Python API Reference" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/owl2.html">ista.owl2 Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2.html">ista.owl2</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.converters.html">ista.converters</a><input aria-label="Toggle navigation of ista.converters" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.igraph_converter.html">ista.converters.igraph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ista_graph_converter.html">ista.converters.ista_graph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.networkx_converter.html">ista.converters.networkx_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ontology_to_graph.html">ista.converters.ontology_to_graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.database_parser.html">ista.database_parser</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.graph.html">ista.graph</a><input aria-label="Toggle navigation of ista.graph" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.edge.html">ista.graph.edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.graph.html">ista.graph.graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.node.html">ista.graph.node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2memgraph.html">ista.owl2memgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.memgraph_loader.html">ista.memgraph_loader</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API Reference</a><input aria-label="Toggle navigation of C++ API Reference" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/core.html">Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/serializers.html">Serializers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/parsers.html">Parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/namespaces.html">Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to ista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/blob/master/docs/source/user_guide/owl2_interfaces.md?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/edit/master/docs/source/user_guide/owl2_interfaces.md" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="owl2-interface-in-ista">
+<h1>OWL2 Interface in ista<a class="headerlink" href="#owl2-interface-in-ista" title="Link to this heading">¶</a></h1>
+<p>The ista package provides a <strong>native C++ OWL2 ontology manipulation library</strong> with Python bindings for high-performance knowledge graph operations.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>ista.owl2 is a modern C++20 library with Python bindings that provides complete OWL 2 ontology manipulation capabilities without any external dependencies.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Language</strong></p></td>
+<td><p>C++ with Python bindings (pybind11)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>High (optimized C++)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Main Use Cases</strong></p></td>
+<td><p>- Create/manipulate ontologies programmatically<br>- Parse/serialize RDF/XML &amp; Functional Syntax<br>- Individual and property management<br>- Search and query operations<br>- Subgraph extraction<br>- Graph analysis</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Module</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ista.owl2</span></code> (built-in)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dependencies</strong></p></td>
+<td><p>None (fully native)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="core-functionality">
+<h2>Core Functionality<a class="headerlink" href="#core-functionality" title="Link to this heading">¶</a></h2>
+<section id="ontology-creation-and-management">
+<h3>1. Ontology Creation and Management<a class="headerlink" href="#ontology-creation-and-management" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Create a new ontology</span>
+<span class="n">onto</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Ontology</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/biomedical&quot;</span><span class="p">))</span>
+
+<span class="c1"># Or with version IRI</span>
+<span class="n">onto</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Ontology</span><span class="p">(</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/biomedical&quot;</span><span class="p">),</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/biomedical/v1.0&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Manage prefixes</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">register_prefix</span><span class="p">(</span><span class="s2">&quot;bio&quot;</span><span class="p">,</span> <span class="s2">&quot;http://example.org/biomedical#&quot;</span><span class="p">)</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">register_prefix</span><span class="p">(</span><span class="s2">&quot;gene&quot;</span><span class="p">,</span> <span class="s2">&quot;http://example.org/genes#&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get statistics</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Axioms: </span><span class="si">{</span><span class="n">onto</span><span class="o">.</span><span class="n">get_axiom_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Classes: </span><span class="si">{</span><span class="n">onto</span><span class="o">.</span><span class="n">get_class_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Individuals: </span><span class="si">{</span><span class="n">onto</span><span class="o">.</span><span class="n">get_individual_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="classes-and-properties">
+<h3>2. Classes and Properties<a class="headerlink" href="#classes-and-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Create classes</span>
+<span class="n">disease_cls</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Disease&quot;</span><span class="p">))</span>
+<span class="n">gene_cls</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Gene&quot;</span><span class="p">))</span>
+<span class="n">drug_cls</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Drug&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create object properties</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">ObjectProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/targets&quot;</span><span class="p">))</span>
+<span class="n">treats</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">ObjectProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/treats&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create data properties</span>
+<span class="n">has_name</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">DataProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/hasName&quot;</span><span class="p">))</span>
+<span class="n">drugbank_id</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">DataProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/drugbankId&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="individual-creation-and-management">
+<h3>3. Individual Creation and Management<a class="headerlink" href="#individual-creation-and-management" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Create individuals with automatic class assertion</span>
+<span class="n">aspirin</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">create_individual</span><span class="p">(</span>
+    <span class="n">drug_cls</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/aspirin&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">cox1</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">create_individual</span><span class="p">(</span>
+    <span class="n">gene_cls</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/COX1&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">alzheimers</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">create_individual</span><span class="p">(</span>
+    <span class="n">disease_cls</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Alzheimers&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Add additional class memberships</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">add_class_assertion</span><span class="p">(</span><span class="n">aspirin</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/NSAID&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="property-assertions">
+<h3>4. Property Assertions<a class="headerlink" href="#property-assertions" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Data property assertions</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">add_data_property_assertion</span><span class="p">(</span>
+    <span class="n">aspirin</span><span class="p">,</span>
+    <span class="n">has_name</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">onto</span><span class="o">.</span><span class="n">add_data_property_assertion</span><span class="p">(</span>
+    <span class="n">aspirin</span><span class="p">,</span>
+    <span class="n">drugbank_id</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s2">&quot;DB00945&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Object property assertions</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">add_object_property_assertion</span><span class="p">(</span>
+    <span class="n">aspirin</span><span class="p">,</span>  <span class="c1"># subject</span>
+    <span class="n">targets</span><span class="p">,</span>  <span class="c1"># property</span>
+    <span class="n">cox1</span>      <span class="c1"># object</span>
+<span class="p">)</span>
+
+<span class="n">onto</span><span class="o">.</span><span class="n">add_object_property_assertion</span><span class="p">(</span>
+    <span class="n">aspirin</span><span class="p">,</span>
+    <span class="n">treats</span><span class="p">,</span>
+    <span class="n">alzheimers</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="search-and-query-operations">
+<h3>5. Search and Query Operations<a class="headerlink" href="#search-and-query-operations" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Search by data property value</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">search_by_data_property</span><span class="p">(</span>
+    <span class="n">drugbank_id</span><span class="p">,</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s2">&quot;DB00945&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="si">}</span><span class="s2"> drugs with ID DB00945&quot;</span><span class="p">)</span>
+
+<span class="c1"># Search by object property</span>
+<span class="n">drugs_targeting_cox1</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">search_by_object_property</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">cox1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">drug</span> <span class="ow">in</span> <span class="n">drugs_targeting_cox1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Drug: </span><span class="si">{</span><span class="n">drug</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_local_name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get all assertions for a property</span>
+<span class="n">relationships</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_object_property_assertions_for_property</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">relationships</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_local_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="nb">object</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_local_name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get classes for an individual</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classes_for_individual</span><span class="p">(</span><span class="n">aspirin</span><span class="p">)</span>
+<span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aspirin is a: </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_local_name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check instance membership</span>
+<span class="k">if</span> <span class="n">onto</span><span class="o">.</span><span class="n">is_instance_of</span><span class="p">(</span><span class="n">aspirin</span><span class="p">,</span> <span class="n">drug_cls</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aspirin is a drug&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get all individuals of a class</span>
+<span class="n">all_drugs</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_individuals_of_class</span><span class="p">(</span><span class="n">drug_cls</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_drugs</span><span class="p">)</span><span class="si">}</span><span class="s2"> drugs in ontology&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="property-characteristics">
+<h3>6. Property Characteristics<a class="headerlink" href="#property-characteristics" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Check if a property is functional</span>
+<span class="k">if</span> <span class="n">onto</span><span class="o">.</span><span class="n">is_functional_data_property</span><span class="p">(</span><span class="n">drugbank_id</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;drugbank_id is functional (unique per individual)&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">onto</span><span class="o">.</span><span class="n">is_functional_object_property</span><span class="p">(</span><span class="n">targets</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;targets is functional&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="serialization-and-parsing">
+<h3>7. Serialization and Parsing<a class="headerlink" href="#serialization-and-parsing" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Parse from RDF/XML file</span>
+<span class="n">onto</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">RDFXMLParser</span><span class="o">.</span><span class="n">parse_from_file</span><span class="p">(</span><span class="s2">&quot;input.owl&quot;</span><span class="p">)</span>
+
+<span class="c1"># Serialize to RDF/XML</span>
+<span class="n">serializer</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">RDFXMLSerializer</span><span class="p">()</span>
+<span class="n">rdf_content</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">onto</span><span class="p">)</span>
+
+<span class="c1"># Save to file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.owl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rdf_content</span><span class="p">)</span>
+
+<span class="c1"># Serialize to Functional Syntax</span>
+<span class="n">functional</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">to_functional_syntax</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">functional</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="high-performance-subgraph-extraction">
+<h3>8. High-Performance Subgraph Extraction<a class="headerlink" href="#high-performance-subgraph-extraction" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Create filter</span>
+<span class="n">filter_obj</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">OntologyFilter</span><span class="p">(</span><span class="n">onto</span><span class="p">)</span>
+
+<span class="c1"># Extract k-hop neighborhood (BFS, O(V+E))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">filter_obj</span><span class="o">.</span><span class="n">extract_neighborhood</span><span class="p">(</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Alzheimers&quot;</span><span class="p">),</span>
+    <span class="n">depth</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Filter by class membership</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">filter_obj</span><span class="o">.</span><span class="n">filter_by_classes</span><span class="p">({</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Disease&quot;</span><span class="p">),</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Gene&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># Extract specific individuals</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">filter_obj</span><span class="o">.</span><span class="n">filter_by_individuals</span><span class="p">({</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/aspirin&quot;</span><span class="p">),</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/ibuprofen&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># Access filtered results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">original_axiom_count</span><span class="si">}</span><span class="s2"> axioms&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">filtered_axiom_count</span><span class="si">}</span><span class="s2"> axioms&quot;</span><span class="p">)</span>
+<span class="n">subgraph</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">ontology</span>  <span class="c1"># The filtered ontology</span>
+</pre></div>
+</div>
+</section>
+<section id="graph-analysis">
+<h3>9. Graph Analysis<a class="headerlink" href="#graph-analysis" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># Get k-hop neighbors of an individual</span>
+<span class="n">neighbors</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">NamedIndividual</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/aspirin&quot;</span><span class="p">)),</span>
+    <span class="n">depth</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Check if path exists between two individuals</span>
+<span class="n">has_path</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">has_path</span><span class="p">(</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">NamedIndividual</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/aspirin&quot;</span><span class="p">)),</span>
+    <span class="n">owl2</span><span class="o">.</span><span class="n">NamedIndividual</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Alzheimers&quot;</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="database-parsing-integration">
+<h2>Database Parsing Integration<a class="headerlink" href="#database-parsing-integration" title="Link to this heading">¶</a></h2>
+<p>ista provides database parsers that integrate seamlessly with ista.owl2:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">FlatFileDatabaseParser</span><span class="p">,</span> <span class="n">owl2</span>
+
+<span class="c1"># Create ontology</span>
+<span class="n">onto</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Ontology</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/mydata&quot;</span><span class="p">))</span>
+
+<span class="c1"># Define classes and properties</span>
+<span class="n">drug_cls</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/Drug&quot;</span><span class="p">))</span>
+<span class="n">has_name</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">DataProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/hasName&quot;</span><span class="p">))</span>
+<span class="n">drugbank_id</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">DataProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/drugbankId&quot;</span><span class="p">))</span>
+
+<span class="c1"># Parse CSV files into ontology</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">FlatFileDatabaseParser</span><span class="p">(</span><span class="s2">&quot;DrugData&quot;</span><span class="p">,</span> <span class="n">onto</span><span class="p">,</span> <span class="s2">&quot;./data&quot;</span><span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">parse_node_type</span><span class="p">(</span>
+    <span class="n">node_type</span><span class="o">=</span><span class="s2">&quot;Drug&quot;</span><span class="p">,</span>
+    <span class="n">source_filename</span><span class="o">=</span><span class="s2">&quot;drugs.csv&quot;</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
+    <span class="n">parse_config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;iri_column_name&quot;</span><span class="p">:</span> <span class="s2">&quot;drug_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;data_property_map&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">has_name</span><span class="p">,</span>
+            <span class="s2">&quot;drugbank_id&quot;</span><span class="p">:</span> <span class="n">drugbank_id</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;merge_column&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;source_column_name&quot;</span><span class="p">:</span> <span class="s2">&quot;drugbank_id&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data_property&quot;</span><span class="p">:</span> <span class="n">drugbank_id</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Save populated ontology</span>
+<span class="n">serializer</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">RDFXMLSerializer</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;drugs.owl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">onto</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="complete-api-reference">
+<h2>Complete API Reference<a class="headerlink" href="#complete-api-reference" title="Link to this heading">¶</a></h2>
+<section id="core-types">
+<h3>Core Types<a class="headerlink" href="#core-types" title="Link to this heading">¶</a></h3>
+<p><strong>IRI Management</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IRI(iri_string)</span></code> - Create IRI from string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IRI(prefix,</span> <span class="pre">local_name,</span> <span class="pre">namespace)</span></code> - Create from components</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.get_full_iri()</span></code>, <code class="docutils literal notranslate"><span class="pre">.get_local_name()</span></code>, <code class="docutils literal notranslate"><span class="pre">.get_namespace()</span></code></p></li>
+</ul>
+<p><strong>Literals</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Literal(value)</span></code> - Create literal value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Literal(value,</span> <span class="pre">datatype_iri)</span></code> - Typed literal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Literal(value,</span> <span class="pre">language_tag)</span></code> - Language-tagged literal</p></li>
+</ul>
+</section>
+<section id="entities">
+<h3>Entities<a class="headerlink" href="#entities" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Class(iri)</span></code> - OWL class</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ObjectProperty(iri)</span></code> - Object property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DataProperty(iri)</span></code> - Data property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AnnotationProperty(iri)</span></code> - Annotation property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NamedIndividual(iri)</span></code> - Individual/instance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Datatype(iri)</span></code> - Datatype</p></li>
+</ul>
+</section>
+<section id="ontology-methods">
+<h3>Ontology Methods<a class="headerlink" href="#ontology-methods" title="Link to this heading">¶</a></h3>
+<p><strong>Individual Management</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">create_individual(cls,</span> <span class="pre">iri)</span></code> → Creates individual with class assertion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_class_assertion(individual,</span> <span class="pre">cls)</span></code> → Add class membership</p></li>
+</ul>
+<p><strong>Property Assertions</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">add_data_property_assertion(individual,</span> <span class="pre">property,</span> <span class="pre">literal)</span></code> → Add data property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_object_property_assertion(subject,</span> <span class="pre">property,</span> <span class="pre">object)</span></code> → Add object property</p></li>
+</ul>
+<p><strong>Search &amp; Query</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">search_by_data_property(property,</span> <span class="pre">value)</span></code> → Find individuals by data property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">search_by_object_property(property,</span> <span class="pre">object)</span></code> → Find subjects by object property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_object_property_assertions_for_property(property)</span></code> → All assertions for property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_data_property_assertions_for_property(property)</span></code> → All data assertions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_classes_for_individual(individual)</span></code> → Classes individual belongs to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_instance_of(individual,</span> <span class="pre">cls)</span></code> → Check class membership</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_individuals_of_class(cls)</span></code> → All instances of a class</p></li>
+</ul>
+<p><strong>Property Characteristics</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is_functional_object_property(property)</span></code> → Check if functional</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_functional_data_property(property)</span></code> → Check if functional</p></li>
+</ul>
+<p><strong>Graph Operations</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_neighbors(individual,</span> <span class="pre">depth)</span></code> → K-hop neighborhood</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has_path(from_individual,</span> <span class="pre">to_individual)</span></code> → Path existence check</p></li>
+</ul>
+<p><strong>Statistics</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_axiom_count()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_class_count()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_individual_count()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_statistics()</span></code> → Formatted statistics string</p></li>
+</ul>
+</section>
+<section id="serialization">
+<h3>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">¶</a></h3>
+<p><strong>RDF/XML</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RDFXMLParser.parse_from_file(filename)</span></code> → Load ontology</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RDFXMLSerializer().serialize(ontology)</span></code> → Save as RDF/XML</p></li>
+</ul>
+<p><strong>Functional Syntax</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ontology.to_functional_syntax()</span></code> → Convert to OWL Functional Syntax</p></li>
+</ul>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Link to this heading">¶</a></h3>
+<p><strong>OntologyFilter</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OntologyFilter(ontology)</span></code> - Create filter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.filter_by_individuals(iri_set)</span></code> → Extract specific individuals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.filter_by_classes(class_iri_set)</span></code> → Filter by class membership</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.extract_neighborhood(individual_iri,</span> <span class="pre">depth)</span></code> → K-hop neighborhood</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.extract_path(from_iri,</span> <span class="pre">to_iri)</span></code> → Path between individuals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.random_sample(n,</span> <span class="pre">seed)</span></code> → Random sample</p></li>
+</ul>
+<p><strong>FilterResult</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.ontology</span></code> - The filtered ontology</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.original_axiom_count</span></code>, <code class="docutils literal notranslate"><span class="pre">.filtered_axiom_count</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.original_individual_count</span></code>, <code class="docutils literal notranslate"><span class="pre">.filtered_individual_count</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.included_individuals</span></code> - Set of included IRIs</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="performance-characteristics">
+<h2>Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Link to this heading">¶</a></h2>
+<p>All operations are implemented in optimized C++:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>Time Complexity</p></th>
+<th class="head"><p>Space Complexity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">create_individual()</span></code></p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">add_*_property_assertion()</span></code></p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">search_by_*_property()</span></code></p></td>
+<td><p>O(A)</p></td>
+<td><p>O(k)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">get_individuals_of_class()</span></code></p></td>
+<td><p>O(A)</p></td>
+<td><p>O(k)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">extract_neighborhood(k)</span></code></p></td>
+<td><p>O(V + E)</p></td>
+<td><p>O(V)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">extract_path()</span></code></p></td>
+<td><p>O(V + E)</p></td>
+<td><p>O(V)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter_by_individuals()</span></code></p></td>
+<td><p>O(A)</p></td>
+<td><p>O(V + A)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p>V = number of individuals (vertices)</p></li>
+<li><p>E = number of object property assertions (edges)</p></li>
+<li><p>A = number of axioms</p></li>
+<li><p>k = number of results</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading">¶</a></h2>
+<p>ista provides several utility functions that work with ista.owl2:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista.util</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">safe_add_property</span><span class="p">,</span>           <span class="c1"># Add property with duplicate checking</span>
+    <span class="n">get_onto_class_by_node_type</span><span class="p">,</span> <span class="c1"># Find class by local name</span>
+    <span class="n">safe_make_individual_name</span><span class="p">,</span>   <span class="c1"># Generate unique individual names</span>
+    <span class="n">print_onto_stats</span><span class="p">,</span>            <span class="c1"># Print ontology statistics</span>
+<span class="p">)</span>
+
+<span class="c1"># Safe property addition (checks for duplicates)</span>
+<span class="n">safe_add_property</span><span class="p">(</span><span class="n">onto</span><span class="p">,</span> <span class="n">individual</span><span class="p">,</span> <span class="nb">property</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Find class by name</span>
+<span class="n">drug_class</span> <span class="o">=</span> <span class="n">get_onto_class_by_node_type</span><span class="p">(</span><span class="n">onto</span><span class="p">,</span> <span class="s2">&quot;Drug&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print statistics</span>
+<span class="n">print_onto_stats</span><span class="p">(</span><span class="n">onto</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="complete-workflow-example">
+<h3>Complete Workflow Example<a class="headerlink" href="#complete-workflow-example" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="c1"># 1. Create ontology</span>
+<span class="n">onto</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Ontology</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma&quot;</span><span class="p">))</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">register_prefix</span><span class="p">(</span><span class="s2">&quot;pharma&quot;</span><span class="p">,</span> <span class="s2">&quot;http://example.org/pharma#&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Define schema</span>
+<span class="n">drug</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#Drug&quot;</span><span class="p">))</span>
+<span class="n">gene</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Class</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#Gene&quot;</span><span class="p">))</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">ObjectProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#targets&quot;</span><span class="p">))</span>
+<span class="n">has_name</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">DataProperty</span><span class="p">(</span><span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#hasName&quot;</span><span class="p">))</span>
+
+<span class="c1"># 3. Create individuals</span>
+<span class="n">aspirin</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">create_individual</span><span class="p">(</span><span class="n">drug</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#aspirin&quot;</span><span class="p">))</span>
+<span class="n">cox1</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">create_individual</span><span class="p">(</span><span class="n">gene</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">IRI</span><span class="p">(</span><span class="s2">&quot;http://example.org/pharma#COX1&quot;</span><span class="p">))</span>
+
+<span class="c1"># 4. Add properties</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">add_data_property_assertion</span><span class="p">(</span><span class="n">aspirin</span><span class="p">,</span> <span class="n">has_name</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">))</span>
+<span class="n">onto</span><span class="o">.</span><span class="n">add_object_property_assertion</span><span class="p">(</span><span class="n">aspirin</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">cox1</span><span class="p">)</span>
+
+<span class="c1"># 5. Query</span>
+<span class="n">drugs</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_individuals_of_class</span><span class="p">(</span><span class="n">drug</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total drugs: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">drugs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 6. Save</span>
+<span class="n">serializer</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">RDFXMLSerializer</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;pharma.owl&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">onto</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="more-examples">
+<h3>More Examples<a class="headerlink" href="#more-examples" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/test_new_api.py</span></code> - Comprehensive API demonstration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/kg_projects/neurokb/neurokb.py</span></code> - Neuroscience knowledge base</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/kg_projects/alzkb/alzkb.py</span></code> - Alzheimer’s knowledge base</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<p>The ista.owl2 library is built automatically when you install ista:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install in development mode (builds C++ extension)</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+
+<span class="c1"># Or install from PyPI (when available)</span>
+pip<span class="w"> </span>install<span class="w"> </span>ista
+</pre></div>
+</div>
+<section id="build-requirements">
+<h3>Build Requirements<a class="headerlink" href="#build-requirements" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>C++20 compatible compiler (GCC 10+, Clang 10+, MSVC 2019+)</p></li>
+<li><p>CMake 3.15+</p></li>
+<li><p>Python 3.7+</p></li>
+<li><p>pybind11 (automatically downloaded)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="migration-from-owlready2">
+<h2>Migration from owlready2<a class="headerlink" href="#migration-from-owlready2" title="Link to this heading">¶</a></h2>
+<p>ista previously used owlready2 for OWL ontology manipulation. As of version 0.2.0, we’ve migrated entirely to the native ista.owl2 implementation for better performance and control.</p>
+<p><strong>Key differences:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>owlready2 (Old)</p></th>
+<th class="head"><p>ista.owl2 (New)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Load ontology</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">owlready2.get_ontology(&quot;file://...&quot;).load()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">owl2.RDFXMLParser.parse_from_file(...)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Create individual</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SomeClass(&quot;name&quot;)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onto.create_individual(cls,</span> <span class="pre">iri)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Add property</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">individual.property</span> <span class="pre">=</span> <span class="pre">value</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onto.add_data_property_assertion(...)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Search</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onto.search(property=value)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onto.search_by_data_property(property,</span> <span class="pre">value)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Save</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onto.save(file=f,</span> <span class="pre">format=&quot;rdfxml&quot;)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">serializer.serialize(onto)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>See <code class="docutils literal notranslate"><span class="pre">docs/OWLREADY2_MIGRATION_ANALYSIS.md</span></code> for complete migration guide.</p>
+</section>
+<hr class="docutils" />
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>API Documentation</strong>: See Python docstrings and this guide</p></li>
+<li><p><strong>C++ Documentation</strong>: See <code class="docutils literal notranslate"><span class="pre">lib/README.md</span></code> and Doxygen docs</p></li>
+<li><p><strong>Examples</strong>: <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory</p></li>
+<li><p><strong>Issues</strong>: https://github.com/JDRomano2/ista/issues</p></li>
+</ul>
+<hr class="docutils" />
+<p><em>Last Updated: 2025-12-30</em><br />
+<em>ista Version: 0.2.0</em></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="python_library.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Python Library Guide</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">User Guide</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, ista Contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">OWL2 Interface in ista</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#core-functionality">Core Functionality</a><ul>
+<li><a class="reference internal" href="#ontology-creation-and-management">1. Ontology Creation and Management</a></li>
+<li><a class="reference internal" href="#classes-and-properties">2. Classes and Properties</a></li>
+<li><a class="reference internal" href="#individual-creation-and-management">3. Individual Creation and Management</a></li>
+<li><a class="reference internal" href="#property-assertions">4. Property Assertions</a></li>
+<li><a class="reference internal" href="#search-and-query-operations">5. Search and Query Operations</a></li>
+<li><a class="reference internal" href="#property-characteristics">6. Property Characteristics</a></li>
+<li><a class="reference internal" href="#serialization-and-parsing">7. Serialization and Parsing</a></li>
+<li><a class="reference internal" href="#high-performance-subgraph-extraction">8. High-Performance Subgraph Extraction</a></li>
+<li><a class="reference internal" href="#graph-analysis">9. Graph Analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#database-parsing-integration">Database Parsing Integration</a></li>
+<li><a class="reference internal" href="#complete-api-reference">Complete API Reference</a><ul>
+<li><a class="reference internal" href="#core-types">Core Types</a></li>
+<li><a class="reference internal" href="#entities">Entities</a></li>
+<li><a class="reference internal" href="#ontology-methods">Ontology Methods</a></li>
+<li><a class="reference internal" href="#serialization">Serialization</a></li>
+<li><a class="reference internal" href="#filtering">Filtering</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a></li>
+<li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#complete-workflow-example">Complete Workflow Example</a></li>
+<li><a class="reference internal" href="#more-examples">More Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#build-requirements">Build Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migration-from-owlready2">Migration from owlready2</a></li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

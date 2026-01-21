@@ -1,0 +1,1449 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Python API Reference" href="../api/index.html"><link rel="prev" title="Data Loading" href="database_parsing.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Data Loading YAML Schema Reference - ista 0.1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ista 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">ista 0.1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">User Guide</a><input aria-label="Toggle navigation of User Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="owl2_interfaces.html">OWL2 Interface in ista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_converters.html">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Loading YAML Schema Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owl2_interfaces.html">OWL2 Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_converters.html">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Data Loading Schema Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Python API Reference</a><input aria-label="Toggle navigation of Python API Reference" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/owl2.html">ista.owl2 Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2.html">ista.owl2</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.converters.html">ista.converters</a><input aria-label="Toggle navigation of ista.converters" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.igraph_converter.html">ista.converters.igraph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ista_graph_converter.html">ista.converters.ista_graph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.networkx_converter.html">ista.converters.networkx_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ontology_to_graph.html">ista.converters.ontology_to_graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.database_parser.html">ista.database_parser</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.graph.html">ista.graph</a><input aria-label="Toggle navigation of ista.graph" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.edge.html">ista.graph.edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.graph.html">ista.graph.graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.node.html">ista.graph.node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2memgraph.html">ista.owl2memgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.memgraph_loader.html">ista.memgraph_loader</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API Reference</a><input aria-label="Toggle navigation of C++ API Reference" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/core.html">Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/serializers.html">Serializers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/parsers.html">Parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/namespaces.html">Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to ista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/blob/master/docs/source/user_guide/data_loading_schema.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/edit/master/docs/source/user_guide/data_loading_schema.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="data-loading-yaml-schema-reference">
+<h1>Data Loading YAML Schema Reference<a class="headerlink" href="#data-loading-yaml-schema-reference" title="Link to this heading">¶</a></h1>
+<p>This document provides a complete reference for the YAML mapping specification schema used
+by the ista data loading system. For a tutorial introduction, see <a class="reference internal" href="database_parsing.html"><span class="doc">Data Loading</span></a>.</p>
+<section id="schema-version">
+<h2>Schema Version<a class="headerlink" href="#schema-version" title="Link to this heading">¶</a></h2>
+<p>The current schema version is <strong>1.0</strong>. Always specify the version in your mapping files:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="top-level-structure">
+<h2>Top-Level Structure<a class="headerlink" href="#top-level-structure" title="Link to this heading">¶</a></h2>
+<p>A complete mapping specification has the following top-level keys:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="w">              </span><span class="c1"># Required: Schema version</span>
+<span class="nt">base_iri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w">             </span><span class="c1"># Required: Base IRI for generated individuals</span>
+<span class="nt">sources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span><span class="w">              </span><span class="c1"># Required: Data source definitions</span>
+<span class="nt">transforms</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span><span class="w">           </span><span class="c1"># Optional: Custom transform definitions</span>
+<span class="nt">node_mappings</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># Optional: Node/individual mappings</span>
+<span class="nt">relationship_mappings</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Optional: Relationship mappings</span>
+</pre></div>
+</div>
+<div class="table-wrapper colwidths-given docutils container" id="id4">
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Top-Level Keys</span><a class="headerlink" href="#id4" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Schema version string (currently “1.0”)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">base_iri</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Base IRI namespace for generated individual IRIs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sources</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Map of data source definitions (at least one required)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transforms</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Map of custom transform definitions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_mappings</span></code></p></td>
+<td><p>No</p></td>
+<td><p>List of node mapping definitions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">relationship_mappings</span></code></p></td>
+<td><p>No</p></td>
+<td><p>List of relationship mapping definitions</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sources</span></code> section defines data sources as a map from source name to source definition.</p>
+<section id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">&lt;source_name&gt;</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;source_type&gt;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;file_path&gt;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;boolean&gt;</span>
+<span class="w">    </span><span class="nt">delimiter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;delimiter_char&gt;</span>
+<span class="w">    </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;encoding&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="source-definition-keys">
+<h3>Source Definition Keys<a class="headerlink" href="#source-definition-keys" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Source type: <code class="docutils literal notranslate"><span class="pre">csv</span></code>, <code class="docutils literal notranslate"><span class="pre">tsv</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite</span></code>, <code class="docutils literal notranslate"><span class="pre">mysql</span></code>, <code class="docutils literal notranslate"><span class="pre">postgres</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">path</span></code></p></td>
+<td><p>File sources</p></td>
+<td><p>string</p></td>
+<td><p>File path (relative to YAML file or absolute). Supports <code class="docutils literal notranslate"><span class="pre">${ENV_VAR}</span></code> syntax.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">has_headers</span></code></p></td>
+<td><p>No</p></td>
+<td><p>boolean</p></td>
+<td><p>Whether first row contains column headers. Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delimiter</span></code></p></td>
+<td><p>No</p></td>
+<td><p>string</p></td>
+<td><p>Field delimiter character. Default: <code class="docutils literal notranslate"><span class="pre">,</span></code> for CSV, <code class="docutils literal notranslate"><span class="pre">\t</span></code> for TSV</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connection</span></code></p></td>
+<td><p>DB sources</p></td>
+<td><p>object</p></td>
+<td><p>Database connection parameters (see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">table</span></code></p></td>
+<td><p>DB sources*</p></td>
+<td><p>string</p></td>
+<td><p>Table name to query</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>DB sources*</p></td>
+<td><p>string</p></td>
+<td><p>Custom SQL query (alternative to <code class="docutils literal notranslate"><span class="pre">table</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>* For database sources, either <code class="docutils literal notranslate"><span class="pre">table</span></code> or <code class="docutils literal notranslate"><span class="pre">query</span></code> is required.</p>
+</section>
+<section id="file-based-source-types">
+<h3>File-Based Source Types<a class="headerlink" href="#file-based-source-types" title="Link to this heading">¶</a></h3>
+<p><strong>CSV</strong> (Comma-Separated Values)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">drugs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./data/drugs.csv&quot;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">delimiter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+</pre></div>
+</div>
+<p><strong>TSV</strong> (Tab-Separated Values)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">genes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tsv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./data/genes.tsv&quot;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="database-source-types">
+<h3>Database Source Types<a class="headerlink" href="#database-source-types" title="Link to this heading">¶</a></h3>
+<p><strong>SQLite</strong> (File-Based Database)</p>
+<p>SQLite databases are file-based and require only a path:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">local_db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./data/biomedical.sqlite&quot;</span>
+<span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugs</span>
+<span class="w">    </span><span class="c1"># Or use a custom query:</span>
+<span class="w">    </span><span class="c1"># query: &quot;SELECT * FROM drugs WHERE approved = 1&quot;</span>
+</pre></div>
+</div>
+<p><strong>MySQL</strong></p>
+<p>MySQL databases require connection parameters:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clinical_trials</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DB_HOST}&quot;</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
+<span class="w">      </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_data</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DB_USER}&quot;</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DB_PASSWORD}&quot;</span>
+<span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trials</span>
+
+<span class="w">  </span><span class="c1"># With custom query</span>
+<span class="w">  </span><span class="nt">human_pathways</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class="w">      </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aopdb</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DB_USER}&quot;</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DB_PASSWORD}&quot;</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">SELECT DISTINCT path_id, path_name</span>
+<span class="w">      </span><span class="no">FROM pathway_gene</span>
+<span class="w">      </span><span class="no">WHERE tax_id = 9606</span>
+</pre></div>
+</div>
+<p><strong>PostgreSQL</strong></p>
+<p>PostgreSQL uses similar syntax to MySQL:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">research_db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span><span class="w">  </span><span class="c1"># or &quot;postgresql&quot;</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db.example.org</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span>
+<span class="w">      </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">research</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${PG_USER}&quot;</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${PG_PASSWORD}&quot;</span>
+<span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiments</span>
+
+<span class="w">  </span><span class="c1"># Using connection string</span>
+<span class="w">  </span><span class="nt">analytics</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">connection_string</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql://${PG_USER}:${PG_PASSWORD}@host:5432/analytics&quot;</span>
+<span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">results</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;complete&#39;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="database-connection-parameters">
+<h3>Database Connection Parameters<a class="headerlink" href="#database-connection-parameters" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 10.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
+<td><p>Yes*</p></td>
+<td><p>Database server hostname</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">port</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Port number (default: 3306 for MySQL, 5432 for PostgreSQL)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">database</span></code></p></td>
+<td><p>Yes*</p></td>
+<td><p>Database name</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">username</span></code></p></td>
+<td><p>Yes*</p></td>
+<td><p>Database username</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>Yes*</p></td>
+<td><p>Database password (use environment variables!)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connection_string</span></code></p></td>
+<td><p>Alt</p></td>
+<td><p>Full connection string (alternative to individual parameters)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>* Required unless using <code class="docutils literal notranslate"><span class="pre">connection_string</span></code></p>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
+<p>Paths and connection parameters support environment variable expansion:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># File path with env var</span>
+<span class="w">  </span><span class="nt">drugbank</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DATA_ROOT}/drugbank/drugs.csv&quot;</span>
+
+<span class="w">  </span><span class="c1"># Database credentials with env vars</span>
+<span class="w">  </span><span class="nt">aopdb</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${MYSQL_HOST}&quot;</span>
+<span class="w">      </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aopdb</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${MYSQL_USER}&quot;</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${MYSQL_PASSWORD}&quot;</span>
+<span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chemicals</span>
+</pre></div>
+</div>
+<p>Environment variables are resolved when loading the specification or by calling
+<code class="docutils literal notranslate"><span class="pre">spec.resolve_environment_variables()</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never hardcode database passwords in YAML files. Always use environment variables
+for sensitive credentials.</p>
+</div>
+</section>
+</section>
+<section id="transforms">
+<h2>Transforms<a class="headerlink" href="#transforms" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">transforms</span></code> section defines custom, named transforms that can be referenced
+in property mappings.</p>
+<section id="id1">
+<h3>Structure<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">&lt;transform_name&gt;</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;builtin_type&gt;</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">&lt;param_name&gt;</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;param_value&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="transform-definition-keys">
+<h3>Transform Definition Keys<a class="headerlink" href="#transform-definition-keys" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Builtin transform type (see list below)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">params</span></code></p></td>
+<td><p>Depends</p></td>
+<td><p>map</p></td>
+<td><p>Parameters for the transform (if required by type)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="builtin-transform-types">
+<h3>Builtin Transform Types<a class="headerlink" href="#builtin-transform-types" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 35.0%" />
+<col style="width: 47.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Parameters</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lowercase</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Convert string to lowercase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uppercase</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Convert string to uppercase</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trim</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Remove leading and trailing whitespace</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">prefix</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: string to prepend</p></td>
+<td><p>Add prefix to value</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">suffix</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: string to append</p></td>
+<td><p>Add suffix to value</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">strip_prefix</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: prefix to remove</p></td>
+<td><p>Remove prefix if present</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">strip_suffix</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: suffix to remove</p></td>
+<td><p>Remove suffix if present</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">split</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">delimiter</span></code>: split character, <code class="docutils literal notranslate"><span class="pre">index</span></code>: element index</p></td>
+<td><p>Split string and return element at index (-1 for last)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">replace</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">old</span></code>: substring to find, <code class="docutils literal notranslate"><span class="pre">new</span></code>: replacement</p></td>
+<td><p>Replace all occurrences of substring</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regex_extract</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pattern</span></code>: regex, <code class="docutils literal notranslate"><span class="pre">group</span></code>: capture group number</p></td>
+<td><p>Extract regex capture group</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">to_int</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Parse and format as integer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">to_float</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Parse and format as floating point</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">identity</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Return value unchanged (useful in chains)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_if_empty</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code>: fallback value</p></td>
+<td><p>Use default if input is empty</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chain</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">transforms</span></code>: comma-separated list</p></td>
+<td><p>Apply multiple transforms in sequence</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="transform-examples">
+<h3>Transform Examples<a class="headerlink" href="#transform-examples" title="Link to this heading">¶</a></h3>
+<p><strong>Simple transform:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clean_symbol</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uppercase</span>
+</pre></div>
+</div>
+<p><strong>Transform with parameters:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">remove_db_prefix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strip_prefix</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DB:&quot;</span>
+</pre></div>
+</div>
+<p><strong>Chained transforms:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">normalize_id</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chain</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">transforms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;trim,uppercase,strip_prefix&quot;</span>
+</pre></div>
+</div>
+<p><strong>Split and extract:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">get_last_segment</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">split</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">delimiter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;::&quot;</span>
+<span class="w">      </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-1&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="node-mappings">
+<h2>Node Mappings<a class="headerlink" href="#node-mappings" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">node_mappings</span></code> section defines how data rows become OWL individuals.</p>
+<section id="id2">
+<h3>Structure<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">node_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;mapping_name&gt;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;source_name&gt;</span>
+<span class="w">    </span><span class="nt">target_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;class_local_name&gt;</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;create|enrich&gt;</span>
+<span class="w">    </span><span class="nt">iri_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;filter_value&gt;</span>
+<span class="w">      </span><span class="nt">contains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;boolean&gt;</span>
+<span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">source_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">      </span><span class="nt">target_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;property_local_name&gt;</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;property_local_name&gt;</span>
+<span class="w">        </span><span class="nt">transform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;transform_name&gt;</span>
+<span class="w">        </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;xsd_type&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="node-mapping-keys">
+<h3>Node Mapping Keys<a class="headerlink" href="#node-mapping-keys" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Unique, descriptive name for this mapping</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Name of a source defined in <code class="docutils literal notranslate"><span class="pre">sources</span></code> section</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">target_class</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Local name of the OWL class for individuals</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">create</span></code> for new individuals, <code class="docutils literal notranslate"><span class="pre">enrich</span></code> for existing</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iri_column</span></code></p></td>
+<td><p>Create only</p></td>
+<td><p>string</p></td>
+<td><p>Column used to generate individual IRIs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
+<td><p>No</p></td>
+<td><p>object</p></td>
+<td><p>Row filter criteria (see below)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
+<td><p>Enrich only</p></td>
+<td><p>object</p></td>
+<td><p>How to match existing individuals (see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">properties</span></code></p></td>
+<td><p>No</p></td>
+<td><p>list</p></td>
+<td><p>List of property mappings (see below)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mapping-modes">
+<h3>Mapping Modes<a class="headerlink" href="#mapping-modes" title="Link to this heading">¶</a></h3>
+<p><strong>create</strong>: Creates new individuals. The <code class="docutils literal notranslate"><span class="pre">iri_column</span></code> value is used to generate a unique IRI.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">node_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Create</span><span class="nv"> </span><span class="s">Drugs&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank</span>
+<span class="w">    </span><span class="nt">target_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drug</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+<span class="w">    </span><span class="nt">iri_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank_id</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commonName</span>
+</pre></div>
+</div>
+<p><strong>enrich</strong>: Adds properties to existing individuals matched by a property value.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">node_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Add</span><span class="nv"> </span><span class="s">Toxicity</span><span class="nv"> </span><span class="s">Data&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epa_data</span>
+<span class="w">    </span><span class="nt">target_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drug</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enrich</span>
+<span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">source_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cas_number</span>
+<span class="w">      </span><span class="nt">target_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casNumber</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toxicity_class</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toxicityClassification</span>
+</pre></div>
+</div>
+</section>
+<section id="filter-definition">
+<h3>Filter Definition<a class="headerlink" href="#filter-definition" title="Link to this heading">¶</a></h3>
+<p>Filters control which rows are processed.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">column</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Column to filter on</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Value to match</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contains</span></code></p></td>
+<td><p>No</p></td>
+<td><p>boolean</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, substring match. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, exact match. Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">species</span>
+<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">  </span><span class="nt">contains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># Exact match</span>
+</pre></div>
+</div>
+</section>
+<section id="match-criteria">
+<h3>Match Criteria<a class="headerlink" href="#match-criteria" title="Link to this heading">¶</a></h3>
+<p>Match criteria specify how to find existing individuals in <code class="docutils literal notranslate"><span class="pre">enrich</span></code> mode.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">source_column</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Column in the data source containing the match value</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">target_property</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Data property local name to search for matching individuals</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">match</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">source_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cas_number</span>
+<span class="w">  </span><span class="nt">target_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casNumber</span>
+</pre></div>
+</div>
+</section>
+<section id="property-mappings">
+<h3>Property Mappings<a class="headerlink" href="#property-mappings" title="Link to this heading">¶</a></h3>
+<p>Property mappings define how columns become data property assertions.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">column</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Source column name</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">property</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Target data property local name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></td>
+<td><p>No</p></td>
+<td><p>string</p></td>
+<td><p>Transform name to apply to value</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">datatype</span></code></p></td>
+<td><p>No</p></td>
+<td><p>string</p></td>
+<td><p>XSD datatype for typed literal (see below)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_id</span>
+<span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneId</span>
+<span class="w">    </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xsd:integer</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">symbol</span>
+<span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneSymbol</span>
+<span class="w">    </span><span class="nt">transform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uppercase</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
+<span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hasDescription</span>
+</pre></div>
+</div>
+</section>
+<section id="xsd-datatypes">
+<h3>XSD Datatypes<a class="headerlink" href="#xsd-datatypes" title="Link to this heading">¶</a></h3>
+<p>Supported <code class="docutils literal notranslate"><span class="pre">datatype</span></code> values:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Datatype</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:string</span></code></p></td>
+<td><p>Plain string (default if no datatype specified)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:integer</span></code></p></td>
+<td><p>Integer number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:int</span></code></p></td>
+<td><p>32-bit integer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:long</span></code></p></td>
+<td><p>64-bit integer</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:double</span></code></p></td>
+<td><p>Double-precision floating point</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:float</span></code></p></td>
+<td><p>Single-precision floating point</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:decimal</span></code></p></td>
+<td><p>Arbitrary precision decimal</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:boolean</span></code></p></td>
+<td><p>Boolean (true/false)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:date</span></code></p></td>
+<td><p>Date (YYYY-MM-DD)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:dateTime</span></code></p></td>
+<td><p>Date and time</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xsd:anyURI</span></code></p></td>
+<td><p>URI reference</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="relationship-mappings">
+<h2>Relationship Mappings<a class="headerlink" href="#relationship-mappings" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">relationship_mappings</span></code> section defines how to create object property assertions
+between individuals.</p>
+<section id="id3">
+<h3>Structure<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">relationship_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;mapping_name&gt;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;source_name&gt;</span>
+<span class="w">    </span><span class="nt">relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;object_property_local_name&gt;</span>
+<span class="w">    </span><span class="nt">inverse_relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;object_property_local_name&gt;</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;filter_value&gt;</span>
+<span class="w">      </span><span class="nt">contains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;boolean&gt;</span>
+<span class="w">    </span><span class="nt">subject</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;class_local_name&gt;</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;data_property_local_name&gt;</span>
+<span class="w">    </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;class_local_name&gt;</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;column_name&gt;</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;data_property_local_name&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="relationship-mapping-keys">
+<h3>Relationship Mapping Keys<a class="headerlink" href="#relationship-mapping-keys" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Unique, descriptive name for this mapping</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Name of a source defined in <code class="docutils literal notranslate"><span class="pre">sources</span></code> section</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">relationship</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Local name of the object property</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inverse_relationship</span></code></p></td>
+<td><p>No</p></td>
+<td><p>string</p></td>
+<td><p>Local name of inverse object property (optional)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
+<td><p>No</p></td>
+<td><p>object</p></td>
+<td><p>Row filter criteria (same as node mappings)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">subject</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>object</p></td>
+<td><p>Subject entity reference (see below)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>object</p></td>
+<td><p>Object entity reference (see below)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="entity-reference">
+<h3>Entity Reference<a class="headerlink" href="#entity-reference" title="Link to this heading">¶</a></h3>
+<p>Entity references (<code class="docutils literal notranslate"><span class="pre">subject</span></code> and <code class="docutils literal notranslate"><span class="pre">object</span></code>) specify how to find individuals.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Local name of the OWL class</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">column</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Source column containing the match value</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">match_property</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>string</p></td>
+<td><p>Data property local name to match against</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">relationship_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drug-Gene</span><span class="nv"> </span><span class="s">Targets&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drug_targets</span>
+<span class="w">    </span><span class="nt">relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugTargetsGene</span>
+<span class="w">    </span><span class="nt">inverse_relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneTargetedByDrug</span>
+<span class="w">    </span><span class="nt">subject</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drug</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank_id</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbankId</span>
+<span class="w">    </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gene</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_symbol</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneSymbol</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="complete-example">
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading">¶</a></h2>
+<p>Here is a complete, annotated mapping specification:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Schema version (required)</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+
+<span class="c1"># Base IRI for generated individuals (required)</span>
+<span class="nt">base_iri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.org/biomedical#&quot;</span>
+
+<span class="c1"># Custom transforms (optional)</span>
+<span class="nt">transforms</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Remove &quot;GENE:&quot; prefix</span>
+<span class="w">  </span><span class="nt">clean_gene_id</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strip_prefix</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GENE:&quot;</span>
+
+<span class="w">  </span><span class="c1"># Normalize drug identifiers</span>
+<span class="w">  </span><span class="nt">normalize_drug_id</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chain</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">transforms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;trim,uppercase&quot;</span>
+
+<span class="c1"># Data sources (required, at least one)</span>
+<span class="nt">sources</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Primary drug data from DrugBank</span>
+<span class="w">  </span><span class="nt">drugbank</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DATA_DIR}/drugbank/drugs.csv&quot;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="c1"># Gene data from NCBI</span>
+<span class="w">  </span><span class="nt">ncbi_gene</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tsv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DATA_DIR}/ncbi/genes.tsv&quot;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="c1"># Drug-gene interaction data</span>
+<span class="w">  </span><span class="nt">drug_targets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${DATA_DIR}/interactions/drug_targets.csv&quot;</span>
+<span class="w">    </span><span class="nt">has_headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Node/individual mappings</span>
+<span class="nt">node_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Primary source for Drug individuals</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DrugBank</span><span class="nv"> </span><span class="s">Drugs&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank</span>
+<span class="w">    </span><span class="nt">target_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drug</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+<span class="w">    </span><span class="nt">iri_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank_id</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commonName</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank_id</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbankId</span>
+<span class="w">        </span><span class="nt">transform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalize_drug_id</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cas_number</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casNumber</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_weight</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecularWeight</span>
+<span class="w">        </span><span class="nt">datatype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xsd:double</span>
+
+<span class="w">  </span><span class="c1"># Primary source for Gene individuals (human genes only)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBI</span><span class="nv"> </span><span class="s">Human</span><span class="nv"> </span><span class="s">Genes&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ncbi_gene</span>
+<span class="w">    </span><span class="nt">target_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gene</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+<span class="w">    </span><span class="nt">iri_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_id</span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tax_id</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9606&quot;</span>
+<span class="w">      </span><span class="nt">contains</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_id</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneId</span>
+<span class="w">        </span><span class="nt">transform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clean_gene_id</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">symbol</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneSymbol</span>
+<span class="w">        </span><span class="nt">transform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uppercase</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
+<span class="w">        </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hasDescription</span>
+
+<span class="c1"># Relationship mappings</span>
+<span class="nt">relationship_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Create drug-gene target relationships</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Drug-Gene</span><span class="nv"> </span><span class="s">Targets&quot;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drug_targets</span>
+<span class="w">    </span><span class="nt">relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugTargetsGene</span>
+<span class="w">    </span><span class="nt">inverse_relationship</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneTargetedByDrug</span>
+<span class="w">    </span><span class="nt">subject</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drug</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbank_id</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drugbankId</span>
+<span class="w">    </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gene</span>
+<span class="w">      </span><span class="nt">column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_symbol</span>
+<span class="w">      </span><span class="nt">match_property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geneSymbol</span>
+</pre></div>
+</div>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading">¶</a></h2>
+<p>The loader validates mapping specifications against the target ontology. Common validation errors:</p>
+<p><strong>Class not found:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Class &#39;DrugXYZ&#39; not found in ontology
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">target_class</span></code> in a node mapping doesn’t exist in the ontology.</p>
+<p><strong>Property not found:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Data property &#39;unknownProperty&#39; not found in ontology
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">property</span></code> in a property mapping doesn’t exist in the ontology.</p>
+<p><strong>Source not defined:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Source &#39;undefined_source&#39; referenced in mapping &#39;My Mapping&#39; not defined
+</pre></div>
+</div>
+<p>A node or relationship mapping references a source that wasn’t defined.</p>
+<p><strong>Missing required keys:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Node mapping &#39;My Mapping&#39; with mode &#39;create&#39; requires &#39;iri_column&#39;
+</pre></div>
+</div>
+<p>A create-mode mapping is missing the <code class="docutils literal notranslate"><span class="pre">iri_column</span></code> specification.</p>
+<p><strong>Transform not found:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Transform &#39;nonexistent_transform&#39; not defined
+</pre></div>
+</div>
+<p>A property mapping references an undefined transform.</p>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use descriptive mapping names</strong>: Names appear in error messages and statistics</p></li>
+<li><p><strong>Validate before loading</strong>: Always call <code class="docutils literal notranslate"><span class="pre">loader.validate()</span></code> before <code class="docutils literal notranslate"><span class="pre">loader.execute()</span></code></p></li>
+<li><p><strong>Use environment variables for paths</strong>: Makes specs portable across environments</p></li>
+<li><p><strong>Define transforms once, use many times</strong>: Avoid duplicating transform logic</p></li>
+<li><p><strong>Order mappings correctly</strong>: Create primary individuals before enrichment mappings</p></li>
+<li><p><strong>Use explicit datatypes</strong>: Specify datatypes for numeric and boolean values</p></li>
+<li><p><strong>Document your specs</strong>: Add YAML comments to explain non-obvious mappings</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="database_parsing.html"><span class="doc">Data Loading</span></a> - Tutorial and usage guide</p></li>
+<li><p><a class="reference internal" href="owl2_interfaces.html"><span class="doc">OWL2 Interface in ista</span></a> - OWL2 API documentation</p></li>
+<li><p><a class="reference internal" href="python_library.html"><span class="doc">Python Library Guide</span></a> - Python library reference</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../api/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Python API Reference</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="database_parsing.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Data Loading</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, ista Contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Data Loading YAML Schema Reference</a><ul>
+<li><a class="reference internal" href="#schema-version">Schema Version</a></li>
+<li><a class="reference internal" href="#top-level-structure">Top-Level Structure</a></li>
+<li><a class="reference internal" href="#sources">Sources</a><ul>
+<li><a class="reference internal" href="#structure">Structure</a></li>
+<li><a class="reference internal" href="#source-definition-keys">Source Definition Keys</a></li>
+<li><a class="reference internal" href="#file-based-source-types">File-Based Source Types</a></li>
+<li><a class="reference internal" href="#database-source-types">Database Source Types</a></li>
+<li><a class="reference internal" href="#database-connection-parameters">Database Connection Parameters</a></li>
+<li><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transforms">Transforms</a><ul>
+<li><a class="reference internal" href="#id1">Structure</a></li>
+<li><a class="reference internal" href="#transform-definition-keys">Transform Definition Keys</a></li>
+<li><a class="reference internal" href="#builtin-transform-types">Builtin Transform Types</a></li>
+<li><a class="reference internal" href="#transform-examples">Transform Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#node-mappings">Node Mappings</a><ul>
+<li><a class="reference internal" href="#id2">Structure</a></li>
+<li><a class="reference internal" href="#node-mapping-keys">Node Mapping Keys</a></li>
+<li><a class="reference internal" href="#mapping-modes">Mapping Modes</a></li>
+<li><a class="reference internal" href="#filter-definition">Filter Definition</a></li>
+<li><a class="reference internal" href="#match-criteria">Match Criteria</a></li>
+<li><a class="reference internal" href="#property-mappings">Property Mappings</a></li>
+<li><a class="reference internal" href="#xsd-datatypes">XSD Datatypes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relationship-mappings">Relationship Mappings</a><ul>
+<li><a class="reference internal" href="#id3">Structure</a></li>
+<li><a class="reference internal" href="#relationship-mapping-keys">Relationship Mapping Keys</a></li>
+<li><a class="reference internal" href="#entity-reference">Entity Reference</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#complete-example">Complete Example</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
