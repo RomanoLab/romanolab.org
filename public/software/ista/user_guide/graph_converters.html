@@ -1,0 +1,788 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Subgraph Extraction" href="subgraph_extraction.html"><link rel="prev" title="C++ Library Guide" href="cpp_library.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Graph Converters - ista 0.1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ista 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">ista 0.1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">User Guide</a><input aria-label="Toggle navigation of User Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="owl2_interfaces.html">OWL2 Interface in ista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loading_schema.html">Data Loading YAML Schema Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owl2_interfaces.html">OWL2 Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_library.html">Python Library Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_library.html">C++ Library Usage</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Graph Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subgraph_extraction.html">Subgraph Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_parsing.html">Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loading_schema.html">Data Loading Schema Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Python API Reference</a><input aria-label="Toggle navigation of Python API Reference" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/owl2.html">ista.owl2 Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2.html">ista.owl2</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.converters.html">ista.converters</a><input aria-label="Toggle navigation of ista.converters" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.igraph_converter.html">ista.converters.igraph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ista_graph_converter.html">ista.converters.ista_graph_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.networkx_converter.html">ista.converters.networkx_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.converters.ontology_to_graph.html">ista.converters.ontology_to_graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.database_parser.html">ista.database_parser</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/generated/ista.graph.html">ista.graph</a><input aria-label="Toggle navigation of ista.graph" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.edge.html">ista.graph.edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.graph.html">ista.graph.graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/ista.graph.node.html">ista.graph.node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.owl2memgraph.html">ista.owl2memgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/ista.memgraph_loader.html">ista.memgraph_loader</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API Reference</a><input aria-label="Toggle navigation of C++ API Reference" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/core.html">Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/serializers.html">Serializers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/parsers.html">Parsers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/namespaces.html">Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to ista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/blob/master/docs/source/user_guide/graph_converters.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/JDRomano2/ista/edit/master/docs/source/user_guide/graph_converters.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="graph-converters">
+<h1>Graph Converters<a class="headerlink" href="#graph-converters" title="Link to this heading">¶</a></h1>
+<p>The ista library provides utilities to convert OWL2 ontologies into various graph
+representations for analysis, visualization, and integration with other tools.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>Graph conversion enables:</p>
+<ul class="simple">
+<li><p><strong>Network Analysis</strong>: Use NetworkX, igraph, or other graph libraries</p></li>
+<li><p><strong>Visualization</strong>: Export to formats for Gephi, Cytoscape, etc.</p></li>
+<li><p><strong>Machine Learning</strong>: Convert to graph embeddings for ML pipelines</p></li>
+<li><p><strong>Data Analysis</strong>: Work with ontologies as tabular data (pandas)</p></li>
+</ul>
+</section>
+<section id="available-converters">
+<h2>Available Converters<a class="headerlink" href="#available-converters" title="Link to this heading">¶</a></h2>
+<p>ista provides converters to several popular formats:</p>
+<ul class="simple">
+<li><p><strong>NetworkX</strong> - Python graph library for analysis</p></li>
+<li><p><strong>pandas DataFrame</strong> - Tabular representation</p></li>
+<li><p><strong>RDF Graph</strong> - RDF/XML, Turtle, N-Triples</p></li>
+<li><p><strong>Edge List</strong> - Simple source-target pairs</p></li>
+<li><p><strong>Adjacency Matrix</strong> - Matrix representation</p></li>
+</ul>
+</section>
+<section id="networkx-converter">
+<h2>NetworkX Converter<a class="headerlink" href="#networkx-converter" title="Link to this heading">¶</a></h2>
+<p>Convert ontologies to NetworkX directed graphs.</p>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">ontology_to_networkx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+
+<span class="c1"># Load ontology</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">owl2</span><span class="o">.</span><span class="n">FunctionalSyntaxParser</span><span class="p">()</span>
+<span class="n">ont</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;biomedical.ofn&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to NetworkX</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">ontology_to_networkx</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+
+<span class="c1"># Basic statistics</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nodes: </span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edges: </span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Density: </span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="node-and-edge-attributes">
+<h3>Node and Edge Attributes<a class="headerlink" href="#node-and-edge-attributes" title="Link to this heading">¶</a></h3>
+<p>The converter preserves ontology information as graph attributes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Node attributes</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node: </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Type: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_type&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># CLASS, PROPERTY, etc.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Label: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  IRI: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;iri&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Edge attributes</span>
+<span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edge: </span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Relation: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;relation_type&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># subClassOf, etc.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Property: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;property&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="conversion-options">
+<h3>Conversion Options<a class="headerlink" href="#conversion-options" title="Link to this heading">¶</a></h3>
+<p>Customize the conversion process:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">ontology_to_networkx</span><span class="p">(</span>
+    <span class="n">ont</span><span class="p">,</span>
+    <span class="n">include_individuals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>      <span class="c1"># Include named individuals</span>
+    <span class="n">include_literals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>         <span class="c1"># Exclude literal nodes</span>
+    <span class="n">simplify_iris</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>             <span class="c1"># Use short forms for node labels</span>
+    <span class="n">include_annotations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>       <span class="c1"># Include annotation properties</span>
+    <span class="n">property_edges_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>      <span class="c1"># Include all axiom types</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="graph-analysis">
+<h3>Graph Analysis<a class="headerlink" href="#graph-analysis" title="Link to this heading">¶</a></h3>
+<p>Leverage NetworkX for powerful graph analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+
+<span class="c1"># Centrality measures</span>
+<span class="n">degree_cent</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">betweenness</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">closeness</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Find most central nodes</span>
+<span class="n">top_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">degree_cent</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 10 most connected entities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">centrality</span> <span class="ow">in</span> <span class="n">top_nodes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">centrality</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Community detection</span>
+<span class="n">G_undirected</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">()</span>
+<span class="n">communities</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">greedy_modularity_communities</span><span class="p">(</span><span class="n">G_undirected</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">communities</span><span class="p">)</span><span class="si">}</span><span class="s2"> communities&quot;</span><span class="p">)</span>
+
+<span class="c1"># Shortest paths</span>
+<span class="k">if</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_weakly_connected</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="n">avg_path_length</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">diameter</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">diameter</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average path length: </span><span class="si">{</span><span class="n">avg_path_length</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diameter: </span><span class="si">{</span><span class="n">diameter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Find hierarchy depth</span>
+<span class="c1"># Assume we have a root class</span>
+<span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;owl:Thing&quot;</span>
+<span class="k">if</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+    <span class="n">depths</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">depths</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum hierarchy depth: </span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization">
+<h3>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">¶</a></h3>
+<p>Create visualizations using NetworkX and matplotlib:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Simple visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ontology Graph&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;ontology_graph.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Color by entity type</span>
+<span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;OBJECT_PROPERTY&#39;</span><span class="p">:</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DATA_PROPERTY&#39;</span><span class="p">:</span> <span class="s1">&#39;lightyellow&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NAMED_INDIVIDUAL&#39;</span><span class="p">:</span> <span class="s1">&#39;lightcoral&#39;</span>
+<span class="p">}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">color_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_type&#39;</span><span class="p">),</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ontology Graph (colored by entity type)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;ontology_graph_colored.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="export-to-other-tools">
+<h3>Export to Other Tools<a class="headerlink" href="#export-to-other-tools" title="Link to this heading">¶</a></h3>
+<p>Export NetworkX graphs to formats for other visualization tools:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export to GEXF (for Gephi)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">write_gexf</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;ontology.gexf&quot;</span><span class="p">)</span>
+
+<span class="c1"># Export to GraphML (for Cytoscape, yEd)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">write_graphml</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;ontology.graphml&quot;</span><span class="p">)</span>
+
+<span class="c1"># Export to JSON (for D3.js)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">networkx.readwrite</span><span class="w"> </span><span class="kn">import</span> <span class="n">json_graph</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json_graph</span><span class="o">.</span><span class="n">node_link_data</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ontology.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dataframe-converter">
+<h2>DataFrame Converter<a class="headerlink" href="#dataframe-converter" title="Link to this heading">¶</a></h2>
+<p>Convert ontologies to pandas DataFrames for tabular analysis.</p>
+<section id="id1">
+<h3>Basic Usage<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">ontology_to_dataframe</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Convert to DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">ontology_to_dataframe</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+
+<span class="c1"># View structure</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dataframe-structure">
+<h3>DataFrame Structure<a class="headerlink" href="#dataframe-structure" title="Link to this heading">¶</a></h3>
+<p>The DataFrame typically has columns:</p>
+<ul class="simple">
+<li><p><strong>subject</strong>: Subject IRI</p></li>
+<li><p><strong>predicate</strong>: Relation/property IRI</p></li>
+<li><p><strong>object</strong>: Object IRI or literal value</p></li>
+<li><p><strong>subject_type</strong>: Entity type (CLASS, PROPERTY, etc.)</p></li>
+<li><p><strong>object_type</strong>: Entity type or LITERAL</p></li>
+<li><p><strong>axiom_type</strong>: Type of axiom (SUBCLASS_OF, DECLARATION, etc.)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter by axiom type</span>
+<span class="n">subclass_axioms</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;axiom_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;SUBCLASS_OF&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">subclass_axioms</span><span class="p">)</span><span class="si">}</span><span class="s2"> subclass axioms&quot;</span><span class="p">)</span>
+
+<span class="c1"># Find all properties of a class</span>
+<span class="n">disease_iri</span> <span class="o">=</span> <span class="s2">&quot;http://example.org/Disease&quot;</span>
+<span class="n">disease_props</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">disease_iri</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">disease_props</span><span class="p">[[</span><span class="s1">&#39;predicate&#39;</span><span class="p">,</span> <span class="s1">&#39;object&#39;</span><span class="p">]])</span>
+
+<span class="c1"># Group by predicate</span>
+<span class="n">predicate_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;predicate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Most common predicates:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predicate_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="data-analysis">
+<h3>Data Analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">¶</a></h3>
+<p>Use pandas for powerful data analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Statistics</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total triples: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unique subjects: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unique predicates: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;predicate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unique objects: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Entity type distribution</span>
+<span class="n">entity_dist</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;subject_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entity type distribution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entity_dist</span><span class="p">)</span>
+
+<span class="c1"># Find classes with most subclasses</span>
+<span class="n">subclasses</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;predicate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;subClassOf&#39;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+<span class="n">parent_counts</span> <span class="o">=</span> <span class="n">subclasses</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classes with most subclasses:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">parent_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="export-options">
+<h3>Export Options<a class="headerlink" href="#export-options" title="Link to this heading">¶</a></h3>
+<p>Export DataFrames to various formats:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;ontology.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Excel</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;ontology.xlsx&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Parquet (efficient binary format)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;ontology.parquet&quot;</span><span class="p">)</span>
+
+<span class="c1"># JSON</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;ontology.json&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># SQL database</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;ontology.db&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;axioms&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rdf-converter">
+<h2>RDF Converter<a class="headerlink" href="#rdf-converter" title="Link to this heading">¶</a></h2>
+<p>Convert to RDF formats for integration with RDF tools.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">ontology_to_rdf</span>
+
+<span class="c1"># Convert to RDF graph</span>
+<span class="n">rdf_graph</span> <span class="o">=</span> <span class="n">ontology_to_rdf</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+
+<span class="c1"># Serialize to different RDF formats</span>
+<span class="n">rdf_graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;ontology.ttl&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;turtle&quot;</span><span class="p">)</span>
+<span class="n">rdf_graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;ontology.rdf&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">)</span>
+<span class="n">rdf_graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;ontology.nt&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;nt&quot;</span><span class="p">)</span>
+<span class="n">rdf_graph</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;ontology.jsonld&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json-ld&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="edge-list-converter">
+<h2>Edge List Converter<a class="headerlink" href="#edge-list-converter" title="Link to this heading">¶</a></h2>
+<p>Simple edge list representation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">ontology_to_edgelist</span>
+
+<span class="c1"># Get edge list</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">ontology_to_edgelist</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+
+<span class="c1"># edges is a list of (source, target, relation) tuples</span>
+<span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">relation</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> --[</span><span class="si">{</span><span class="n">relation</span><span class="si">}</span><span class="s2">]--&gt; </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save to file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;edges.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">relation</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">relation</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="adjacency-matrix-converter">
+<h2>Adjacency Matrix Converter<a class="headerlink" href="#adjacency-matrix-converter" title="Link to this heading">¶</a></h2>
+<p>Matrix representation for mathematical analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">ontology_to_adjacency_matrix</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Get adjacency matrix and node list</span>
+<span class="n">adj_matrix</span><span class="p">,</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">ontology_to_adjacency_matrix</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+
+<span class="c1"># adj_matrix is a numpy array</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matrix shape: </span><span class="si">{</span><span class="n">adj_matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">adj_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">adj_matrix</span><span class="o">.</span><span class="n">size</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Find node with most connections</span>
+<span class="n">out_degrees</span> <span class="o">=</span> <span class="n">adj_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">out_degrees</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Most connected node: </span><span class="si">{</span><span class="n">nodes</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Out-degree: </span><span class="si">{</span><span class="n">out_degrees</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="round-trip-conversion">
+<h2>Round-Trip Conversion<a class="headerlink" href="#round-trip-conversion" title="Link to this heading">¶</a></h2>
+<p>Convert between formats while preserving information.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ontology -&gt; NetworkX -&gt; Ontology</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">networkx_to_ontology</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">ontology_to_networkx</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+<span class="c1"># ... modify graph ...</span>
+<span class="n">ont_modified</span> <span class="o">=</span> <span class="n">networkx_to_ontology</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Ontology -&gt; DataFrame -&gt; Ontology</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ista.converters</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataframe_to_ontology</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">ontology_to_dataframe</span><span class="p">(</span><span class="n">ont</span><span class="p">)</span>
+<span class="c1"># ... modify dataframe ...</span>
+<span class="n">ont_modified</span> <span class="o">=</span> <span class="n">dataframe_to_ontology</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-converters">
+<h2>Custom Converters<a class="headerlink" href="#custom-converters" title="Link to this heading">¶</a></h2>
+<p>Create your own custom converters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ista</span><span class="w"> </span><span class="kn">import</span> <span class="n">owl2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ontology_to_custom_format</span><span class="p">(</span><span class="n">ont</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert ontology to custom format.&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">axiom</span> <span class="ow">in</span> <span class="n">ont</span><span class="o">.</span><span class="n">get_axioms</span><span class="p">():</span>
+        <span class="c1"># Process each axiom type</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axiom</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">SubClassOf</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;hierarchy&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;child&#39;</span><span class="p">:</span> <span class="n">axiom</span><span class="o">.</span><span class="n">get_subclass</span><span class="p">()</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_short_form</span><span class="p">(),</span>
+                <span class="s1">&#39;parent&#39;</span><span class="p">:</span> <span class="n">axiom</span><span class="o">.</span><span class="n">get_superclass</span><span class="p">()</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">get_short_form</span><span class="p">()</span>
+            <span class="p">})</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axiom</span><span class="p">,</span> <span class="n">owl2</span><span class="o">.</span><span class="n">Declaration</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;entity&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;entity_type&#39;</span><span class="p">:</span> <span class="n">axiom</span><span class="o">.</span><span class="n">get_entity_type</span><span class="p">(),</span>
+                <span class="s1">&#39;iri&#39;</span><span class="p">:</span> <span class="n">axiom</span><span class="o">.</span><span class="n">get_iri</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span>
+            <span class="p">})</span>
+        <span class="c1"># ... handle other axiom types ...</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-tips">
+<h2>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading">¶</a></h2>
+<p>For large ontologies:</p>
+<ol class="arabic simple">
+<li><p><strong>Filter First</strong>: Use subgraph extraction before conversion</p></li>
+<li><p><strong>Selective Conversion</strong>: Only include needed axiom types</p></li>
+<li><p><strong>Batch Processing</strong>: Convert in chunks if memory is limited</p></li>
+<li><p><strong>Use Efficient Formats</strong>: Parquet for DataFrames, binary for graphs</p></li>
+<li><p><strong>Index DataFrames</strong>: Create indexes on frequently queried columns</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Efficient conversion of large ontology</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ista.owl2</span><span class="w"> </span><span class="kn">import</span> <span class="n">OntologyFilter</span>
+
+<span class="c1"># Extract relevant subgraph first</span>
+<span class="n">filter_obj</span> <span class="o">=</span> <span class="n">OntologyFilter</span><span class="p">(</span><span class="n">large_ont</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">filter_obj</span><span class="o">.</span><span class="n">extract_neighborhood</span><span class="p">(</span><span class="n">seed_iri</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">subgraph</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_ontology</span><span class="p">()</span>
+
+<span class="c1"># Convert smaller subgraph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">ontology_to_networkx</span><span class="p">(</span><span class="n">subgraph</span><span class="p">,</span> <span class="n">include_individuals</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># For DataFrame, create indexes</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">ontology_to_dataframe</span><span class="p">(</span><span class="n">subgraph</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Fast subject lookups</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="python_library.html"><span class="doc">Python Library Guide</span></a> - Python library guide</p></li>
+<li><p><a class="reference internal" href="subgraph_extraction.html"><span class="doc">Subgraph Extraction</span></a> - Extract relevant portions</p></li>
+<li><p><a class="reference internal" href="../api/owl2.html"><span class="doc">ista.owl2 Module</span></a> - Complete API reference</p></li>
+<li><p>NetworkX documentation: <a class="reference external" href="https://networkx.org/">https://networkx.org/</a></p></li>
+<li><p>pandas documentation: <a class="reference external" href="https://pandas.pydata.org/">https://pandas.pydata.org/</a></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="subgraph_extraction.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Subgraph Extraction</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="cpp_library.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">C++ Library Guide</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, ista Contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Graph Converters</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#available-converters">Available Converters</a></li>
+<li><a class="reference internal" href="#networkx-converter">NetworkX Converter</a><ul>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li><a class="reference internal" href="#node-and-edge-attributes">Node and Edge Attributes</a></li>
+<li><a class="reference internal" href="#conversion-options">Conversion Options</a></li>
+<li><a class="reference internal" href="#graph-analysis">Graph Analysis</a></li>
+<li><a class="reference internal" href="#visualization">Visualization</a></li>
+<li><a class="reference internal" href="#export-to-other-tools">Export to Other Tools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dataframe-converter">DataFrame Converter</a><ul>
+<li><a class="reference internal" href="#id1">Basic Usage</a></li>
+<li><a class="reference internal" href="#dataframe-structure">DataFrame Structure</a></li>
+<li><a class="reference internal" href="#data-analysis">Data Analysis</a></li>
+<li><a class="reference internal" href="#export-options">Export Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rdf-converter">RDF Converter</a></li>
+<li><a class="reference internal" href="#edge-list-converter">Edge List Converter</a></li>
+<li><a class="reference internal" href="#adjacency-matrix-converter">Adjacency Matrix Converter</a></li>
+<li><a class="reference internal" href="#round-trip-conversion">Round-Trip Conversion</a></li>
+<li><a class="reference internal" href="#custom-converters">Custom Converters</a></li>
+<li><a class="reference internal" href="#performance-tips">Performance Tips</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

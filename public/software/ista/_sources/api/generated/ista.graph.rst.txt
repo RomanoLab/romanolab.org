@@ -1,0 +1,23 @@
+﻿ista.graph
+==========
+
+.. automodule:: ista.graph
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Edge
+      Graph
+      Node
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   edge
+   graph
+   node
