@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Romano Lab @ Penn">
-    <div class="hero">
+    <div class="hero" id="hero">
         <div class="hero-content">
             <p class="hero-eyebrow">Penn Medicine · DBEI</p>
             <h1>Romano Lab</h1>
@@ -23,9 +23,7 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </div>
         <div class="hero-graphic">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-            <div class="orb orb-3"></div>
+            <canvas id="graphCanvas"></canvas>
         </div>
     </div>
 
@@ -97,3 +95,382 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </section>
 </Layout>
+
+<script>
+    // Theme colors matching 3B Midnight Blue
+    const THEME_COLORS = {
+        primary: "#06b6d4", // Cyan
+        secondary: "#0ea5e9", // Sky blue
+        purple: "#8b5cf6", // Purple accent
+        green: "#10b981", // Green accent
+        edge: "rgba(6, 182, 212, 0.25)",
+        nodeGlow: "rgba(6, 182, 212, 0.4)",
+    };
+
+    // Node color palette matching theme
+    const NODE_COLORS = [
+        "#06b6d4", // Cyan
+        "#0ea5e9", // Sky blue
+        "#8b5cf6", // Purple
+        "#10b981", // Green
+        "#22d3ee", // Light cyan
+        "#38bdf8", // Light sky
+    ];
+
+    // Initialize canvas with proper sizing
+    function initCanvas() {
+        const canvas = document.getElementById(
+            "graphCanvas",
+        ) as HTMLCanvasElement;
+        const container = canvas.parentElement;
+
+        if (!canvas || !container) return null;
+
+        // Get the actual display size
+        const rect = container.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+
+        // Set canvas size accounting for device pixel ratio for sharp rendering
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        // Scale the context to match
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+            ctx.scale(dpr, dpr);
+        }
+
+        // Set CSS size
+        canvas.style.width = rect.width + "px";
+        canvas.style.height = rect.height + "px";
+
+        return { width: rect.width, height: rect.height };
+    }
+
+    // Generate a random graph with preferential attachment
+    function generateGraph(
+        nodeCount: number,
+        edgeCount: number,
+        width: number,
+        height: number,
+    ) {
+        const nodes: any[] = [];
+        const edges: any[] = [];
+        const degrees = new Array(nodeCount).fill(0);
+
+        // Generate random nodes with theme colors
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push({
+                id: i,
+                color: NODE_COLORS[i % NODE_COLORS.length],
+                x: Math.random() * (width - 40) + 20,
+                y: Math.random() * (height - 40) + 20,
+                vx: 0,
+                vy: 0,
+                radius: 3 + Math.random() * 4, // Variable node sizes
+                isDragging: false,
+                isFixed: false,
+            });
+        }
+
+        // Create spanning tree to ensure connectivity
+        for (let i = 1; i < nodeCount; i++) {
+            const source = i;
+            const target = Math.floor(Math.random() * i);
+            edges.push({ source, target });
+            degrees[source]++;
+            degrees[target]++;
+        }
+
+        // Add additional edges using preferential attachment
+        for (let i = 0; i < edgeCount - (nodeCount - 1); i++) {
+            const source = Math.floor(Math.random() * nodeCount);
+            let target;
+            do {
+                target = weightedRandom(degrees);
+            } while (source === target);
+            edges.push({ source, target });
+            degrees[source]++;
+            degrees[target]++;
+        }
+
+        return { nodes, edges };
+    }
+
+    // Weighted random selection for preferential attachment
+    function weightedRandom(degrees: number[]) {
+        const totalDegree = degrees.reduce((sum, degree) => sum + degree, 0);
+        const rand = Math.random() * totalDegree;
+        let cumulative = 0;
+
+        for (let i = 0; i < degrees.length; i++) {
+            cumulative += degrees[i];
+            if (rand < cumulative) return i;
+        }
+        return degrees.length - 1;
+    }
+
+    // Find node at mouse position
+    function getNodeAtPosition(graph: any, x: number, y: number) {
+        for (let node of graph.nodes) {
+            const distance = Math.sqrt((x - node.x) ** 2 + (y - node.y) ** 2);
+            if (distance <= node.radius + 5) return node;
+        }
+        return null;
+    }
+
+    // Apply force-directed layout
+    function applyForces(graph: any, width: number, height: number) {
+        const repulsionForce = 800;
+        const springForce = 0.008;
+        const damping = 0.92;
+        const centerForce = 0.001;
+
+        graph.nodes.forEach((node: any) => {
+            if (node.isDragging || node.isFixed) {
+                node.vx = 0;
+                node.vy = 0;
+                return;
+            }
+
+            let fx = 0;
+            let fy = 0;
+
+            // Repulsion between nodes
+            graph.nodes.forEach((otherNode: any) => {
+                if (node !== otherNode) {
+                    const dx = node.x - otherNode.x;
+                    const dy = node.y - otherNode.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy) + 0.1;
+                    const force = repulsionForce / (distance * distance);
+                    fx += force * (dx / distance);
+                    fy += force * (dy / distance);
+                }
+            });
+
+            // Spring force for edges
+            graph.edges.forEach((edge: any) => {
+                const sourceNode = graph.nodes[edge.source];
+                const targetNode = graph.nodes[edge.target];
+                if (node === sourceNode || node === targetNode) {
+                    const otherNode =
+                        node === sourceNode ? targetNode : sourceNode;
+                    const dx = node.x - otherNode.x;
+                    const dy = node.y - otherNode.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const force = springForce * (distance - 80);
+                    fx -= force * (dx / distance);
+                    fy -= force * (dy / distance);
+                }
+            });
+
+            // Gentle pull towards center
+            fx += (width / 2 - node.x) * centerForce;
+            fy += (height / 2 - node.y) * centerForce;
+
+            // Update velocity and position
+            node.vx = (node.vx + fx) * damping;
+            node.vy = (node.vy + fy) * damping;
+            node.x += node.vx;
+            node.y += node.vy;
+
+            // Keep nodes within bounds with padding
+            const padding = 15;
+            node.x = Math.max(padding, Math.min(width - padding, node.x));
+            node.y = Math.max(padding, Math.min(height - padding, node.y));
+        });
+    }
+
+    // Draw the graph
+    function drawGraph(
+        graph: any,
+        canvas: HTMLCanvasElement,
+        width: number,
+        height: number,
+    ) {
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw edges with gradient effect
+        graph.edges.forEach((edge: any) => {
+            const source = graph.nodes[edge.source];
+            const target = graph.nodes[edge.target];
+
+            const gradient = ctx.createLinearGradient(
+                source.x,
+                source.y,
+                target.x,
+                target.y,
+            );
+            gradient.addColorStop(0, source.color + "40");
+            gradient.addColorStop(1, target.color + "40");
+
+            ctx.beginPath();
+            ctx.moveTo(source.x, source.y);
+            ctx.lineTo(target.x, target.y);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        });
+
+        // Draw nodes with glow effect
+        graph.nodes.forEach((node: any) => {
+            // Outer glow
+            const glowGradient = ctx.createRadialGradient(
+                node.x,
+                node.y,
+                0,
+                node.x,
+                node.y,
+                node.radius * 3,
+            );
+            glowGradient.addColorStop(0, node.color + "60");
+            glowGradient.addColorStop(1, node.color + "00");
+
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+            ctx.fillStyle = glowGradient;
+            ctx.fill();
+
+            // Main node
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = node.color;
+            ctx.globalAlpha = node.isDragging ? 1 : 0.85;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+
+            // Highlight ring for dragged nodes
+            if (node.isDragging) {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius + 3, 0, Math.PI * 2);
+                ctx.strokeStyle = "#fff";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        });
+    }
+
+    // Setup mouse interaction
+    function setupMouseInteraction(
+        graph: any,
+        canvas: HTMLCanvasElement,
+        width: number,
+        height: number,
+    ) {
+        let draggedNode: any = null;
+        let mouseOffset = { x: 0, y: 0 };
+
+        const getMousePos = (e: MouseEvent) => {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (e.clientX - rect.left) * (width / rect.width),
+                y: (e.clientY - rect.top) * (height / rect.height),
+            };
+        };
+
+        canvas.addEventListener("mousedown", (e) => {
+            const pos = getMousePos(e);
+            const node = getNodeAtPosition(graph, pos.x, pos.y);
+            if (node) {
+                draggedNode = node;
+                node.isDragging = true;
+                mouseOffset.x = pos.x - node.x;
+                mouseOffset.y = pos.y - node.y;
+                canvas.style.cursor = "grabbing";
+            }
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            const pos = getMousePos(e);
+            if (draggedNode) {
+                draggedNode.x = pos.x - mouseOffset.x;
+                draggedNode.y = pos.y - mouseOffset.y;
+                // Keep within bounds
+                const padding = 15;
+                draggedNode.x = Math.max(
+                    padding,
+                    Math.min(width - padding, draggedNode.x),
+                );
+                draggedNode.y = Math.max(
+                    padding,
+                    Math.min(height - padding, draggedNode.y),
+                );
+            } else {
+                const node = getNodeAtPosition(graph, pos.x, pos.y);
+                canvas.style.cursor = node ? "grab" : "default";
+            }
+        });
+
+        const endDrag = () => {
+            if (draggedNode) {
+                draggedNode.isDragging = false;
+                draggedNode = null;
+                canvas.style.cursor = "default";
+            }
+        };
+
+        canvas.addEventListener("mouseup", endDrag);
+        canvas.addEventListener("mouseleave", endDrag);
+    }
+
+    // Main animation loop
+    function animate(
+        graph: any,
+        canvas: HTMLCanvasElement,
+        width: number,
+        height: number,
+    ) {
+        function step() {
+            applyForces(graph, width, height);
+            drawGraph(graph, canvas, width, height);
+            requestAnimationFrame(step);
+        }
+        step();
+    }
+
+    // Initialize on DOM load
+    function init() {
+        const canvas = document.getElementById(
+            "graphCanvas",
+        ) as HTMLCanvasElement;
+        if (!canvas) return;
+
+        const size = initCanvas();
+        if (!size) return;
+
+        const graph = generateGraph(35, 80, size.width, size.height);
+        setupMouseInteraction(graph, canvas, size.width, size.height);
+        animate(graph, canvas, size.width, size.height);
+
+        // Handle resize
+        let resizeTimeout: number;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const newSize = initCanvas();
+                if (newSize) {
+                    // Rescale node positions
+                    const scaleX = newSize.width / size.width;
+                    const scaleY = newSize.height / size.height;
+                    graph.nodes.forEach((node: any) => {
+                        node.x *= scaleX;
+                        node.y *= scaleY;
+                    });
+                    size.width = newSize.width;
+                    size.height = newSize.height;
+                }
+            }, 150);
+        });
+    }
+
+    // Start when DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+</script>
