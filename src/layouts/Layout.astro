@@ -1,84 +1,102 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 export interface Props {
-  title: string;
-  description?: string;
+    title: string;
+    description?: string;
 }
 
-const { title, description = "Romano Lab - Translational Bioinformatics at UPenn" } = Astro.props;
+const {
+    title,
+    description = "Romano Lab - Translational Bioinformatics at UPenn",
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Voces&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div class="nav-container">
-          <a href="/" class="logo voces-regular">Romano Lab @ Penn</a>
-          <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-          </button>
-          <ul class="nav-links voces-regular">
-            <li><a href="/">Home</a></li>
-            <li><a href="/people">People</a></li>
-            <li><a href="/research">Research & Funding</a></li>
-            <li><a href="/publications">Publications</a></li>
-            <!-- <li><a href="/blog">Blog</a></li> -->
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    
-    <main>
-      <slot />
-    </main>
-    
-    <footer>
-      <div class="footer-container">
-        <p>&copy; {new Date().getFullYear()} <a href="https://jdr.bio">Joseph D. Romano</a> and the Romano Lab. All rights reserved.</p>
-      </div>
-    </footer>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-container">
+                    <a href="/" class="logo">
+                        <span class="logo-mark">RL</span>
+                        Romano Lab
+                    </a>
+                    <button
+                        class="nav-toggle"
+                        aria-label="Toggle menu"
+                        aria-expanded="false"
+                    >
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/people">People</a></li>
+                        <li><a href="/research">Research</a></li>
+                        <li><a href="/publications">Publications</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-    <script>
-      const btn = document.querySelector('.nav-toggle');
-      const list = document.querySelector('.nav-links');
-      const body = document.body;
+        <main>
+            <slot />
+        </main>
 
-      function closeMenu() {
-        list.classList.remove('open');
-        body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
+        <footer>
+            <div class="footer-container">
+                <p>
+                    &copy; {new Date().getFullYear()}
+                    <a href="https://jdr.bio">Joseph D. Romano</a> and the Romano
+                    Lab. All rights reserved.
+                </p>
+            </div>
+        </footer>
 
-      if (btn && list) {
-        btn.addEventListener('click', () => {
-          const open = list.classList.toggle('open');
-          body.classList.toggle('menu-open', open);
-          btn.setAttribute('aria-expanded', open);
-        });
+        <script>
+            const btn = document.querySelector(".nav-toggle");
+            const list = document.querySelector(".nav-links");
+            const body = document.body;
 
-        // Close on ESC
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeMenu();
-        });
+            function closeMenu() {
+                list?.classList.remove("open");
+                body.classList.remove("menu-open");
+                btn?.setAttribute("aria-expanded", "false");
+            }
 
-        // Close after tapping a link (mobile)
-        list.addEventListener('click', (e) => {
-          if (e.target.tagName === 'A') closeMenu();
-        });
-      }
-    </script>
-  </body>
+            if (btn && list) {
+                btn.addEventListener("click", () => {
+                    const open = list.classList.toggle("open");
+                    body.classList.toggle("menu-open", open);
+                    btn.setAttribute("aria-expanded", String(open));
+                });
+
+                // Close on ESC
+                window.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") closeMenu();
+                });
+
+                // Close after tapping a link (mobile)
+                list.addEventListener("click", (e) => {
+                    if ((e.target as HTMLElement).tagName === "A") closeMenu();
+                });
+            }
+        </script>
+    </body>
 </html>

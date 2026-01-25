@@ -1,336 +1,99 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Romano Lab @ Penn">
-  <div class="hero">
-    <canvas id="graphCanvas" width="900" height="250"></canvas>
-    <h1>Welcome to the Romano Lab @ Penn</h1>
-    <h2 class="hero-subtitle">Knowledge-Driven Translational Bioinformatics</h2>
-  </div>
-  
-  <section class="intro">
-    <h2>About Us</h2>
-    <p>
-      We're a team of informaticians dedicated to improving healthcare by
-      discovering the mechanisms and risk factors underlying complex diseases. We
-      combine AI methods with structured biomedical knowledge to gain new data-driven
-      insights into human health.
-    </p>
-    <p>
-      Our lab is part of the <a href="https://dbei.med.upenn.edu/" target="_blank">Department of Biostatistics, Epidemiology and Informatics</a> in the <a href="https://www.med.upenn.edu/" target="_blank">Perelman School of Medicine</a> of the <a href="https://www.upenn.edu/" target="_blank">University of Pennsylvania</a>. We're affiliated with the <a href="https://ibi.med.upenn.edu" target="_blank">Penn Institute for Biomedical Informatics</a> and the <a href="https://ceet.upenn.edu/" target="_blank">Center of Excellence in Environmental Toxicology</a>.
-    </p>
-  </section>
-  
-  <section class="highlights">
-    <h2>Our Research Interests</h2>
-    <div class="highlight-grid">
-      <div class="highlight-card">
-        <h3>Geometric Machine Learning</h3>
-        <p>We use graph representations of complex multimodal data to improve the inferential capacity of machine learning models.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Mechanisms of Adverse Women's Health Outcomes</h3>
-        <p>We investigate the biological and social determinants that contribute to health disparities in women, integrating electronic health records, biobanks, and public health datasets.</p>
-      </div>
-      <div class="highlight-card">
-        <h3>Computational Toxicology</h3>
-        <p>We develop and apply AI-based computational methods to predict and explain the effects of environmental toxicants on the human body.</p>
-      </div>
+    <div class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Penn Medicine · DBEI</p>
+            <h1>Romano Lab</h1>
+            <p class="hero-tagline">
+                Knowledge-Driven Translational Bioinformatics
+            </p>
+            <p class="hero-desc">
+                We combine AI methods with structured biomedical knowledge to
+                discover mechanisms underlying complex diseases and improve
+                healthcare outcomes.
+            </p>
+            <div class="cta-group">
+                <a href="/research" class="cta-primary">Explore Research</a>
+                <a href="/publications" class="cta-secondary"
+                    >View Publications</a
+                >
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
     </div>
-  </section>
+
+    <section class="intro">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <div class="section-line"></div>
+        </div>
+        <p>
+            We're a team of informaticians dedicated to improving healthcare by
+            discovering the mechanisms and risk factors underlying complex
+            diseases. We combine AI methods with structured biomedical knowledge
+            to gain new data-driven insights into human health.
+        </p>
+        <p>
+            Our lab is part of the <a
+                href="https://dbei.med.upenn.edu/"
+                target="_blank"
+                >Department of Biostatistics, Epidemiology and Informatics</a
+            > in the <a href="https://www.med.upenn.edu/" target="_blank"
+                >Perelman School of Medicine</a
+            > of the <a href="https://www.upenn.edu/" target="_blank"
+                >University of Pennsylvania</a
+            >. We're affiliated with the <a
+                href="https://ibi.med.upenn.edu"
+                target="_blank">Penn Institute for Biomedical Informatics</a
+            > and the <a href="https://ceet.upenn.edu/" target="_blank"
+                >Center of Excellence in Environmental Toxicology</a
+            >.
+        </p>
+    </section>
+
+    <section class="highlights">
+        <div class="section-header">
+            <h2>Research Areas</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-number">01</div>
+                <h3>Geometric Machine Learning</h3>
+                <p>
+                    We use graph representations of complex multimodal data to
+                    improve the inferential capacity of machine learning models.
+                </p>
+                <a href="/research" class="card-link">Learn more →</a>
+            </div>
+            <div class="card">
+                <div class="card-number">02</div>
+                <h3>Women's Health Outcomes</h3>
+                <p>
+                    We investigate the biological and social determinants that
+                    contribute to health disparities in women, integrating
+                    electronic health records, biobanks, and public health
+                    datasets.
+                </p>
+                <a href="/research" class="card-link">Learn more →</a>
+            </div>
+            <div class="card">
+                <div class="card-number">03</div>
+                <h3>Computational Toxicology</h3>
+                <p>
+                    We develop and apply AI-based computational methods to
+                    predict and explain the effects of environmental toxicants
+                    on the human body.
+                </p>
+                <a href="/research" class="card-link">Learn more →</a>
+            </div>
+        </div>
+    </section>
 </Layout>
-
-<script>
-  // Function to dynamically set the canvas width based on the hero div
-  function setCanvasWidth(canvasId, containerId) {
-    const canvas = document.getElementById(canvasId);
-    const container = document.getElementById(containerId);
-
-    if (canvas && container) {
-      // Set both the canvas element size AND the CSS size
-      canvas.width = container.offsetWidth;
-      canvas.height = 250; // Keep height consistent
-      
-      // Ensure CSS matches canvas element size
-      canvas.style.width = canvas.width + 'px';
-      canvas.style.height = canvas.height + 'px';
-      
-      console.log(`Canvas width set to: ${canvas.width}`);
-    } else {
-      console.error('Canvas or container not found.');
-    }
-  }
-
-  // Function to generate a random graph
-  function generateGraph(nodeCount, edgeCount) {
-    const nodes = [];
-    const edges = [];
-    const degrees = new Array(nodeCount).fill(0); // Track node degrees
-
-    // Generate random nodes
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
-        id: i,
-        color: i % 3 === 0 ? '#667eea' : i % 3 === 1 ? '#764ba2' : '#ff6f61',
-        x: Math.random() * 800,
-        y: Math.random() * 400,
-        vx: 0, // Velocity in x
-        vy: 0, // Velocity in y
-        isDragging: false, // Track if node is being dragged
-        isFixed: false, // Track if node position is fixed
-      });
-    }
-
-    // Ensure all nodes are connected by creating a spanning tree
-    for (let i = 1; i < nodeCount; i++) {
-      const source = i;
-      const target = Math.floor(Math.random() * i); // Connect to a previous node
-      edges.push({ source, target });
-      degrees[source]++;
-      degrees[target]++;
-    }
-
-    // Add additional edges using preferential attachment
-    for (let i = 0; i < edgeCount - (nodeCount - 1); i++) {
-      const source = Math.floor(Math.random() * nodeCount);
-      let target;
-
-      // Preferential attachment: higher degree nodes are more likely to be chosen
-      do {
-        target = weightedRandom(degrees);
-      } while (source === target); // Avoid self-loops
-
-      edges.push({ source, target });
-      degrees[source]++;
-      degrees[target]++;
-    }
-
-    return { nodes, edges };
-  }
-
-  // Helper function for preferential attachment
-  function weightedRandom(degrees) {
-    const totalDegree = degrees.reduce((sum, degree) => sum + degree, 0);
-    const rand = Math.random() * totalDegree;
-    let cumulative = 0;
-
-    for (let i = 0; i < degrees.length; i++) {
-      cumulative += degrees[i];
-      if (rand < cumulative) {
-        return i;
-      }
-    }
-
-    return degrees.length - 1; // Fallback to the last node
-  }
-
-  // Function to find node at mouse position
-  function getNodeAtPosition(graph, x, y, offsetX) {
-    for (let node of graph.nodes) {
-      const nodeX = node.x + offsetX;
-      const nodeY = node.y;
-      const distance = Math.sqrt((x - nodeX) ** 2 + (y - nodeY) ** 2);
-      if (distance <= 8) { // Node radius + small buffer
-        return node;
-      }
-    }
-    return null;
-  }
-
-  // Function to apply force-directed layout
-  function applyForces(graph, canvasWidth, canvasHeight) {
-    const repulsionForce = 1000; // Strength of repulsion between nodes
-    const springForce = 0.01; // Strength of spring force for edges
-    const damping = 0.85; // Damping factor to slow down movement
-    const horizontalBias = 1.5; // Bias to spread nodes horizontally
-
-    graph.nodes.forEach((node) => {
-      // Skip physics for dragged or fixed nodes
-      if (node.isDragging || node.isFixed) {
-        node.vx = 0;
-        node.vy = 0;
-        return;
-      }
-
-      let fx = 0; // Force in x direction
-      let fy = 0; // Force in y direction
-
-      // Repulsion between nodes
-      graph.nodes.forEach((otherNode) => {
-        if (node !== otherNode) {
-          const dx = node.x - otherNode.x;
-          const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy) + 0.1; // Avoid division by zero
-          const force = repulsionForce / (distance * distance);
-          fx += force * (dx / distance) * horizontalBias; // Apply horizontal bias
-          fy += force * (dy / distance);
-        }
-      });
-
-      // Spring force for edges
-      graph.edges.forEach((edge) => {
-        const sourceNode = graph.nodes[edge.source];
-        const targetNode = graph.nodes[edge.target];
-        if (node === sourceNode || node === targetNode) {
-          const otherNode = node === sourceNode ? targetNode : sourceNode;
-          const dx = node.x - otherNode.x;
-          const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const force = springForce * (distance - 60); // Target edge length is 100px
-          fx -= force * (dx / distance);
-          fy -= force * (dy / distance);
-        }
-      });
-
-      // Update velocity and position
-      node.vx = (node.vx + fx) * damping;
-      node.vy = (node.vy + fy) * damping;
-      node.x += node.vx;
-      node.y += node.vy;
-
-      // Keep nodes within canvas bounds
-      node.x = Math.max(10, Math.min(canvasWidth - 10, node.x));
-      node.y = Math.max(10, Math.min(canvasHeight - 10, node.y));
-    });
-  }
-
-  // Function to draw the graph on the canvas
-  function drawGraph(graph, canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext('2d');
-
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Center the graph horizontally
-    const offsetX = (canvas.width - 800) / 2;
-
-    // Draw edges first (behind nodes) with low opacity
-    ctx.globalAlpha = 0.2; // Lower opacity for edges
-    graph.edges.forEach((edge) => {
-      const sourceNode = graph.nodes[edge.source];
-      const targetNode = graph.nodes[edge.target];
-      ctx.beginPath();
-      ctx.moveTo(sourceNode.x + offsetX, sourceNode.y);
-      ctx.lineTo(targetNode.x + offsetX, targetNode.y);
-      ctx.strokeStyle = '#aaa';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    });
-
-    // Draw all nodes on top of edges with higher opacity
-    ctx.globalAlpha = 0.4; // Higher opacity for nodes
-    graph.nodes.forEach((node) => {
-      ctx.beginPath();
-      ctx.arc(node.x + offsetX, node.y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = node.color;
-      ctx.fill();
-      
-      // Add a border to dragged nodes (even more visible)
-      if (node.isDragging) {
-        ctx.globalAlpha = 0.8; // Make dragged node more visible
-        ctx.beginPath();
-        ctx.arc(node.x + offsetX, node.y, 7, 0, Math.PI * 2);
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.globalAlpha = 0.4; // Reset for other nodes
-      }
-    });
-
-    // Reset global opacity for any future drawing
-    ctx.globalAlpha = 1.0;
-  }
-
-  // Setup mouse interaction
-  function setupMouseInteraction(graph, canvasId) {
-    const canvas = document.getElementById(canvasId);
-    let draggedNode = null;
-    let mouseOffset = { x: 0, y: 0 };
-
-    canvas.addEventListener('mousedown', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;   // Account for CSS scaling
-      const scaleY = canvas.height / rect.height; // Account for CSS scaling
-      
-      const mouseX = (e.clientX - rect.left) * scaleX;
-      const mouseY = (e.clientY - rect.top) * scaleY;
-      const offsetX = (canvas.width - 800) / 2;
-
-      const node = getNodeAtPosition(graph, mouseX, mouseY, offsetX);
-      if (node) {
-        draggedNode = node;
-        node.isDragging = true;
-        mouseOffset.x = mouseX - (node.x + offsetX);
-        mouseOffset.y = mouseY - node.y;
-        canvas.style.cursor = 'grabbing';
-      }
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;   // Account for CSS scaling
-      const scaleY = canvas.height / rect.height; // Account for CSS scaling
-      
-      const mouseX = (e.clientX - rect.left) * scaleX;
-      const mouseY = (e.clientY - rect.top) * scaleY;
-      const offsetX = (canvas.width - 800) / 2;
-
-      if (draggedNode) {
-        // Update dragged node position
-        draggedNode.x = mouseX - mouseOffset.x - offsetX;
-        draggedNode.y = mouseY - mouseOffset.y;
-        
-        // Keep node within bounds
-        draggedNode.x = Math.max(10, Math.min(800 - 10, draggedNode.x));
-        draggedNode.y = Math.max(10, Math.min(canvas.height - 10, draggedNode.y));
-      } else {
-        // Change cursor when hovering over nodes
-        const node = getNodeAtPosition(graph, mouseX, mouseY, offsetX);
-        canvas.style.cursor = node ? 'grab' : 'default';
-      }
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      if (draggedNode) {
-        draggedNode.isDragging = false;
-        draggedNode = null;
-        canvas.style.cursor = 'default';
-      }
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-      if (draggedNode) {
-        draggedNode.isDragging = false;
-        draggedNode = null;
-        canvas.style.cursor = 'default';
-      }
-    });
-  }
-
-  // Animate the graph
-  function animateGraph(graph, canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    function step() {
-      applyForces(graph, canvasWidth, canvasHeight);
-      drawGraph(graph, canvasId);
-      requestAnimationFrame(step);
-    }
-
-    step();
-  }
-
-  // Wait for the DOM to be fully loaded before setting the canvas width and generating the graph
-  window.addEventListener('DOMContentLoaded', () => {
-    setCanvasWidth('graphCanvas', 'hero');
-
-    // Generate and animate the graph
-    const graph = generateGraph(30, 70);
-    setupMouseInteraction(graph, 'graphCanvas');
-    animateGraph(graph, 'graphCanvas');
-  });
-</script>
