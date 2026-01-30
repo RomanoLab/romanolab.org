@@ -17,6 +17,14 @@
       "image": "/images/people/pan.jpg"
     }
   ],
+  "postdocs": [
+    {
+      "name": "Rachit Kumar, PhD",
+      "bio": "Dr. Kumar is a medical student in the Penn Medical Scientist Training Program and a recent PhD graduate from the Graduate Group in Genomics and Computational Biology. His research focuses on developing new methods in protein and drug representation learning to improve the detection of new therapies for human disease.",
+      "email": "rachit.kumar@pennmedicine.upenn.edu",
+      "image": "/images/people/kumar.jpg"
+    }
+  ],
   "gradStudents": [
     {
       "name": "Chloé Paris",
@@ -53,9 +61,25 @@
       "program": "PhD Student in Genomics and Computational Biology",
       "research": "Research focus: Informatics of autoimmune disease, drug adverse events, machine learning.",
       "image": "/images/people/abdurezak.jpg"
+    },
+    {
+      "name": "Heran Russom",
+      "program": "PhD Rotation Student in Genomics and Computational Biology",
+      "research": "Research focus: Graph representation learning, clinical informatics.",
+      "image": "/images/people/russom.jpg"
+    },
+    {
+      "name": "Andrew Zolensky",
+      "program": "PhD Student in Genomics and Computational Biology",
+      "research": "Research focus: Graph representation learning, clinical informatics."
     }
   ],
   "alumni": [
+    {
+      "name": "Tianqi Shang",
+      "year": "2025",
+      "currentPosition": "PhD Student in Genomics and Computational Biology at UPenn"
+    },
     {
       "name": "Giuseppe Albi, PhD",
       "year": "2024",

@@ -1,5 +1,65 @@
 [
   {
+    "title": "Clinical Knowledge Representation in Data Science",
+    "authors": "Nguyen TA, Su W, Rajagopalan A, Abdurezak N, Hewryk OSI, & Romano JD",
+    "journal": "Annual Review of Biomedical Data Science (accepted; in-press)",
+    "year": 2026,
+    "la": true,
+    "ca": true,
+    "abstract": "The vast potential of observational healthcare data in biomedical discovery remains largely unrealized because clinical records are fragmented, unstructured, and generated for patient care rather than research. Clinical knowledge representation (KR) helps to bridge this gap by encoding information in standardized, computable formats that preserve meaning and context. This review examines KR across the clinical data lifecycle, from its generation in healthcare settings to its transformation for secondary use and its eventual application in data science. We highlight foundational components such as standardized terminologies, ontologies, and common data models that enable data harmonization and interoperability. We further discuss how these structured representations support multimodal data integration and the development of more accurate, interpretable AI models. Adopting a semantic-first approach to KR is essential for transforming fragmented clinical data into reusable, trustworthy knowledge that advances data-driven discovery and improves patient care."
+  },
+  {
+    "title": "Towards symbolic regression for interpretable clinical decision scores",
+    "authors": "Aldeia GSI, Romano JD, de Franca FO, Herman DS, & La Cava WG",
+    "journal": "Philosophical Transactions A (accepted; in-press)",
+    "year": 2026,
+    "la": false,
+    "ca": false,
+    "abstract": "Medical decision-making makes frequent use of algorithms that combine risk equations with rules, providing clear and standardized treatment pathways. Symbolic regression (SR) traditionally limits its search space to continuous function forms and their parameters, making it difficult to model this decisionmaking. However, due to its ability to derive datadriven, interpretable models, SR holds promise for developing data-driven clinical risk scores. To that end we introduce Brush, an SR algorithm that combines decision-tree-like splitting algorithms with non-linear constant optimization, allowing for seamless integration of rule-based logic into symbolic regression and classification models. Brush achieves Paretooptimal performance on SRBench, and was applied to recapitulate two widely used clinical scoring systems, achieving high accuracy and interpretable models. Compared to decision trees, random forests, and other SR methods, Brush achieves comparable or superior predictive performance while producing simpler models."
+  },
+  {
+    "title": "Learnable Protein Representations in Computational Biology for Predicting Drug-Target Affinity",
+    "authors": "Kumar R, Romano JD, & Ritchie MD",
+    "journal": "Journal of Cheminformatics",
+    "year": 2026,
+    "url": "https://link.springer.com/article/10.1186/s13321-025-01145-7",
+    "doi": "10.1186/s13321-025-01145-7",
+    "la": false,
+    "ca": false,
+    "pmid": "41514440",
+    "abstract": "In this review, we discuss the various different types of learnable protein representations that have been used in computational biology, with a particular focus on representations that have been used in the paradigm of predicting drug-target affinity. We explore this from multiple perspectives: the source of protein information used, the training paradigms used in generating and applying such representations, and the types of (deep-learning-based) encoding or embedding methods that have been used to generate and operate on such representations. We focus on drug-target affinity due to its particular relevance and utility in the field of drug development and assessment, and we make suggestions for how drug-target affinity prediction methods development can be further improved by examining the current literature from the aforementioned perspectives. This survey thus serves as a valuable resource for researchers seeking to develop methods for predicting drug-target affinity by exploring how protein information has been used and could be used in effective ways to improve such predictions."
+  },
+  {
+    "title": "CASTER-DTA: Equivariant Graph Neural Networks for Predicting Drug-Target Affinity",
+    "authors": "Kumar R, Romano JD, & Ritchie MD",
+    "journal": "Briefings in Bioinformatics",
+    "volume": "26",
+    "issue": "5",
+    "pages": "bbaf554",
+    "year": 2025,
+    "month": "September",
+    "url": "https://academic.oup.com/bib/article/26/5/bbaf554/8303310",
+    "doi": "10.1093/bib/bbaf554",
+    "la": false,
+    "ca": false,
+    "pmid": "41139314",
+    "pmcid": "PMC12554097",
+    "abstract": "Accurately determining the binding affinity of a ligand with a protein is important for drug design, development, and screening. With the advent of accessible protein structure prediction methods such as AlphaFold, predicted protein 3D structures are readily available; however, scalable methods for predicting binding affinity currently do not take full advantage of 3D protein information. Here, we present CASTER-DTA (Cross-Attention with Structural Target Equivariant Representations for Drug–Target Affinity), which uses an equivariant graph neural network (GNN) to learn more robust protein representations alongside a standard GNN to learn molecular representations to predict DTA. We augment these representations by incorporating an attention-based mechanism between protein residues and drug atoms to improve interpretability. We show that CASTER-DTA represents a state-of-the-art improvement on multiple benchmarks for predicting DTA, and that it generates novel insights for several related tasks. We then apply CASTER-DTA to create a large resource of the binding affinities of every drug approved by the U.S. Food and Drug Administration (FDA) against every protein in the human proteome and make these predictions freely available for download. We also make available a web server for researchers to apply a pretrained CASTER-DTA model for predicting binding affinities between arbitrary proteins and drugs."
+  },
+  {
+    "title": "DRIVE-KG: Enhancing variant-phenotype association discovery in understudied complex diseases using heterogeneous knowledge graphs",
+    "authors": "Rajagopalan A, Nguyen TA, Guare LA, Garao Rico AL, Venkatesh R, Caruth L, Regeneron Genetics Center, Penn Medicine BioBank, Verma A, Ritchie MD, Hall MA, Setia-Verma S, & Romano JD",
+    "journal": "2026 Pacific Symposium on Biocomputing",
+    "volume": "2026",
+    "pages": "830-848",
+    "year": 2026,
+    "month": "January",
+    "url": "https://psb.stanford.edu/psb-online/proceedings/psb26/rajagopalan.pdf",
+    "la": true,
+    "ca": true,
+    "abstract": "Multi-omics data are instrumental in obtaining a comprehensive picture of complex biological systems. This is particularly useful for women's health conditions, such as endometriosis which has been historically understudied despite having a high prevalence (around 10% of women of reproductive age). Subsequently, endometriosis has limited genetic characterization: current genome-wide association studies explain only 11% of its 47% total estimated heritability. Graph representations provide an intuitive and meaningful way to relate concepts across diverse data sources and address fundamental sparsity and dimensionality challenges with multi-omics data analysis. Here we present DRIVE-KG (Disease Risk Inference and Variant Exploration-Knowledge Graph), which uses a heterogeneous graph representation to integrate biological data from multi-omics datasets: dbSNP, NCBI Human Gene, Omics Pred, GTEx, and Open Targets. We drew directly from the knowledge captured in these data, using nodes to represent genes, single nucleotide polymorphisms, proteins, and phenotypes, and edges to represent relationships between these concepts. We trained two models using DRIVE-KG: a link prediction model to suggest associations between SNPs and two pilot phenotypes (endometriosis and obesity), and a graph convolutional network (GCN) to classify patient-level endometriosis status. We conducted the patient-level classification using data from 1,441 Penn Medicine BioBank participants with gold standard chart-reviewed endometriosis status. The link prediction model uncovered 66 high-confidence (score ≥ 0.95) previously unreported SNP-endometriosis associations. Many of these variants were linked to obesity/body mass index traits (24.2%), lipid metabolism (6%), and depressive disorders (4.5%), showing agreement with emerging hypotheses about endometriosis etiology. In contrast, 11% of the 149 high confidence, candidate SNP-obesity associations (score ≥ 0.9888) were in LD with known obesity associations. The GCN to classify patient endometriosis status had an AUPRC of 0.738 compared to 0.679 for a genetic risk score. Despite this moderate improvement, we found that the GCN learned meaningful stratification of underlying adenomyosis signal and severe grades of endometriosis. We have demonstrated that heterogeneous integration of multi-omics data is valuable for diverse downstream tasks-including discovery and clinical prediction-particularly for understudied diseases where traditional genomic approaches are insufficient."
+  },
+  {
     "title": "Enhancing Molecular Representation Learning through the Combination of 3D and 2D Graph Machine Learning",
     "authors": "Pan IT & Romano JD",
     "journal": "The 39th Annual AAAI Conference on Artificial Intelligence",

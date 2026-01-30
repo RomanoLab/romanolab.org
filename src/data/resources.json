@@ -1,0 +1,43 @@
+{
+  "software": [
+    {
+      "name": "Ista",
+      "description": "An ontology-driven toolkit for biomedical knowledge base assembly. Provides flexible manipulation and construction of knowledge graphs.",
+      "docsUrl": "/software/ista",
+      "github": "https://github.com/RomanoLab/ista",
+      "publication": {
+        "title": "Ista: An Ontology-Driven Toolkit for Biomedical Knowledge Base Assembly",
+        "journal": "Studies in Health Technology and Informatics",
+        "year": 2025
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "ComptoxAI",
+      "description": "A comprehensive data infrastructure and AI toolkit for computational toxicology. Features a graph-formatted knowledge base containing over 1.2 million chemicals of toxicological concern, describing how they act on the human body. Includes Python package, REST API, and browser interface.",
+      "url": "https://comptox.ai",
+      "github": "https://github.com/RomanoLab/comptox_ai",
+      "publication": {
+        "title": "Automating Predictive Toxicology Using ComptoxAI",
+        "journal": "Chemical Research in Toxicology",
+        "year": 2022,
+        "doi": "10.1021/acs.chemrestox.2c00074",
+        "pmid": "35819939"
+      }
+    },
+    {
+      "name": "AlzKB",
+      "description": "A large, heterogeneous graph knowledge base for Alzheimer's disease etiology and candidate therapeutics. Assembled from 22 external data sources, containing 118,902 entities with 1,309,527 relationships. Supports graph machine learning for drug repurposing and RAG-based natural language queries.",
+      "url": "https://alzkb.ai",
+      "github": "https://github.com/EpistasisLab/AlzKB",
+      "publication": {
+        "title": "The Alzheimer's Knowledge Base: A Knowledge Graph for Alzheimer Disease Research",
+        "journal": "Journal of Medical Internet Research",
+        "year": 2024,
+        "doi": "10.2196/46777",
+        "pmid": "38635981"
+      }
+    }
+  ]
+}

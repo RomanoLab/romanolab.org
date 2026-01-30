@@ -343,15 +343,6 @@ hr {
     margin-bottom: 2rem;
 }
 
-.hero-graphic {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    pointer-events: none;
-}
-
 .orb {
     position: absolute;
     border-radius: 50%;

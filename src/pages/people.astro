@@ -1,30 +1,44 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // Import people data
-const peopleData = await import('../data/people.json');
+const peopleData = await import("../data/people.json");
 const people = peopleData.default;
 ---
 
 <Layout title="People - Romano Lab">
-  <h1>Our Team</h1>
-  
-  <section class="people-section">
-    <h2>Principal Investigator</h2>
-    <div class="person-grid">
-      {people.pi.map((person) => (
-        <div class="person-card">
-          <img src={person.image || '/images/placeholder-person.jpg'} alt={person.name} />
-          <h3>{person.name}</h3>
-          <p class="title">{person.title}</p>
-          <p>{person.bio}</p>
-          {person.email && <p><strong>Email:</strong> <a href={`mailto:${person.email}`}>{person.email}</a></p>}
+    <h1>Our Team</h1>
+
+    <section class="people-section">
+        <h2>Principal Investigator</h2>
+        <div class="person-grid">
+            {
+                people.pi.map((person) => (
+                    <div class="person-card">
+                        <img
+                            src={
+                                person.image || "/images/placeholder-person.jpg"
+                            }
+                            alt={person.name}
+                        />
+                        <h3>{person.name}</h3>
+                        <p class="title">{person.title}</p>
+                        <p>{person.bio}</p>
+                        {person.email && (
+                            <p>
+                                <strong>Email:</strong>{" "}
+                                <a href={`mailto:${person.email}`}>
+                                    {person.email}
+                                </a>
+                            </p>
+                        )}
+                    </div>
+                ))
+            }
         </div>
-      ))}
-    </div>
-  </section>
-  
-  <section class="people-section">
+    </section>
+
+    <!-- <section class="people-section">
     <h2>Research Staff</h2>
     <div class="person-grid">
       {people.researchStaff.map((person) => (
@@ -37,30 +51,71 @@ const people = peopleData.default;
         </div>
       ))}
     </div>
-  </section>
-  
-  <section class="people-section">
-    <h2>Graduate Students</h2>
-    <div class="person-grid">
-      {people.gradStudents.map((person) => (
-        <div class="person-card">
-          <img src={person.image || '/images/placeholder-person.jpg'} alt={person.name} />
-          <h3>{person.name}</h3>
-          <p class="title">{person.program}</p>
-          <p>{person.research}</p>
+  </section> -->
+
+    <section class="people-section">
+        <h2>Postdoctoral Researchers</h2>
+        <div class="person-grid">
+            {
+                people.postdocs.map((person) => (
+                    <div class="person-card">
+                        <img
+                            src={
+                                person.image ||
+                                "/images/people/placeholder-person.png"
+                            }
+                            alt={person.name}
+                        />
+                        <h3>{person.name}</h3>
+                        <p class="title">{person.title}</p>
+                        <p>{person.bio}</p>
+                        {person.email && (
+                            <p>
+                                <strong>Email:</strong>{" "}
+                                <a href={`mailto:${person.email}`}>
+                                    {person.email}
+                                </a>
+                            </p>
+                        )}
+                    </div>
+                ))
+            }
         </div>
-      ))}
-    </div>
-  </section>
-  
-  <section class="people-section">
-    <h2>Alumni</h2>
-    <div class="alumni-list">
-      {people.alumni.map((person) => (
-        <div class="alumni-item">
-          <strong>{person.name}</strong> ({person.year}) - {person.currentPosition}
+    </section>
+
+    <section class="people-section">
+        <h2>Graduate Students</h2>
+        <div class="person-grid">
+            {
+                people.gradStudents.map((person) => (
+                    <div class="person-card">
+                        <img
+                            src={
+                                person.image ||
+                                "/images/people/placeholder-person.png"
+                            }
+                            alt={person.name}
+                        />
+                        <h3>{person.name}</h3>
+                        <p class="title">{person.program}</p>
+                        <p>{person.research}</p>
+                    </div>
+                ))
+            }
         </div>
-      ))}
-    </div>
-  </section>
+    </section>
+
+    <section class="people-section">
+        <h2>Alumni</h2>
+        <div class="alumni-list">
+            {
+                people.alumni.map((person) => (
+                    <div class="alumni-item">
+                        <strong>{person.name}</strong> ({person.year}) -{" "}
+                        {person.currentPosition}
+                    </div>
+                ))
+            }
+        </div>
+    </section>
 </Layout>

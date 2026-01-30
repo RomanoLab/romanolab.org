@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Import resources data
+const resourcesData = await import('../data/resources.json');
+const resources = resourcesData.default;
+---
+
+<Layout title="Resources - Romano Lab">
+  <h1>Resources</h1>
+
+  <section class="resources-overview">
+    <p class="lead">
+      We develop open-source software tools and data resources to support research in computational toxicology, biomedical informatics, and knowledge graph applications. All of our resources are freely available to the research community.
+    </p>
+  </section>
+
+  <section class="resources-section">
+    <div class="section-header">
+      <h2>Software</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="resource-grid">
+      {resources.software.map((item) => (
+        <div class="resource-card">
+          <h3>{item.name}</h3>
+          <p class="resource-desc">{item.description}</p>
+          <div class="resource-links">
+            {item.docsUrl && (
+              <a href={item.docsUrl} class="resource-link">Documentation</a>
+            )}
+            {item.github && (
+              <a href={item.github} target="_blank" rel="noopener" class="resource-link">GitHub</a>
+            )}
+          </div>
+          {item.publication && (
+            <p class="resource-pub">
+              <span class="pub-label">Publication:</span> {item.publication.title}. <em>{item.publication.journal}</em>, {item.publication.year}.
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="resources-section">
+    <div class="section-header">
+      <h2>Data</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="resource-grid">
+      {resources.data.map((item) => (
+        <div class="resource-card">
+          <h3>{item.name}</h3>
+          <p class="resource-desc">{item.description}</p>
+          <div class="resource-links">
+            {item.url && (
+              <a href={item.url} target="_blank" rel="noopener" class="resource-link">Website</a>
+            )}
+            {item.github && (
+              <a href={item.github} target="_blank" rel="noopener" class="resource-link">GitHub</a>
+            )}
+            {item.publication && item.publication.doi && (
+              <a href={`https://doi.org/${item.publication.doi}`} target="_blank" rel="noopener" class="resource-link">DOI</a>
+            )}
+          </div>
+          {item.publication && (
+            <p class="resource-pub">
+              <span class="pub-label">Publication:</span> {item.publication.title}. <em>{item.publication.journal}</em>, {item.publication.year}.
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .resources-overview {
+    margin-bottom: 3rem;
+  }
+
+  .resources-section {
+    margin: 3rem 0;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .resource-card:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+  }
+
+  .resource-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: var(--color-primary);
+  }
+
+  .resource-desc {
+    font-size: 0.95rem;
+    color: var(--color-on-surface);
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+  }
+
+  .resource-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .resource-link {
+    padding: 0.5rem 1rem;
+    background: var(--color-primary-muted);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .resource-link:hover {
+    background: rgba(6, 182, 212, 0.25);
+    border-color: var(--color-primary);
+    color: var(--color-primary-hover);
+  }
+
+  .resource-pub {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin: 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pub-label {
+    font-weight: 500;
+    color: var(--color-on-surface);
+  }
+
+  @media (max-width: 768px) {
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
